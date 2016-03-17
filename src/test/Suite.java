@@ -32,8 +32,6 @@ public class Suite {
 
     private void printSeparator() {
         System.out.println();
-        System.out.println();
         System.out.println("===============================");
-        System.out.println();
     }
 }

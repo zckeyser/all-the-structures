@@ -15,7 +15,7 @@ public abstract class Test {
         if(valid) {
             System.out.print(". ");
         } else {
-            System.out.print(timesCalled + " ");
+            System.out.print("F ");
         }
     }
     
@@ -25,21 +25,9 @@ public abstract class Test {
         if(a.equals(b)) {
             System.out.print(". ");
         } else {
-            System.out.println(timesCalled);
+            System.out.println("F");
             System.out.print("    ");
             System.out.println("expected " + a.toString() + " to equal " + b.toString());
-        }
-    }
-    
-    protected void expectEquals(int a, int b) {
-        timesCalled++;
-
-        if(a == b) {
-            System.out.print(". ");
-        } else {
-            System.out.println(timesCalled);
-            System.out.print("    ");
-            System.out.println("expected " + a + " to equal " + b);
         }
     }
 

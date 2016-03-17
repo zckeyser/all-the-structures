@@ -13,9 +13,9 @@ public class BinarySearchTreeTest extends Test {
         BinarySearchTree root = new BinarySearchTree(null, 50);
 
         //test isLeaf() and getHeight() with no children
-        expect(root.isLeaf()); // 1
+        expect(root.isLeaf());
 
-        expectEquals(root.getHeight(), 1); // 2
+        expectEquals(root.getHeight(), 1);
 
         //populate left subtree
         root.insert(35);
@@ -28,9 +28,9 @@ public class BinarySearchTreeTest extends Test {
         root.insert(42);
 
         //test hasSingleChild() and getHeight() with one child
-        expect(root.hasSingleChild()); // 3
+        expect(root.hasSingleChild());
 
-        expectEquals(root.getHeight(), 5); // 4
+        expectEquals(root.getHeight(), 5);
 
         //populate right subtree
         root.insert(78);
@@ -44,17 +44,17 @@ public class BinarySearchTreeTest extends Test {
         root.insert(100);
 
         //test contains and getHeight() with two children
-        expect(root.contains(35)); // 5
-        expect(!root.contains(1)); // 6
-        expect(root.contains(87)); // 7
-        expect(root.contains(50)); // 8
+        expect(root.contains(35));
+        expect(!root.contains(1));
+        expect(root.contains(87));
+        expect(root.contains(50));
 
-        expectEquals(root.getHeight(), 5); // 9
+        expectEquals(root.getHeight(), 5);
 
         String treeStr = root.inOrder();
         String expected = "8 10 11 14 35 39 42 44 50 60 65 71 78 80 84 87 91 100";
 
-        expectEquals(treeStr, expected); // 10
+        expectEquals(treeStr, expected);
 
         // test deletion of node with two children
         root.delete(35);
@@ -62,7 +62,7 @@ public class BinarySearchTreeTest extends Test {
         treeStr = root.inOrder();
         expected = "8 10 11 14 39 42 44 50 60 65 71 78 80 84 87 91 100";
 
-        expectEquals(treeStr, expected); // 11
+        expectEquals(treeStr, expected);
 
         //test deletion of node with one child
         root.delete(44);
@@ -70,7 +70,7 @@ public class BinarySearchTreeTest extends Test {
         treeStr = root.inOrder();
         expected = "8 10 11 14 39 42 50 60 65 71 78 80 84 87 91 100";
 
-        expectEquals(treeStr, expected); // 11
+        expectEquals(treeStr, expected);
 
         //test deletion of leaf
         root.delete(10);
@@ -78,6 +78,6 @@ public class BinarySearchTreeTest extends Test {
         treeStr = root.inOrder();
         expected = "8 11 14 39 42 50 60 65 71 78 80 84 87 91 100";
 
-        expectEquals(treeStr, expected); // 11
+        expectEquals(treeStr, expected);
     }
 }
