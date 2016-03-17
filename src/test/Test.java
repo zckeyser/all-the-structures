@@ -7,11 +7,41 @@ package test;
  * maybe eventually i'll either expand this or figure out tooling so i can use JUnit
  */
 public abstract class Test {
+    static int timesCalled = 0;
+
     protected void expect(boolean valid) {
+        timesCalled++;
+
         if(valid) {
             System.out.print(". ");
         } else {
-            System.out.print("F ");
+            System.out.print(timesCalled + " ");
         }
     }
+    
+    protected void expectEquals(Object a, Object b) {
+        timesCalled++;
+
+        if(a.equals(b)) {
+            System.out.print(". ");
+        } else {
+            System.out.println(timesCalled);
+            System.out.print("    ");
+            System.out.println("expected " + a.toString() + " to equal " + b.toString());
+        }
+    }
+    
+    protected void expectEquals(int a, int b) {
+        timesCalled++;
+
+        if(a == b) {
+            System.out.print(". ");
+        } else {
+            System.out.println(timesCalled);
+            System.out.print("    ");
+            System.out.println("expected " + a + " to equal " + b);
+        }
+    }
+
+    abstract public void run();
 }

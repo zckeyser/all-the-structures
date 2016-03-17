@@ -3,6 +3,7 @@ package trees;
 /**
  * Created by Chris Keyser on 3/11/2016.
  * Binary search tree implementation
+ * Includes support for insertion, deletion, contains, height, and pre-order/in-order/post-order traversals
  */
 public class BinarySearchTree {
     private BinarySearchTree left;
@@ -13,22 +14,12 @@ public class BinarySearchTree {
     public BinarySearchTree(BinarySearchTree parent, int val) {
         this.val = val;
         this.parent = parent;
+        left = null;
+        right = null;
     }
 
     public int getVal() {
         return val;
-    }
-
-    public void setVal(int val) {
-        this.val = val;
-    }
-
-    public void setLeft(BinarySearchTree left) {
-        this.left = left;
-    }
-
-    public void setRight(BinarySearchTree right) {
-        this.right = right;
     }
 
     /**
@@ -83,8 +74,8 @@ public class BinarySearchTree {
 
         //find the greater of this tree's children's lengths
         if(!this.isLeaf()) {
-            int leftHeight = left != null ? left.getHeight() + 1 : 0;
-            int rightHeight = right != null ? right.getHeight() + 1 : 0;
+            int leftHeight = left != null ? left.getHeight() : 0;
+            int rightHeight = right != null ? right.getHeight() : 0;
 
             childHeight = leftHeight > rightHeight ? leftHeight : rightHeight;
         }
@@ -184,9 +175,9 @@ public class BinarySearchTree {
      * @param newChild BinarySearchTree
      */
     public void replaceChild(int childVal, BinarySearchTree newChild) {
-        if(left.getVal() == childVal) {
+        if(left != null && left.getVal() == childVal) {
             left = newChild;
-        } else if(right.getVal() == childVal) {
+        } else if(right != null && right.getVal() == childVal) {
             right = newChild;
         }
     }
@@ -206,5 +197,56 @@ public class BinarySearchTree {
     public boolean hasSingleChild() {
         // ^ operator is XOR (exclusive or) operator, which is equivalent to (left != null || right != null) && !(left != null & right != null)
         return left != null ^ right != null;
+    }
+
+    /**
+     * wrapper for pre-order traversal because I can't seem to get rid of leading whitespace otherwise
+     */
+    public String preOrder() {
+        return preOrderHelper().trim();
+    }
+
+    /**
+     * performs a pre-order traversal of the tree, returning a string representing the values in the order they were reached
+     */
+    public String preOrderHelper() {
+        String leftTraversal = left != null ? left.preOrderHelper() : "";
+        String rightTraversal = right != null ? right.preOrderHelper() : "";
+        return val + " " + leftTraversal + rightTraversal;
+    }
+
+    /**
+     * wrapper for in-order traversal because I can't seem to get rid of leading whitespace otherwise
+     */
+    public String inOrder() {
+        String s = inOrderHelper();
+
+        return s.trim();
+    }
+
+    /**
+     * performs an in-order traversal of the tree, returning a string representing the values in the order they were reached
+     */
+    public String inOrderHelper() {
+        String leftTraversal = left != null ? left.inOrderHelper() : "";
+        String rightTraversal = right != null ? right.inOrderHelper() : "";
+
+        return leftTraversal + " " + val + rightTraversal;
+    }
+
+    /**
+     * wrapper for post-order traversal because I can't seem to get rid of leading whitespace otherwise
+     */
+    public String postOrder() {
+        return postOrderHelper().trim();
+    }
+
+    /**
+     * performs a post-order traversal of the tree, returning a string representing the values in the order they were reached
+     */
+    public String postOrderHelper() {
+        String leftTraversal = left != null ? left.postOrderHelper() : "";
+        String rightTraversal = right != null ? right.postOrderHelper() : "";
+        return leftTraversal + " " + rightTraversal + val;
     }
 }
