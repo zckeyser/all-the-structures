@@ -1,4 +1,5 @@
 import searches.ArraySearchTest;
+import searches.UnguidedSearchTest;
 import sorts.SortTest;
 import stack.QueueTest;
 import stack.StackTest;
@@ -17,6 +18,7 @@ public class Main {
     static boolean ARRAY_SEARCH = true;
     static boolean SORT = true;
     static boolean SORT_TIMING = true;
+    static boolean UNGUIDED_SEARCH = true;
 
     //TODO less naive way of deciding what tests to run?
     public static void main(String[] args) {
@@ -27,6 +29,7 @@ public class Main {
         if(QUEUE) suite.addTest(new QueueTest());
         if(ARRAY_SEARCH) suite.addTest(new ArraySearchTest());
         if(SORT) suite.addTest(new SortTest(SORT_TIMING));
+        if(UNGUIDED_SEARCH) suite.addTest(new UnguidedSearchTest());
 
         suite.run();
     }

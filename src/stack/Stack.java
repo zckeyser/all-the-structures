@@ -16,6 +16,13 @@ public class Stack<T> {
     }
 
     /**
+     * initializes stack with data in the order of given list
+     */
+    public Stack(List<T> data) {
+        this.data = new ArrayList<>(data);
+    }
+
+    /**
      * pushes object onto top of stack
      */
     public void push(T obj) {
@@ -41,5 +48,12 @@ public class Stack<T> {
      */
     public boolean isEmpty() {
         return this.data.isEmpty();
+    }
+
+    /**
+     * determines whether the queue contains object obj
+     */
+    public boolean contains(T obj) {
+        return data.contains(obj);
     }
 }

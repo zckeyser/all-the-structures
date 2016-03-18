@@ -16,6 +16,13 @@ public class Queue<T> {
     }
 
     /**
+     * initializes Queue to have information in the order of given List
+     */
+    public Queue(List<T> data) {
+        this.data = new ArrayList<>(data);
+    }
+
+    /**
      * pushes object onto back of queue
      */
     public void push(T obj) {
@@ -41,5 +48,12 @@ public class Queue<T> {
      */
     public boolean isEmpty() {
         return this.data.isEmpty();
+    }
+
+    /**
+     * determines whether the queue contains object obj
+     */
+    public boolean contains(T obj) {
+        return data.contains(obj);
     }
 }

@@ -61,12 +61,13 @@ public class SortTest extends Test {
 
     /**
      * generates an array of random numbers of n length
+     * currently generates numbers >= 0 because of radix sort
      */
     private int[] generateRandomArray(int n) {
         int[] arr = new int[n];
 
         for(int i = 0; i < n; i++) {
-            arr[i] = rng.nextInt();
+            arr[i] = Math.abs(rng.nextInt());
         }
 
         return arr;

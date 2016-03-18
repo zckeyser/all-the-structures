@@ -1,8 +1,12 @@
 package searches;
 
+import graphs.DirectedGraphNode;
+
 /**
- * Created by Chris Keyser on 3/17/2016.
- * Search implementations for graphs (bfs, dfs, etc)
+ * Created by Chris Keyser on 3/18/2016.
+ * interface which graph searches implement
  */
-public class GraphSearch {
+public interface GraphSearch {
+    boolean contains(int target, DirectedGraphNode root, boolean trace);
+    String traverse(DirectedGraphNode root);
 }
