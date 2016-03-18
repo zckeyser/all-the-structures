@@ -10,9 +10,9 @@ import java.util.Random;
  * will do timing to show the differing efficiency
  */
 public class SortTest extends Test {
-
     private Random rng;
     private boolean timed;
+    //WARNING: quicksort gets a StackOverflowError with larger array sizes
     private static final int ARR_SIZE = 10000;
 
     public SortTest() {
@@ -28,7 +28,14 @@ public class SortTest extends Test {
     public void run() {
         int[] arr = generateRandomArray(ARR_SIZE);
 
-        Sort[] sorts = {new BubbleSort(arr), new InsertionSort(arr), new SelectionSort(arr) , new RadixSort(arr), new QuickSort(arr), new MergeSort(arr)};
+        Sort[] sorts = {
+                new BubbleSort(arr),
+                new InsertionSort(arr),
+                new SelectionSort(arr),
+                new RadixSort(arr),
+                new QuickSort(arr),
+                new MergeSort(arr)
+        };
 
         for(Sort sort : sorts) {
             long startTime = 0;
