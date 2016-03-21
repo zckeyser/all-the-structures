@@ -9,25 +9,26 @@ package test;
 public abstract class Test {
     static int timesCalled = 0;
 
-    protected void expect(boolean valid) {
+    protected void expect(String description, boolean valid) {
         timesCalled++;
 
         if(valid) {
             System.out.print(". ");
         } else {
-            System.out.print("F ");
+            System.out.println("F");
+            System.out.println("\t" + description);
         }
     }
     
-    protected void expectEquals(Object a, Object b) {
+    protected void expectEquals(String description, Object a, Object b) {
         timesCalled++;
 
         if(a.equals(b)) {
             System.out.print(". ");
         } else {
             System.out.println("F");
-            System.out.print("    ");
-            System.out.println("expected " + a.toString() + " to equal " + b.toString());
+            System.out.println("\t" + description);
+            System.out.println("\t\texpected " + a.toString() + " to equal " + b.toString());
         }
     }
 

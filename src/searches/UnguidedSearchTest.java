@@ -49,21 +49,21 @@ public class UnguidedSearchTest extends Test {
         String expected;
 
         //DFS tests
-        expect(dfs.contains(63, root, false));
-        expect(!dfs.contains(60, root, false));
+        expect("DFS contains to find a value in the graph correctly", dfs.contains(63, root, false));
+        expect("DFS contains to not find a value that is not in the graph", !dfs.contains(60, root, false));
 
         //expected result string for DFS traversal on root
         expected = "21 39 27 30 33 36 16 11 84 18 63 14 51";
 
-        expectEquals(dfs.traverse(root), expected);
+        expectEquals("DFS to traverse the graph correctly", dfs.traverse(root), expected);
 
         //BFS tests
-        expect(bfs.contains(63, root, false));
-        expect(!bfs.contains(60, root, false));
+        expect("BFS contains to find a value in the graph correctly", bfs.contains(63, root, false));
+        expect("BFS contains to not find a value that is not in the graph", !bfs.contains(60, root, false));
 
         //expected result string for BFS traversal on root
         expected = "21 14 18 39 51 63 16 27 84 11 30 33 36";
 
-        expectEquals(bfs.traverse(root), expected);
+        expectEquals("DFS to traverse the graph correctly", bfs.traverse(root), expected);
     }
 }

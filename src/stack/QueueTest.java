@@ -11,24 +11,19 @@ public class QueueTest extends Test {
     public void run() {
         Queue<Integer> queue = new Queue<>();
 
-        //test isEmpty and size with no data on queue
-        expect(queue.isEmpty());
-        expectEquals(queue.size(), 0);
+        expect("Queue to be empty on initialization", queue.isEmpty());
+        expectEquals("Queue to have size 0 on initialization", queue.size(), 0);
 
         queue.push(5);
         queue.push(11);
 
-        //test push by seeing queue size
-        expectEquals(queue.size(), 2);
+        expectEquals("Queue to have correct size after adding two elements", queue.size(), 2);
 
         //test pop
         Integer testVal = queue.pop();
         Integer expected = 5;
 
-        //make sure the right item was popped
-        expectEquals(testVal, expected);
-
-        //make sure the item was removed from the queue
-        expectEquals(queue.size(), 1);
+        expectEquals("The right element to be pulled from the queue", testVal, expected);
+        expectEquals("The size of Queue to decrease by 1 after pop", queue.size(), 1);
     }
 }

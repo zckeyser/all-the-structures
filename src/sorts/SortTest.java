@@ -1,7 +1,9 @@
 package sorts;
 
+import heaps.Heap;
 import test.Test;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -29,23 +31,19 @@ public class SortTest extends Test {
         int[] arr = generateRandomArray(ARR_SIZE);
 
         Sort[] sorts = {
-                new BubbleSort(arr),
-                new InsertionSort(arr),
-                new SelectionSort(arr),
-                new RadixSort(arr),
-                new QuickSort(arr),
-                new MergeSort(arr)
+                new BubbleSort(copyOf(arr)),
+                new InsertionSort(copyOf(arr)),
+                new SelectionSort(copyOf(arr)),
+                new RadixSort(copyOf(arr)),
+                new QuickSort(copyOf(arr)),
+                new MergeSort(copyOf(arr))
         };
 
         for(Sort sort : sorts) {
-            long startTime = 0;
-            if(timed) {
-                startTime = System.nanoTime();
-            }
-
             System.out.print(sort.getClass().getSimpleName() + ": ");
+            long startTime = System.nanoTime();
 
-            expect(isSorted(sort.sort()));
+            expect("to be sorted", isSorted(sort.sort()));
 
             if(timed) {
                 long endTime = System.nanoTime();
@@ -57,6 +55,23 @@ public class SortTest extends Test {
 
             System.out.println();
         }
+
+        //test heapsort because it's contained in Heap
+//        Heap heap = new Heap();
+//        System.out.print("HeapSort: ");
+//
+//        long startTime = System.nanoTime();
+//
+//        heap.heapSort(arr);
+//        expect("to be sorted", isSorted(heap.getData()));
+//
+//        if(timed) {
+//            long endTime = System.nanoTime();
+//
+//            double duration = (double) (endTime - startTime) / 1000000;  //divide by 1000000 to get milliseconds.
+//
+//            System.out.print(" " + duration + "ms");
+//        }
     }
 
     /**
@@ -84,5 +99,15 @@ public class SortTest extends Test {
         }
 
         return true;
+    }
+
+    private int[] copyOf(int[] arr) {
+        int[] newArr = new int[arr.length];
+
+        for(int i = 0; i < arr.length; i++) {
+            newArr[i] = arr[i];
+        }
+
+        return newArr;
     }
 }
