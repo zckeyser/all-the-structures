@@ -11,40 +11,41 @@ public class QuickSort extends Sort {
 
     @Override
     public int[] sort() {
-        quicksort(0, arr.length);
+        quicksort(0, arr.length - 1);
         return arr;
     }
 
-    /**
-     * method to recurse quicksort until arrays are split into sorted subarrays
-     */
-    private void quicksort(int start, int end) {
-        if (start == end) {
-            return;
-        }
+    private void quicksort(int lowerIndex, int higherIndex) {
 
-        //find pivot using partition()
-        int pivot = partition(start, end);
+        int i = lowerIndex;
+        int j = higherIndex;
+        // take middle number for pivot
+        int pivot = arr[lowerIndex + (higherIndex - lowerIndex) / 2];
+        // Divide into two arrays
+        while (i <= j) {
+            //find a number from the left side less than pivot
+            while (arr[i] < pivot) {
+                i++;
+            }
+            
+            //find a number from the right side greater than pivot
+            while (arr[j] > pivot) {
+                j--;
+            }
 
-        //sort subarrays before and after pivot
-        quicksort(start, pivot);
-        quicksort(pivot + 1, end);
-    }
+            //swap them
+            if (i <= j) {
+                swap(i, j);
 
-    /**
-     * partition given arr around its left-most value
-     * end index is exclusive
-     */
-    private int partition(int pivot, int end) {
-        for(int i = pivot; i < end; i++) {
-            //if arr[i] < pivot value, move it in front of the pivot
-            if(arr[i] < arr[pivot]) {
-                swap(pivot, pivot + 1);
-                pivot++;
-                swap(i, pivot - 1);
+                i++;
+                j--;
             }
         }
 
-        return pivot;
+        // call quickSort() method recursively
+        if (lowerIndex < j)
+            quicksort(lowerIndex, j);
+        if (i < higherIndex)
+            quicksort(i, higherIndex);
     }
 }
