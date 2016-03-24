@@ -195,7 +195,7 @@ public class BinarySearchTree {
      * @return bool
      */
     public boolean hasSingleChild() {
-        // ^ operator is XOR (exclusive or) operator, which is equivalent to (left != null || right != null) && !(left != null & right != null)
+        // ^ is XOR (exclusive or) operator, which is equivalent to (left != null || right != null) && !(left != null & right != null)
         return left != null ^ right != null;
     }
 

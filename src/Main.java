@@ -1,5 +1,5 @@
-import searches.ArraySearchTest;
-import searches.UnguidedSearchTest;
+import searches.uninformed.ArraySearchTest;
+import searches.uninformed.UninformedSearchTest;
 import sorts.SortTest;
 import stack.QueueTest;
 import stack.StackTest;
@@ -29,7 +29,7 @@ public class Main {
         if(QUEUE) suite.addTest(new QueueTest());
         if(ARRAY_SEARCH) suite.addTest(new ArraySearchTest());
         if(SORT) suite.addTest(new SortTest(SORT_TIMING));
-        if(UNGUIDED_SEARCH) suite.addTest(new UnguidedSearchTest());
+        if(UNGUIDED_SEARCH) suite.addTest(new UninformedSearchTest());
 
         suite.run();
     }

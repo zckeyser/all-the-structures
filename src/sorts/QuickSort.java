@@ -27,7 +27,7 @@ public class QuickSort extends Sort {
             while (arr[i] < pivot) {
                 i++;
             }
-            
+
             //find a number from the right side greater than pivot
             while (arr[j] > pivot) {
                 j--;

@@ -1,4 +1,4 @@
-package searches;
+package searches.uninformed;
 
 import graphs.DirectedGraphNode;
 import test.Test;
@@ -7,7 +7,7 @@ import test.Test;
  * Created by Chris Keyser on 3/18/2016.
  * Tests BFS and DFS
  */
-public class UnguidedSearchTest extends Test {
+public class UninformedSearchTest extends Test {
     @Override
     public void run() {
         //initialize graph

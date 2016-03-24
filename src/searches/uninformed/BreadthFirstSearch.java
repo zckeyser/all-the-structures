@@ -1,4 +1,4 @@
-package searches;
+package searches.uninformed;
 
 import graphs.DirectedGraphNode;
 import stack.Queue;
