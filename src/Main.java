@@ -1,4 +1,4 @@
-import searches.uninformed.ArraySearchTest;
+import searches.array.ArraySearchTest;
 import searches.uninformed.UninformedSearchTest;
 import sorts.SortTest;
 import stack.QueueTest;

@@ -1,4 +1,4 @@
-package searches.uninformed;
+package searches.array;
 
 import java.util.Arrays;
 
