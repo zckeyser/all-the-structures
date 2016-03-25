@@ -1,5 +1,7 @@
 package sorts;
 
+import java.util.Random;
+
 /**
  * Created by Chris Keyser on 3/17/2016.
  * 2-way partition quicksort implementation
@@ -11,6 +13,7 @@ public class QuickSort extends Sort {
 
     @Override
     public int[] sort() {
+        shuffle();
         quicksort(0, arr.length - 1);
         return arr;
     }
@@ -47,5 +50,15 @@ public class QuickSort extends Sort {
             quicksort(lowerIndex, j);
         if (i < higherIndex)
             quicksort(i, higherIndex);
+    }
+
+    //standard shuffling algorithm
+    //used to avoid bad case for qsort of almost-sorted array
+    private void shuffle() {
+        Random rand = new Random();
+
+        for(int i = 0; i < arr.length; i++) {
+            swap(i, rand.nextInt(arr.length));
+        }
     }
 }
