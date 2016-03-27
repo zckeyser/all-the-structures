@@ -10,10 +10,10 @@ import java.util.List;
  * Created by Chris Keyser on 3/24/2016.
  * Best-first informed search implementation
  */
-public class BestFirst {
+public class Greedy {
     private Board root;
 
-    public BestFirst(String filename) {
+    public Greedy(String filename) {
         root = new Board(filename);
     }
 

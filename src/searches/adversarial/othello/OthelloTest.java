@@ -1,9 +1,9 @@
 package searches.adversarial.othello;
 
 /**
- * Test class for Othello-playing adversarial search algorithms
+ * OthelloTest class for Othello-playing adversarial search algorithms
  */
-public class Test {
+public class OthelloTest {
 
     public static void main(String args[]) {
         // Create the game state with the initial position for an 8x8 board:
