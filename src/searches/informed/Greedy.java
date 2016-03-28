@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Created by Chris Keyser on 3/24/2016.
- * Best-first informed search implementation
+ * Greedy best-first informed search implementation
  */
 public class Greedy {
     private Board root;

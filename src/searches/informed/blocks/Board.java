@@ -3,16 +3,17 @@ package searches.informed.blocks;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Chris Keyser on 3/24/2016.
  * Class to handle board state/logic for sliding blocks game
  */
 public class Board {
-    private static final int DEFAULT_SIZE = 10;
     private static final int GOAL = -1;
     private static final int EMPTY = 0;
-    private static final int MASTER = 1;
+    private static final int WALL = 1;
+    private static int MASTER = 2;
 
     private int[][] state;
 
@@ -56,18 +57,71 @@ public class Board {
     }
 
     // checks if given move is valid for current board stater
-    private boolean validMove(Move move) {
-        return false;
+    private boolean isValidMove(Move move) {
+        XYOffset offset = move.getXYOffset();
+
+        for(int i = 0; i < state.length; i++) {
+            for(int j = 0; j < state[i].length; j++) {
+                if(state[i][j] == move.getPiece()) {
+                    int newX = i + offset.getX();
+                    int newY = j + offset.getY();
+
+                    //if it's off the board it's invalid
+                    if(newX > state.length || newY > state[i].length) {
+                        return false;
+                    }
+
+                    int neighborVal = state[newX][newY];
+
+                    //can only move in this direction if onto a master/empty/same space
+                    if(!(neighborVal == -1 || neighborVal == 0 || neighborVal == getMaxPiece())) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+
+        return true;
     }
 
     // gets all valid moves from current board state
     private List<Move> getValidMoves() {
-        return new ArrayList<>();
+        List<Move> validMoves = new ArrayList<>();
+
+        for(int i = MASTER; i < getMaxPiece(); i++) {
+            for(int direction : Move.DIRECTIONS) {
+                Move currMove = new Move(i, direction);
+
+                if(isValidMove(currMove)) {
+                    validMoves.add(currMove);
+                }
+            }
+        }
+
+        return validMoves;
+    }
+
+    private int getMaxPiece() {
+        int max = -1;
+
+        for(int[] row : state) {
+            for(int val : row) {
+                if(max < val) {
+                    max = val;
+                }
+            }
+        }
+
+        return max;
     }
 
     // gets all states which are a result of a move from getValidMoves()
     public List<Board> getNeighborBoardStates() {
-        return new ArrayList<>();
+        return getValidMoves()
+                .stream()
+                .map(move -> applyMoveCloning(move))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     //applies move to current board
@@ -105,6 +159,11 @@ public class Board {
 
     // cost function for current state
     public int cost() {
+        return moves.size();
+    }
+
+    // function returning # of moves to reach this state
+    public int numMoves() {
         return moves.size();
     }
 }

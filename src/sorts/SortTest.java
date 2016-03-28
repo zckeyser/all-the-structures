@@ -8,7 +8,7 @@ import java.util.Random;
 
 /**
  * Created by Chris Keyser on 3/17/2016.
- * Test for all of the sorting algorithms
+ * OthelloTest for all of the sorting algorithms
  * will do timing to show the differing efficiency
  */
 public class SortTest extends Test {

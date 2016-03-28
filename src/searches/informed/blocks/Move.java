@@ -9,6 +9,7 @@ public class Move {
     public static final int DOWN = 1;
     public static final int LEFT = 2;
     public static final int UP = 3;
+    public static final int[] DIRECTIONS = {RIGHT, DOWN, LEFT, UP};
 
     private int piece;
     private int direction;
@@ -37,7 +38,7 @@ public class Move {
     /**
      * gets the x/y offset of a move relative to the 2d matrix representing the board
      */
-    public XYOffset getXYOffset(int direction) {
+    public XYOffset getXYOffset() {
         switch(direction) {
             case RIGHT:
                 return new XYOffset(1, 0);
@@ -52,7 +53,7 @@ public class Move {
         }
     }
 
-    public String getDirectionString(int direction) {
+    public String getDirectionString() {
         switch(direction) {
             case RIGHT:
                 return "Right";
