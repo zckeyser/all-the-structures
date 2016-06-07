@@ -56,6 +56,7 @@ var util = (function() {
   return {
     randomArray: randomArray,
     isSorted: isSorted,
-    swap: swap
+    swap: swap,
+    getRandomInt: getRandomInt
   };
 }.call(this));
