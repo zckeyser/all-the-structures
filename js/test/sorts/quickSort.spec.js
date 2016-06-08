@@ -1,4 +1,4 @@
-describe('QuickSort', function() {
+describe('Quick Sort', function() {
   it('should correctly sort an array', function() {
     var quickSort = new QuickSort();
     var arrayToSort = util.randomArray();

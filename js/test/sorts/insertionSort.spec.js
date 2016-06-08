@@ -1,4 +1,4 @@
-describe('InsertionSort', function() {
+describe('Insertion Sort', function() {
   it('should correctly sort an array', function() {
     var insertionSort = new InsertionSort();
     var arrayToSort = util.randomArray();
