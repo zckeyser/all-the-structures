@@ -91,6 +91,10 @@ public class BinarySearchTree {
      * @param i int value of node to delete
      */
     public void delete(int i) {
+        if(!contains(i)) {
+          System.out.format("The value %d was attempted to be removed from a tree which does not contain it", i)
+        }
+
         //if the value we're looking to delete is less than the current node's value, look in the left subtree
         if(i < val) {
             if(left != null) {
@@ -100,7 +104,7 @@ public class BinarySearchTree {
             if(right != null) {
                 right.delete(i);
             }
-        } else { //else if not <> it must be this node so delete it
+        } else { //else if not < or > it must be this node so delete it
             if(this.isLeaf()) {
                 //if there are no children just null the reference to this object in its parent
                 parent.replaceChild(i, null);
