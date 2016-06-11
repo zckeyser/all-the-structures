@@ -8,7 +8,7 @@ function DirectedGraphNode(value) {
 
 DirectedGraphNode.prototype = (function() {
   function addNeighbor(node) {
-    if(!DirectedGraphNode.isPrototypeOf(node)) {
+    if(!(node instanceof DirectedGraphNode)) {
       console.log("warning: attempted to add non-DirectedGraphNode to directed graph");
       return;
     }
