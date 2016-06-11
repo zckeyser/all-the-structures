@@ -8,7 +8,12 @@ function DirectedGraphNode(value) {
 
 DirectedGraphNode.prototype = (function() {
   function addNeighbor(node) {
-    if(_.findIndex(this.neighbors, node, node.equals) === -1) {
+    if(!DirectedGraphNode.isPrototypeOf(node)) {
+      console.log("warning: attempted to add non-DirectedGraphNode to directed graph");
+      return;
+    }
+
+    if( _.findIndex(this.neighbors, node, node.equals) === -1) {
       this.neighbors.push(node);
     }
   }
