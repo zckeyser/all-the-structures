@@ -1,4 +1,9 @@
-out
-*.iml
-.idea
+Java/out
+Java/*.iml
+Java/.idea
+
 js/node_modules
+
+**/obj
+**/bin
+.vs
