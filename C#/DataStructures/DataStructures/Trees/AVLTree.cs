@@ -2,21 +2,24 @@
 
 namespace DataStructures.Trees
 {
-	public class BinarySearchTree<T> : IBinarySearchTree<T> where T : IComparable
+	public class AVLTree<T> : IBinarySearchTree<T> where T : IComparable
 	{
 		private T value;
 		private int count;
-		private BinarySearchTree<T> left;
-		private BinarySearchTree<T> right;
-		private readonly BinarySearchTree<T> parent; 
+		private int height;
+		private AVLTree<T> left;
+		private AVLTree<T> right;
+		private readonly AVLTree<T> parent; 
 
-		public BinarySearchTree(BinarySearchTree<T> parent, T value)
+		public AVLTree(AVLTree<T> parent, T value)
 		{
 			this.parent = parent;
 			this.value = value;
-			this.count = 1;
+			count = 1;
+			height = parent != null ? parent.height + 1 : 1;
 		}
 
+		#region Modified BST Methods
 		public IBinarySearchTree<T> Insert(T toInsert)
 		{
 			var compareValue = toInsert.CompareTo(value);
@@ -29,7 +32,7 @@ namespace DataStructures.Trees
 				{
 					// if we don't have a right subtree,
 					// make one starting with toInsert
-					right = new BinarySearchTree<T>(this, toInsert);
+					right = new AVLTree<T>(this, toInsert);
 
 					return right;
 				}
@@ -47,7 +50,7 @@ namespace DataStructures.Trees
 				{
 					// if we don't have a left subtree,
 					// make one starting with toInsert
-					left = new BinarySearchTree<T>(this, toInsert);
+					left = new AVLTree<T>(this, toInsert);
 
 					return left;
 				}
@@ -119,8 +122,30 @@ namespace DataStructures.Trees
 				}
 			}
 		}
+		#endregion
 
-		private void ReplaceChild(T val, BinarySearchTree<T> replacement)
+		#region AVL Methods
+		private AVLTree<T> RotateRight()
+		{
+			return this;
+		}
+
+		private AVLTree<T> RotateLeft()
+		{
+			return this;
+		}
+
+		private int BalanceFactor()
+		{
+			var leftHeight = left != null ? left.height : 0;
+			var rightHeight = right != null ? right.height : 0;
+
+			return leftHeight - rightHeight;
+		}
+		#endregion
+
+		#region BST Methods
+		private void ReplaceChild(T val, AVLTree<T> replacement)
 		{
 			if (left != null && left.value.CompareTo(val) == 0)
 				left = replacement;
@@ -135,12 +160,12 @@ namespace DataStructures.Trees
 			return left == null && right == null;
 		}
 
-		private BinarySearchTree<T> GreatestDescendant()
+		private AVLTree<T> GreatestDescendant()
 		{
 			return right != null ? right.GreatestDescendant() : this;
 		}
 
-		private BinarySearchTree<T> SmallestDescendant()
+		private AVLTree<T> SmallestDescendant()
 		{
 			return left != null ? left.SmallestDescendant() : this;
 		} 
@@ -158,5 +183,6 @@ namespace DataStructures.Trees
 			else
 				return false;
 		}
+		#endregion
 	}
 }

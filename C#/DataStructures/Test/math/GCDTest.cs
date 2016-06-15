@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataStructures.math;
+using DataStructures.Math;
 
 namespace Test.math
 {

@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace DataStructures.filters
+namespace DataStructures.Filters
 {
     /// <summary>
     /// Class to generate a SHA256 key from a given object

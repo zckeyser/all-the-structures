@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace DataStructures.misc
+namespace DataStructures.Other
 {
     /// <summary>
     /// The classic "FizzBuzz" interview algorithm

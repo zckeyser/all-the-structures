@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace DataStructures.math
+namespace DataStructures.Math
 {
     /// <summary>
     /// sieve to find prime numbers up to whatever size it's instantiated with,

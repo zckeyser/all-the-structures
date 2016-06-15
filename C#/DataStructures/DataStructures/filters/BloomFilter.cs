@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataStructures.filters
+namespace DataStructures.Filters
 {
     public class BloomFilter
     {

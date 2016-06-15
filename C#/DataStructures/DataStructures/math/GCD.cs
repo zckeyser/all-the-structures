@@ -1,4 +1,4 @@
-﻿namespace DataStructures.math
+﻿namespace DataStructures.Math
 {
     /// <summary>
     /// classic euclidian Greatest Common Denominator algorithm implementation

@@ -1,4 +1,4 @@
-﻿using DataStructures.filters;
+﻿using DataStructures.Filters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test

@@ -1,4 +1,4 @@
-﻿namespace DataStructures.trees
+﻿namespace DataStructures.Trees
 {
 	public class BinaryTree<T>
 	{
