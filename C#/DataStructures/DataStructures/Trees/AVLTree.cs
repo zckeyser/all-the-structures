@@ -9,7 +9,7 @@ namespace DataStructures.Trees
 		private int height;
 		private AVLTree<T> left;
 		private AVLTree<T> right;
-		private readonly AVLTree<T> parent; 
+		private AVLTree<T> parent; 
 
 		public AVLTree(AVLTree<T> parent, T value)
 		{
@@ -127,12 +127,36 @@ namespace DataStructures.Trees
 		#region AVL Methods
 		private AVLTree<T> RotateRight()
 		{
-			return this;
+			// get nodes involved in rotation
+			var leftTmp = left;
+			var leftChildTmp = left.right;
+
+			// perform rotation
+			left = leftChildTmp;
+			leftTmp.right = this;
+
+			// update heights
+			leftTmp.height = System.Math.Max(leftTmp.left.height, leftTmp.right.height) + 1;
+			leftChildTmp.height = System.Math.Max(leftChildTmp.left.height, leftChildTmp.right.height) + 1;
+
+			return leftTmp;
 		}
 
 		private AVLTree<T> RotateLeft()
 		{
-			return this;
+			// get nodes involved in rotation
+			var rightTmp = right;
+			var rightChildTmp = right.left;
+
+			// perform rotation
+			right = rightChildTmp;
+			rightTmp.left = this;
+
+			// update heights
+			rightTmp.height = System.Math.Max(rightTmp.left.height, rightTmp.right.height) + 1;
+			rightChildTmp.height = System.Math.Max(rightChildTmp.left.height, rightChildTmp.right.height) + 1;
+
+			return rightTmp;
 		}
 
 		private int BalanceFactor()

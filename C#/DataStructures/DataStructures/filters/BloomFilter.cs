@@ -23,14 +23,14 @@ namespace DataStructures.Filters
         /// </summary>
         private int AlternateHash(object o)
         {
-            return Math.Abs(SHA256HashGenerator.GenerateKey(o).GetHashCode() % (filter.Length - 1));
+            return System.Math.Abs(SHA256HashGenerator.GenerateKey(o).GetHashCode() % (filter.Length - 1));
         }
 
         private int DefaultHash(object o)
         {
             // use the default system hash implementation
             // ensure it's in the array using modulo
-            return Math.Abs(o.GetHashCode() % (filter.Length - 1));
+            return System.Math.Abs(o.GetHashCode() % (filter.Length - 1));
         }
 
         public bool DoesNotContain(object o)
