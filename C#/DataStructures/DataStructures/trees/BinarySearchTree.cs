@@ -21,73 +21,105 @@ namespace DataStructures.trees
 			this.count = 1;
 		}
 
-		public BinarySearchTree<T> Insert(T val)
+		public BinarySearchTree<T> Insert(T toInsert)
 		{
-			var compareValue = val.CompareTo(value);
+			var compareValue = toInsert.CompareTo(value);
 
 			if (compareValue > 0)
 			{
+				// toInsert > value
+				// put it in the right subtree
 				if (right == null)
 				{
-					right = new BinarySearchTree<T>(this, val);
+					// if we don't have a right subtree,
+					// make one starting with toInsert
+					right = new BinarySearchTree<T>(this, toInsert);
 
 					return right;
 				}
 				else
 				{
-					return right.Insert(val);
+					// if we have a right subtree, insert into that
+					return right.Insert(toInsert);
 				}
 			}
 			else if (compareValue < 0)
 			{
+				// toInsert < value
+				// put it in the left subtree
 				if (left == null)
 				{
-					left = new BinarySearchTree<T>(this, val);
+					// if we don't have a left subtree,
+					// make one starting with toInsert
+					left = new BinarySearchTree<T>(this, toInsert);
 
 					return left;
 				}
 				else
 				{
-					return right.Insert(val);
+					// if we have a left subtree, insert into that
+					return left.Insert(toInsert);
 				}
 			}
 			else
 			{
+				// toInsert == value
+				// if we already have an instance of toInsert in the tree,
+				// increment the counter for the value's node
 				count++;
 				return this;
 			}
 		}
 
-		public void Remove(T val)
+		public void Remove(T toRemove)
 		{
-			if (!Contains(val))
+			if (!Contains(toRemove))
 			{
-				throw new ArgumentException(string.Format("Value {0} attempted to be removed from a tree which does not contain it", val));
+				throw new ArgumentException(string.Format("Value {0} attempted to be removed from a tree which does not contain it", toRemove));
 			}
 
-			var compareVal = val.CompareTo(value);
+			var compareVal = toRemove.CompareTo(value);
 
 			if (compareVal < 0)
 			{
-				left.Remove(val);
+				// toRemove < value
+				// the value must be in the left subtree -- remove it from there
+				left.Remove(toRemove);
 			}
 			else if (compareVal > 0)
 			{
-				right.Remove(val);
+				// toRemove > value
+				// the value must be in the right subtree -- remove it from there
+				right.Remove(toRemove);
 			}
 			else
 			{
-				if (IsLeaf())
+				// toRemove is equal to value
+				if (count > 1)
 				{
-
-				}
-				else if (HasSingleChild())
-				{
-
+					// remove an instance from this node
+					count--;
 				}
 				else
 				{
-					
+					// remove the current node
+					if (IsLeaf())
+					{
+						// if this is a leaf, we can just remove its reference
+						parent.ReplaceChild(value, null);
+					}
+					else
+					{
+						// find the closest descendant
+						var desc = left != null ? left.GreatestDescendant() : right.SmallestDescendant();
+
+						// replace this node's values with that node's values, and remove it
+						value = desc.value;
+						count = desc.count;
+
+						// get rid of the old copy of the descendant node
+						desc.Remove(desc.value);
+					}
 				}
 			}
 		}
@@ -119,14 +151,26 @@ namespace DataStructures.trees
 			return left != null ^ right != null;
 		}
 
-		private BinarySearchTree<T> GreatestChild()
+		private BinarySearchTree<T> GreatestDescendant()
 		{
-			return right != null ? right.GreatestChild() : this;
+			return right != null ? right.GreatestDescendant() : this;
 		}
 
-		public bool Contains(T val)
+		private BinarySearchTree<T> SmallestDescendant()
 		{
-			
+			return left != null ? left.SmallestDescendant() : this;
+		} 
+
+		public bool Contains(T target)
+		{
+			var compareVal = target.CompareTo(value);
+
+			if (compareVal == 0)
+				return true;
+			else if (compareVal < 0 && left != null)
+				return left.Contains(target);
+			else if (compareVal > 0 && right != null)
+				return right.Contains(target);
 		}
 	}
 }
