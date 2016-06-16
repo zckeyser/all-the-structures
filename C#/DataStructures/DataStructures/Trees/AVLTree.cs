@@ -2,6 +2,14 @@
 
 namespace DataStructures.Trees
 {
+    /// <summary>
+    /// Generic AVL Tree Implementation
+    /// 
+    /// The AVL Tree is a type of Balanced BST,
+    /// so it has search efficiency of O(log(n)),
+    /// unlike a normal BST which ranges from
+    /// O(log(n)) to O(n)
+    /// </summary>
 	public class AVLTree<T> : IBinarySearchTree<T> where T : IComparable
 	{
 		private T value;
@@ -22,53 +30,104 @@ namespace DataStructures.Trees
 		#region Modified BST Methods
 		public IBinarySearchTree<T> Insert(T toInsert)
 		{
-			var compareValue = toInsert.CompareTo(value);
+            var curr = BSTInsert(toInsert);
+            var newKey = curr.value;
 
-			if (compareValue > 0)
-			{
-				// toInsert > value
-				// put it in the right subtree
-				if (right == null)
-				{
-					// if we don't have a right subtree,
-					// make one starting with toInsert
-					right = new AVLTree<T>(this, toInsert);
+            // check up the parent chain to see if we got unbalanced somewhere
+            while(curr.parent != null && System.Math.Abs(curr.BalanceFactor()) <= 1)
+            {
+                curr = curr.parent;
+            }
 
-					return right;
-				}
-				else
-				{
-					// if we have a right subtree, insert into that
-					return right.Insert(toInsert);
-				}
-			}
-			else if (compareValue < 0)
-			{
-				// toInsert < value
-				// put it in the left subtree
-				if (left == null)
-				{
-					// if we don't have a left subtree,
-					// make one starting with toInsert
-					left = new AVLTree<T>(this, toInsert);
+            // if we're unbalanced, fix it
+            var balanceFactor = curr.BalanceFactor();
+            if(balanceFactor > 1)
+            {
+                // we're biased towards the right -- 
+                // we'll need a Left-Left or a Left-Right rotation
+                if(newKey.CompareTo(curr.value) < 0)
+                {
+                    // Left-Left rotation
+                    return curr.RotateLeft();
+                }
+                else // since we don't have duplicate nodes, the unbalanced root must be greater than the new key
+                {
+                    // Left-Right rotation
+                    curr.left = curr.left.RotateLeft();
+                    return curr.RotateRight();
+                }
+            }
+            else if(balanceFactor < -1)
+            {
+                // we're biased towards the left -- 
+                // we'll need a Right-Right or a Left-Right rotation
+                // we're biased towards the right -- 
+                // we'll need a Left-Left or a Left-Right rotation
+                if (newKey.CompareTo(curr.value) > 0)
+                {
+                    // Right-Left rotation
+                    return curr.RotateRight();
+                }
+                else // since we don't have duplicate nodes, the unbalanced root must be less than the new key
+                {
+                    // Right-Left rotation
+                    curr.right = curr.right.RotateRight();
+                    return curr.RotateRight();
+                }
+            }
 
-					return left;
-				}
-				else
-				{
-					// if we have a left subtree, insert into that
-					return left.Insert(toInsert);
-				}
-			}
-			else
-			{
-				// toInsert == value
-				// if we already have an instance of toInsert in the tree,
-				// increment the counter for the value's node
-				count++;
-				return this;
-			}
+            return curr;
 		}
+
+        private AVLTree<T> BSTInsert(T toInsert)
+        {
+            var compareValue = toInsert.CompareTo(value);
+
+            if (compareValue > 0)
+            {
+                // toInsert > value
+                // put it in the right subtree
+                if (right == null)
+                {
+                    // if we don't have a right subtree,
+                    // make one starting with toInsert
+                    right = new AVLTree<T>(this, toInsert);
+
+                    return right;
+                }
+                else
+                {
+                    // if we have a right subtree, insert into that
+                    return right.BSTInsert(toInsert);
+                }
+            }
+            else if (compareValue < 0)
+            {
+                // toInsert < value
+                // put it in the left subtree
+                if (left == null)
+                {
+                    // if we don't have a left subtree,
+                    // make one starting with toInsert
+                    left = new AVLTree<T>(this, toInsert);
+
+                    return left;
+                }
+                else
+                {
+                    // if we have a left subtree, insert into that
+                    return left.BSTInsert(toInsert);
+                }
+            }
+            else
+            {
+                // toInsert == value
+                // if we already have an instance of toInsert in the tree,
+                // increment the counter for the value's node
+                count++;
+                return this;
+            }
+        }
 
 		public void Remove(T toRemove)
 		{
@@ -125,38 +184,38 @@ namespace DataStructures.Trees
 		#endregion
 
 		#region AVL Methods
-		private AVLTree<T> RotateRight()
-		{
-			// get nodes involved in rotation
-			var leftTmp = left;
-			var leftChildTmp = left.right;
-
-			// perform rotation
-			left = leftChildTmp;
-			leftTmp.right = this;
-
-			// update heights
-			leftTmp.height = System.Math.Max(leftTmp.left.height, leftTmp.right.height) + 1;
-			leftChildTmp.height = System.Math.Max(leftChildTmp.left.height, leftChildTmp.right.height) + 1;
-
-			return leftTmp;
-		}
-
 		private AVLTree<T> RotateLeft()
 		{
 			// get nodes involved in rotation
-			var rightTmp = right;
-			var rightChildTmp = right.left;
+			var x = left;
+			var T2 = left.right;
 
 			// perform rotation
-			right = rightChildTmp;
-			rightTmp.left = this;
+			left = T2;
+			x.right = this;
 
 			// update heights
-			rightTmp.height = System.Math.Max(rightTmp.left.height, rightTmp.right.height) + 1;
-			rightChildTmp.height = System.Math.Max(rightChildTmp.left.height, rightChildTmp.right.height) + 1;
+			x.height = System.Math.Max(x.left.height, x.right.height) + 1;
+			T2.height = System.Math.Max(T2.left.height, T2.right.height) + 1;
 
-			return rightTmp;
+			return x;
+		}
+
+		private AVLTree<T> RotateRight()
+		{
+			// get nodes involved in rotation
+			var y = right;
+			var T2 = right.left;
+
+			// perform rotation
+			right = T2;
+			y.left = this;
+
+			// update heights
+			y.height = System.Math.Max(y.left.height, y.right.height) + 1;
+			T2.height = System.Math.Max(T2.left.height, T2.right.height) + 1;
+
+			return y;
 		}
 
 		private int BalanceFactor()

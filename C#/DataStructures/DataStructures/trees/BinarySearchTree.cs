@@ -14,9 +14,12 @@ namespace DataStructures.Trees
 		{
 			this.parent = parent;
 			this.value = value;
-			this.count = 1;
+			count = 1;
 		}
 
+        /// <summary>
+        /// insert value T into the tree, maintaining correct order
+        /// </summary>
 		public IBinarySearchTree<T> Insert(T toInsert)
 		{
 			var compareValue = toInsert.CompareTo(value);
@@ -67,6 +70,13 @@ namespace DataStructures.Trees
 			}
 		}
 
+        /// <summary>
+        /// remove the node with value toRemove from the tree
+        /// 
+        /// if the node has multiple occurrences (count > 1), 
+        /// just decrement its count
+        /// </summary>
+        /// <param name="toRemove"></param>
 		public void Remove(T toRemove)
 		{
 			if (!Contains(toRemove))
