@@ -6,4 +6,5 @@ js/node_modules
 
 **/obj
 **/bin
-.vs
+**/.vs
+**/.suo
