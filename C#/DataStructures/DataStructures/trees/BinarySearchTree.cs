@@ -1,4 +1,5 @@
 ﻿using System;
+using DataStructures.trees;
 
 namespace DataStructures.Trees
 {
@@ -167,6 +168,21 @@ namespace DataStructures.Trees
 				return right.Contains(target);
 			else
 				return false;
+		}
+
+		public IBinaryTree<T> GetLeft()
+		{
+			return left;
+		}
+
+		public IBinaryTree<T> GetRight()
+		{
+			return right;
+		}
+
+		public T GetValue()
+		{
+			return value;
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using DataStructures.trees;
 
 namespace DataStructures.Trees
 {
@@ -17,7 +18,7 @@ namespace DataStructures.Trees
 		private int height;
 		private AVLTree<T> left;
 		private AVLTree<T> right;
-		private AVLTree<T> parent; 
+		private readonly AVLTree<T> parent; 
 
 		public AVLTree(AVLTree<T> parent, T value)
 		{
@@ -267,5 +268,20 @@ namespace DataStructures.Trees
 				return false;
 		}
 		#endregion
+
+	    public IBinaryTree<T> GetLeft()
+	    {
+		    return left;
+	    }
+
+	    public IBinaryTree<T> GetRight()
+	    {
+		    return right;
+	    }
+
+	    public T GetValue()
+	    {
+		    return value;
+	    }
 	}
 }

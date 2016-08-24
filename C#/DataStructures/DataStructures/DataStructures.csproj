@@ -43,14 +43,16 @@
   <ItemGroup>
     <Compile Include="filters\BloomFilter.cs" />
     <Compile Include="filters\SHA256HashGenerator.cs" />
-    <Compile Include="Math\EratosthenesSieve.cs" />
-    <Compile Include="Math\GCD.cs" />
-    <Compile Include="Other\FizzBuzz.cs" />
+    <Compile Include="math\EratosthenesSieve.cs" />
+    <Compile Include="math\GCD.cs" />
+    <Compile Include="other\FizzBuzz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Trees\AVLTree.cs" />
-    <Compile Include="Trees\BinarySearchTree.cs" />
-    <Compile Include="Trees\BinaryTree.cs" />
-    <Compile Include="Trees\IBinarySearchTree.cs" />
+    <Compile Include="trees\AVLTree.cs" />
+    <Compile Include="trees\BinarySearchTree.cs" />
+    <Compile Include="trees\BinaryTree.cs" />
+    <Compile Include="trees\BinaryTreeTraverser.cs" />
+    <Compile Include="trees\IBinarySearchTree.cs" />
+    <Compile Include="trees\IBinaryTree.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

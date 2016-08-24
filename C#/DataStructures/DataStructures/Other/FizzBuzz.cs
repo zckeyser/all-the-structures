@@ -12,7 +12,7 @@ namespace DataStructures.Other
     {
         public static string Run()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             for(var i = 0; i < 100; i++)
             {

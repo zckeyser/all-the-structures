@@ -1,8 +1,9 @@
 ﻿using System;
+using DataStructures.trees;
 
 namespace DataStructures.Trees
 {
-	public interface IBinarySearchTree<in T> where T : IComparable
+	public interface IBinarySearchTree<T> : IBinaryTree<T> where T : IComparable
 	{
 		IBinarySearchTree<T> Insert(T toInsert);
 		void Remove(T toRemove);
