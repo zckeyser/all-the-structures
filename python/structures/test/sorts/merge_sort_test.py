@@ -1,10 +1,10 @@
 import unittest
 
-import structures.src.sorts.insertion as insertion_sort
+import structures.src.sorts.merge as merge_sort
 import structures.src.util.sort_util as util
 import structures.src.util.constants as const
 
-class TestInsertionSort(unittest.TestCase):
+class TestMergeSort(unittest.TestCase):
     def test_sorted(self):
         arr = util.random_array(const.ARRAY_SIZE)
 
@@ -12,7 +12,7 @@ class TestInsertionSort(unittest.TestCase):
         self.assertFalse(util.is_sorted(arr))
 
         # sort the array
-        result = insertion_sort.sort(arr)
+        result = merge_sort.mergesort(arr)
 
         # make sure it worked
         self.assertTrue(util.is_sorted(result))

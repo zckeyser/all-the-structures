@@ -2,10 +2,11 @@ import unittest
 
 import structures.src.sorts.bubble as bubble_sort
 import structures.src.util.sort_util as util
+import structures.src.util.constants as const
 
 class TestBubbleSort(unittest.TestCase):
     def test_sorted(self):
-        arr = util.random_array(1000)
+        arr = util.random_array(const.ARRAY_SIZE)
 
         # make sure the starting array isn't sorted
         self.assertFalse(util.is_sorted(arr))

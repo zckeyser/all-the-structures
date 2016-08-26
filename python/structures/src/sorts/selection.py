@@ -10,6 +10,6 @@ def sort(arr):
             if(out[j] < out[minIndex]):
                 minIndex = j
 
-        swap(out, i, minIndex)
+        util.swap(out, i, minIndex)
 
     return out
