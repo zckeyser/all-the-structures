@@ -16,3 +16,8 @@ def random_array(size):
         arr.append(random.randint(-1000000, 1000000))
 
     return arr
+
+def swap(arr, i, j):
+    tmp = arr[i]
+    arr[i] = arr[j]
+    arr[j] = tmp

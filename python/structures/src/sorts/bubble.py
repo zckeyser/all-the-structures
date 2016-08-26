@@ -9,11 +9,6 @@ def sort(arr):
         for i in range(0, len(out) - 1):
             # if this is out of order, swap it to the next slot
             if out[i] > out[i + 1]:
-                swap(out, i, i + 1)
+                util.swap(out, i, i + 1)
 
     return out
-
-def swap(arr, i, j):
-    tmp = arr[i]
-    arr[i] = arr[j]
-    arr[j] = tmp
