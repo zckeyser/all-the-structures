@@ -7,4 +7,6 @@ js/node_modules
 **/obj
 **/bin
 **/.vs
-**/.suo
+**/*.suo
+
+**/*.pyc
