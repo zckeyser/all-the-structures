@@ -13,6 +13,6 @@ def random_array(size):
     arr = []
 
     for i in range(0, size):
-        arr.append(random.randint(-100000, 100000))
+        arr.append(random.randint(-1000000, 1000000))
 
     return arr

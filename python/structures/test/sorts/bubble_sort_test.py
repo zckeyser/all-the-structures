@@ -14,7 +14,7 @@ class TestBubbleSort(unittest.TestCase):
         result = bubble_sort.sort(arr)
 
         # make sure it worked
-        self.assertTrue(util.is_sorted(arr))
+        self.assertTrue(util.is_sorted(result))
 
 if __name__ == '__main__':
     unittest.main()
