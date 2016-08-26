@@ -1,2 +1,4 @@
 # C\# Implementations
 This folder holds the C# implementations of the various data structures and algorithms that are in this repo. To run the code in this repository, you'll need to have Visual Studio (I believe it should work with 2012+) and .NET 4.6.1. There's no driver for this portion of the repo, with testing instead being done via unit tests which can be run through the test explorer in Visual Studio (Test > Run > Run All Tests).
+
+***For now I've halted development in this folder because re-implementing all of the structures that I've already done in Java would be pretty repetitive due to the similarity of the languages, especially since most advantages C# has over Java won't be very useful when writing the structures***
