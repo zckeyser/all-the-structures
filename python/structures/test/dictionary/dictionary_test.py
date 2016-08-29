@@ -17,6 +17,7 @@ class TestDictionary(unittest.TestCase):
         dictionary['foo'] = 'buzz'
 
         self.assertEquals(dictionary['foo'], 'buzz')
+        self.assertEquals(len(dictionary), 1)
 
     def test_containskey(self):
         dictionary = mydict.Dictionary()
@@ -51,6 +52,24 @@ class TestDictionary(unittest.TestCase):
         dictionary.remove('foo')
 
         self.assertFalse(dictionary.contains_key('foo'))
+
+    def test_expand(self):
+        dictionary = mydict.Dictionary()
+
+        inserted = []
+
+        for i in range(0, 5000):
+            key = 'a' * i
+            value = i
+
+            dictionary[key] = value
+
+            inserted.append((key, value))
+
+        for pair in inserted:
+            self.assertEquals(dictionary[pair[0]], pair[1])
+
+        self.assertEquals(len(dictionary), 5000)
 
 if __name__ == '__main__':
     unittest.main()

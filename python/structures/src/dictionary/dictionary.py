@@ -13,6 +13,10 @@ class Dictionary(object):
         values = list(self.__values)
         self.__values = [None] * len(self.__values) * 2
 
+        # we're resetting size because this will be recalculated as we
+        # re-add the newly hashed items
+        self.__size = 0
+
         for entry in values:
             if entry != None:
                 key = entry[0]
@@ -79,11 +83,11 @@ class Dictionary(object):
                 self.__expand()
 
                 # reinsert with the newly opened up array
-                self.__setitem__(self, key, value)
+                self.__setitem__(key, value)
             else:
                 # we found an open spot
                 self.__values[j] = (key, value)
-                self.size += 1
+                self.__size += 1
 
     # remove the entry with the given key
     def remove(self, key):
