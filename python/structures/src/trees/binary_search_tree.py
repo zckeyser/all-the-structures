@@ -6,7 +6,7 @@ class BinarySearchTree(object):
         self.right = None
 
     # get maximum value from tree
-    def __max__(self):
+    def max(self):
         curr = self
 
         while curr.right != None:
@@ -15,7 +15,7 @@ class BinarySearchTree(object):
         return curr.value
 
     # get minimum value from tree
-    def __min__(self):
+    def min(self):
         curr = self
 
         while curr.left != None:
@@ -26,43 +26,40 @@ class BinarySearchTree(object):
     def insert(self, value):
         if value < self.value:
             # left side insert
-            if left == None:
-                left = BinarySearchTree(self, value)
-            else
-                left.insert(value)
+            if self.left == None:
+                self.left = BinarySearchTree(self, value)
+                return self.left
+            else:
+                return self.left.insert(value)
         else:
             # right side insert
-            if right == None:
-                right = BinarySearchTree(self, value)
-            else
-                right.insert(value)
+            if self.right == None:
+                self.right = BinarySearchTree(self, value)
+                return self.right
+            else:
+                return self.right.insert(value)
 
     def hasSingleChild(self):
         # ^ is xor
-        return self.left != None ^ self.right != None
+        return (self.left != None) ^ (self.right != None)
 
     def isLeaf(self):
         return self.left == None and self.right == None
 
     def contains(self, value):
-        if self.value == value:
-            return True
-        elif value < self.value:
-            return left != None and left.contains(value)
-        else
-            return right != None and right.contains(value)
+        return self._find(value) != None
 
     def _find(self, value):
         if self.value == value:
-            return True
+            return self
         elif value < self.value:
-            if left != None:
-                return left._find(value)
+            if self.left != None:
+                return self.left._find(value)
             else:
                 return None
         else:
-            if right != None:
-                return right._find(value)
+            if self.right != None:
+                return self.right._find(value)
             else:
                 return None
 
@@ -70,7 +67,7 @@ class BinarySearchTree(object):
         if newVal != None:
             newVal.parent = self
 
-        if child == self.left.value:
+        if self.left != None and child == self.left.value:
             self.left = newVal
         else:
             self.right = newVal
@@ -81,23 +78,28 @@ class BinarySearchTree(object):
 
         if value < self.value:
             if self.left != None:
-                left.delete(value)
+                self.left.remove(value)
         elif value > self.value:
             if self.right != None:
-                right.delete(value)
+                self.right.remove(value)
         else:
             if self.isLeaf() and self.parent != None:
                 # if this node is a leaf we can just remove it
                 self.parent._replaceChild(self.value, None)
+                return self.parent
             elif self.hasSingleChild() and self.Parent != None:
                 # if we have a single child, replace this node with its child
                 child = self.left if self.left != None else self.right
                 self.parent._replaceChild(self.value, child)
+
+                return child
             else:
                 # this is the root or a node with two children,
                 # either way replace it with either the max of the left subtree or the min of the right
-                child = self._find(max(self.left)) if left != None else self._find(min(self.right))
+                child = self._find(self.left.max()) if self.left != None else self._find(self.right.min())
 
                 self.value = child.value
 
                 child.remove(child.value)
+
+                return self
