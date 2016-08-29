@@ -1,4 +1,5 @@
 import time
+import sys
 
 import structures.src.util.sort_util as util
 import structures.src.util.constants as const
@@ -9,7 +10,12 @@ import structures.src.sorts.selection as selection_sort
 import structures.src.sorts.merge as merge_sort
 
 def main():
-    arr = util.random_array(const.ARRAY_SIZE)
+    size = const.ARRAY_SIZE
+
+    if len(sys.argv) > 1:
+        size = int(sys.argv[1])
+
+    arr = util.random_array(size)
 
     bubble_time = __time(bubble_sort.sort, arr)
     insertion_time = __time(insertion_sort.sort, arr)

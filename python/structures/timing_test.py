@@ -1,11 +1,9 @@
-#!/usr/bin/env python
+import structures.test.sorts.sort_timing as sort
 
-import unittest
 import os
 
 if __name__ == "__main__":
-    suite = unittest.TestLoader().discover('.', pattern = "*_test.py")
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    sort.main()
 
     # delete bytecode files
     for root, dirs, files in os.walk('./', topdown=False):
