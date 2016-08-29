@@ -6,8 +6,10 @@ To run the tests run the following:
 python test.py
 ```
 
-If you would like to run performance tests on the different sorts, run the following:
+If you would like to run performance tests on the different sorts and searches, run the following:
 ```bash
 # number passed in is the size of the array to test sorts on
-python -m structures.timing_test 10000
+# second arg is a comma-separated list of timings to run
+# currently the potential options are 'sort' for sorts and 'lsearch' for list searches
+python -m structures.timing_test 10000 sort,lsearch
 ```
