@@ -4,7 +4,7 @@ import structures.src.sorts.quick as qsort
 import structures.src.util.sort_util as util
 import structures.src.util.constants as const
 
-class TestMergeSort(unittest.TestCase):
+class TestQuickSort(unittest.TestCase):
     def test_sorted(self):
         arr = util.random_array(const.ARRAY_SIZE)
 
