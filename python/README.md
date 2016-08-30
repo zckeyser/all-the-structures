@@ -13,3 +13,15 @@ If you would like to run performance tests on the different sorts and searches, 
 # currently the potential options are 'sort' for sorts and 'lsearch' for list searches
 python -m structures.timing_test 10000 sort,lsearch
 ```
+
+
+## TODO
+
+- [ ] Red-Black Tree
+- [ ] AVL Tree
+- [ ] 2-3 Tree
+- [ ] Heap
+- [ ] Heapsort
+- [ ] Knuth-Morris-Pratt
+- [ ] Boyer-Moore
+- [ ] Levenshtein Distance
