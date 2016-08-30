@@ -22,6 +22,6 @@ python -m structures.timing_test 10000 sort,lsearch
 - [ ] 2-3 Tree
 - [ ] Heap
 - [ ] Heapsort
-- [ ] Knuth-Morris-Pratt
+- [x] Knuth-Morris-Pratt
 - [ ] Boyer-Moore
 - [ ] Levenshtein Distance
