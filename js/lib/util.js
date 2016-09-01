@@ -52,11 +52,49 @@ var util = (function() {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
+  // binds given argument to function
+  function partial(fun, a) {
+      return function(b) {
+          return fun(a, b);
+      }
+  }
+
+  function findIndex(arr, predicate) {
+      if(!arr) {
+          return -1;
+      }
+
+      for(var i = 0; i < arr.length; i++) {
+          if(predicate(arr[i])) {
+              return i;
+          }
+      }
+
+      return -1;
+  }
+
+  function indexOf(arr, target) {
+      if(!arr) {
+          return -1;
+      }
+
+      for(var i = 0; i < arr.length; i++) {
+          if(arr[i] == target) {
+              return i;
+          }
+      }
+
+      return -1;
+  }
+
   // the actual exposed utils
   return {
     randomArray: randomArray,
     isSorted: isSorted,
     swap: swap,
-    getRandomInt: getRandomInt
+    getRandomInt: getRandomInt,
+    findIndex: findIndex,
+    indexOf: indexOf,
+    partial: partial
   };
 }.call(this));

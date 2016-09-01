@@ -5,33 +5,37 @@ function DepthFirstSearch() { }
 // to search, except instead of adding to output you'd
 // compare the current node's value against a target
 DepthFirstSearch.prototype = (function() {
-  function traverse(root) {
-    // initialize our values
-    var visited = [];
-    var stack = new Stack();
+    function traverse(root) {
+        // initialize our values
+        var visited = [];
+        var stack = new Stack();
 
-    stack.push(root);
+        stack.push(root);
 
-    var output = '';
+        var output = '';
 
-    while(!stack.empty()) {
-      var curr = stack.pop();
+        while(!stack.empty()) {
+            var curr = stack.pop();
 
-      output += curr.value + ' ';
+            output += curr.value + ' ';
 
-      visited.push(curr);
+            visited.push(curr);
 
-      _.forEach(curr.neighbors, function(node) {
-        if(!stack.contains(node, node.equals) && _.findIndex(visited, node, node.equals) === -1) {
-          stack.push(node);
+            for(var i = 0; i < curr.neighbors.length; i++) {
+                var node = curr.neighbors[i];
+
+                if(!stack.contains(node, node.equals) &&
+                    util.findIndex(visited, function (other) { node.equals(other) }) === -1) {
+
+                    stack.push(node);
+                }
+            }
         }
-      });
+
+        return output.trim();
     }
 
-    return output.trim();
-  }
-
-  return {
-    traverse: traverse
-  }
+    return {
+        traverse: traverse
+    }
 }.call(this))

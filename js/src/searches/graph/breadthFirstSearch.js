@@ -5,33 +5,37 @@ function BreadthFirstSearch() { }
 // to search, except instead of adding to output you'd
 // compare the current node's value against a target
 BreadthFirstSearch.prototype = (function() {
-  function traverse(root) {
-    // initialize our values
-    var visited = [];
-    var queue = new Queue();
+    function traverse(root) {
+        // initialize our values
+        var visited = [];
+        var queue = new Queue();
 
-    queue.push(root);
+        queue.push(root);
 
-    var output = '';
+        var output = '';
 
-    while(!queue.empty()) {
-      var curr = queue.pop();
+        while(!queue.empty()) {
+            var curr = queue.pop();
 
-      output += curr.value + ' ';
+            output += curr.value + ' ';
 
-      visited.push(curr);
+            visited.push(curr);
 
-      _.forEach(curr.neighbors, function(node) {
-        if(!queue.contains(node, node.equals) && _.findIndex(visited, node, node.equals) === -1) {
-          queue.push(node);
+            for(var i = 0; i < curr.neighbors.length; i++) {
+                var node = curr.neighbors[i];
+
+                if(!queue.contains(node, node.equals) &&
+                    util.findIndex(visited, function (other) { node.equals(other) }) === -1) {
+
+                    queue.push(node);
+                }
+            }
         }
-      });
+
+        return output.trim();
     }
 
-    return output.trim();
-  }
-
-  return {
-    traverse: traverse
-  }
+    return {
+        traverse: traverse
+    }
 }.call(this))

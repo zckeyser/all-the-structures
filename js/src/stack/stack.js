@@ -4,37 +4,39 @@ function Stack() {
 
 // simple stack implementation (Last In, First Out)
 Stack.prototype = (function() {
-  function push(val) {
-    this.values.push(val);
-  }
+    function push(val) {
+        this.values.push(val);
+    }
 
-  function pop() {
-    return this.values.length > 0 ? this.values.pop() : null;
-  }
+    function pop() {
+        return this.values.length > 0 ? this.values.pop() : null;
+    }
 
-  function size() {
-    return this.values.length;
-  }
+    function size() {
+        return this.values.length;
+    }
 
-  function contains(target, comparator) {
-    return comparator ? _.findIndex(this.values, target, comparator) !== -1
-                      : _.indexOf(this.values, target) !== -1;
-  }
+    function contains(target, comparator) {
+        var compareWith = util.partial(comparator, target);
 
-  function empty() {
-    return this.values.length === 0;
-  }
+        return comparator ? util.findIndex(this.values, compareWith) !== -1
+                          : util.indexOf(this.values, target) !== -1;
+    }
 
-  function clear() {
-    values = [];
-  }
+    function empty() {
+        return this.values.length === 0;
+    }
 
-  return {
-    push: push,
-    pop: pop,
-    size: size,
-    contains: contains,
-    empty: empty,
-    clear: clear
-  }
+    function clear() {
+        values = [];
+    }
+
+    return {
+        push: push,
+        pop: pop,
+        size: size,
+        contains: contains,
+        empty: empty,
+        clear: clear
+    }
 }.call(this))

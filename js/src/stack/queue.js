@@ -5,28 +5,30 @@ function Queue() {
 // simple queue implementation (First In, First Out)
 Queue.prototype = (function() {
   function push(val) {
-    this.values.push(val);
+      this.values.push(val);
   }
 
   function pop() {
-    return this.values.length > 0 ? this.values.shift() : null;
+      return this.values.length > 0 ? this.values.shift() : null;
   }
 
   function size() {
-    return this.values.length;
+      return this.values.length;
   }
 
   function contains(target, comparator) {
-    return comparator ? _.findIndex(this.values, target, comparator) !== -1
-                      : _.indexOf(this.values, target) !== -1;
+      var compareWith = util.partial(comparator, target);
+
+      return comparator ? util.findIndex(this.values, compareWith) !== -1
+                        : util.indexOf(this.values, target) !== -1;
   }
 
   function empty() {
-    return this.values.length === 0;
+      return this.values.length === 0;
   }
 
   function clear() {
-    values = [];
+      values = [];
   }
 
   return {
