@@ -16,10 +16,8 @@ Queue.prototype = (function() {
       return this.values.length;
   }
 
-  function contains(target, comparator) {
-      var compareWith = util.partial(comparator, target);
-
-      return comparator ? util.findIndex(this.values, compareWith) !== -1
+  function contains(target, predicate) {
+      return predicate ? util.findIndex(this.values, predicate) !== -1
                         : util.indexOf(this.values, target) !== -1;
   }
 

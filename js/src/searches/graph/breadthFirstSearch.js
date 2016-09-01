@@ -25,7 +25,7 @@ BreadthFirstSearch.prototype = (function() {
                 var node = curr.neighbors[i];
 
                 if(!queue.contains(node, node.equals) &&
-                    util.findIndex(visited, function (other) { node.equals(other) }) === -1) {
+                    util.findIndex(visited, node.equals) === -1) {
 
                     queue.push(node);
                 }
