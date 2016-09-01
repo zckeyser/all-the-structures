@@ -2,24 +2,17 @@
 #include <stdio.h>
 
 #include "stack/stack_test.c"
-#include "test/assert.h"
 
 int main() {
-    TestResult overall;
-    overall.passed = 0;
-    overall.total = 0;
+    int passed = 0;
+    int total = 0;
 
-    TestResult result;
+    test_stack(&passed, &total);
 
-    result = test_stack();
-    overall.passed += result.passed;
-    overall.total += result.total;
+    if(passed != total) {
+        int failed = total - passed;
 
-
-    if(overall.passed != overall.total) {
-        int failed = overall.total - overall.passed;
-
-        printf("\n\n%d out of %d tests failed\n\n", &overall.total, &overall.passed);
+        printf("\n\n%d out of %d tests failed\n\n", &total, &passed);
 
         return 1;
     } else {

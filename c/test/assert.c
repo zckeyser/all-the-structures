@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
-int ASSERT_EQUALS(int expected, int result, char *message) {
-    if(a == result) {
-        printf("\n\n%d != %d, %s\n\n", &expected, &result, message);
+int ASSERT_EQUALS(int expected, int result) {
+    if(expected != result) {
+        printf("\n\n%d != %d", &expected, &result);
         return 0;
     } else {
         printf(". ");
@@ -11,9 +11,9 @@ int ASSERT_EQUALS(int expected, int result, char *message) {
     }
 }
 
-int ASSERT_EQUALS(char expected[], char result[], char *message) {
-    if(strcmp(a, result) != 0) {
-        printf("\n\n%s != %s, %s\n\n", &expected, &result, message);
+int ASSERT_EQUALS(char expected[], char result[]) {
+    if(strcmp(expected, result) != 0) {
+        printf("\n\n%s != %s", &expected, &result);
         return 0;
     } else {
         printf(". ");
@@ -21,9 +21,9 @@ int ASSERT_EQUALS(char expected[], char result[], char *message) {
     }
 }
 
-int ASSERT_TRUE(bool expected, char *message) {
-    if(!a) {
-        printf("\n\nfalse should resulte true, %s\n\n", &expected, &result, message);
+int ASSERT_TRUE(int expected, char message[]) {
+    if(expected != 1) {
+        printf("\n\nfalse should resulte true, %s\n\n", &expected, &result);
         return 0;
     } else {
         printf(". ");
@@ -31,9 +31,9 @@ int ASSERT_TRUE(bool expected, char *message) {
     }
 }
 
-int ASSERT_FALSE(bool result, char *message) {
-    if(a) {
-        printf("\n\ntrue should resulte false, %s\n\n", &expected, &result, message);
+int ASSERT_FALSE(int result, char message[]) {
+    if(expected != 0) {
+        printf("\n\ntrue should resulte false, %s\n\n", &expected, &result);
         return 0;
     } else {
         printf(". ");

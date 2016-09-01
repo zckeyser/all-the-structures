@@ -1,34 +1,31 @@
-#include <stdio>
+#include <stdio.h>
+
 #include "stack.h"
 #include "../test/assert.h"
 
-TestResult test_stack() {
-    TestResult result;
-    result.passed = 0;
-    result.total = 0;
+void test_stack(int* passed, int* total) {
+    printf("\n\nStack\n\n");
 
-    result.passed += ASSERT_EQUALS(0, size(), "size should initialize to 0");
-    result.total++;
+    passed += ASSERT_INT_EQUALS(0, size());
+    total++;
 
     push(10);
 
-    result.passed += ASSERT_EQUALS(1, size(), "size should be 1 after initial push");
-    result.total++;
+    passed += ASSERT_INT_EQUALS(1, size());
+    total++;
 
     push(20);
 
-    result.passed += ASSERT_EQUALS(2, size(), "size should be 2 after second push");
-    result.total++;
+    passed += ASSERT_INT_EQUALS(2, size());
+    total++;
 
     int result = pop();
 
-    result.passed += ASSERT_EQUALS(20, result, "should return most recently pushed item");
-    result.total++;
+    passed += ASSERT_INT_EQUALS(20, result);
+    total++;
 
     result = pop();
 
-    result.passed += ASSERT_EQUALS(10, result, "should return second most recently pushed item");
-    result.total++;
-
-    return result;
+    passed += ASSERT_INT_EQUALS(10, result);
+    total++;
 }
