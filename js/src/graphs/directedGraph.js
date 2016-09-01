@@ -47,6 +47,16 @@ DirectedGraphNode.prototype = (function() {
         }
     }
 
+    function nodesToString(nodes) {
+        var output = '';
+
+        for(var i = 0; i < nodes.length; i++) {
+            output += nodes[i].value + ' ';
+        }
+
+        return output;
+    }
+
     function equals(node) {
         if(this.value === node.value && this.neighbors.length === node.neighbors.length) {
             if(this.neighbors.length === 0) {

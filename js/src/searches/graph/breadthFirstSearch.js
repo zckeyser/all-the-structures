@@ -5,6 +5,17 @@ function BreadthFirstSearch() { }
 // to search, except instead of adding to output you'd
 // compare the current node's value against a target
 BreadthFirstSearch.prototype = (function() {
+    // for some reason I couldn't get my generically defined function to work
+    function index(arr, node) {
+        for(var i = 0; i < arr.length; i++) {
+            if(node.equals(arr[i])) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     function traverse(root) {
         // initialize our values
         var visited = [];
@@ -24,8 +35,9 @@ BreadthFirstSearch.prototype = (function() {
             for(var i = 0; i < curr.neighbors.length; i++) {
                 var node = curr.neighbors[i];
 
-                if(!queue.contains(node, node.equals) &&
-                    util.findIndex(visited, node.equals) === -1) {
+                if(node &&
+                    index(queue.values, node) === -1 &&
+                    index(visited, node) === -1) {
 
                     queue.push(node);
                 }

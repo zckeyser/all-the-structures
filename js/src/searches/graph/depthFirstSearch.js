@@ -5,6 +5,17 @@ function DepthFirstSearch() { }
 // to search, except instead of adding to output you'd
 // compare the current node's value against a target
 DepthFirstSearch.prototype = (function() {
+    // for some reason I couldn't get my generically defined function to work
+    function index(arr, node) {
+        for(var i = 0; i < arr.length; i++) {
+            if(node.equals(arr[i])) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     function traverse(root) {
         // initialize our values
         var visited = [];
@@ -24,8 +35,9 @@ DepthFirstSearch.prototype = (function() {
             for(var i = 0; i < curr.neighbors.length; i++) {
                 var node = curr.neighbors[i];
 
-                if(!stack.contains(node, node.equals) &&
-                    util.findIndex(visited, function (other) { node.equals(other) }) === -1) {
+                if(node &&
+                    index(stack.values, node) === -1 &&
+                    index(visited, node) === -1) {
 
                     stack.push(node);
                 }

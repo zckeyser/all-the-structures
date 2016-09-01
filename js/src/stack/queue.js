@@ -25,8 +25,12 @@ Queue.prototype = (function() {
       return this.values.length === 0;
   }
 
+  function values() {
+      return this.values.slice(0);
+  }
+
   function clear() {
-      values = [];
+      this.values = [];
   }
 
   return {

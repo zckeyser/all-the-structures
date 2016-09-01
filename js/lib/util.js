@@ -52,15 +52,8 @@ var util = (function() {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  // binds given argument to function
-  function partial(fun, a) {
-      return function(b) {
-          return fun(a, b);
-      }
-  }
-
   function findIndex(arr, predicate) {
-      if(!arr) {
+      if(arr.length === 0) {
           return -1;
       }
 
@@ -74,12 +67,12 @@ var util = (function() {
   }
 
   function indexOf(arr, target) {
-      if(!arr) {
+      if(arr.length === 0) {
           return -1;
       }
 
       for(var i = 0; i < arr.length; i++) {
-          if(arr[i] == target) {
+          if(arr[i] === target) {
               return i;
           }
       }
