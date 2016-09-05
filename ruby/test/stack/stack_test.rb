@@ -1,5 +1,6 @@
 require_relative '../../src/stack/stack'
 
+require 'test_helper'
 require 'minitest/autorun'
 require 'minitest/spec'
 
