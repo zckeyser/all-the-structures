@@ -10,7 +10,7 @@ class Stack
     end
 
     def pop()
-        @values.pop
+        @values.shift
     end
 
     def size
