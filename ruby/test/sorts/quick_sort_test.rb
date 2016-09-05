@@ -12,6 +12,8 @@ describe QuickSort do
         it 'should correctly sort it' do
             arr = TestUtil.random_array(Constants.ARRAY_SIZE)
 
+            Util.is_sorted(arr).must_equal false
+
             result = QuickSort.sort(arr)
 
             Util.is_sorted(result).must_equal true

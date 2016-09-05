@@ -1,5 +1,5 @@
 module Constants
     def Constants.ARRAY_SIZE
-        10000
+        100
     end
 end
