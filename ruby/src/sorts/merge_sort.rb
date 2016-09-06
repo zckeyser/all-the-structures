@@ -4,8 +4,8 @@ module MergeSort
             return arr if arr.length == 1
 
             mid = (arr.length / 2).floor
-            left = self.sort(arr[0..mid - 1])
-            right = self.sort(arr[mid..arr.length])
+            left = self.sort(arr[0...mid])
+            right = self.sort(arr[mid...arr.length])
             return self.merge(left, right)
         end
 
