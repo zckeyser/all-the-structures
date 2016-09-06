@@ -12,3 +12,4 @@ js/node_modules
 **/*.pyc
 
 **/coverage/*
+**/Gemfile.lock
