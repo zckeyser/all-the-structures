@@ -13,23 +13,19 @@ module MergeSort
             out = []
             i, j = 0, 0
 
-            while i < a.length || j < b.length
-                if i == a.length
+            while a.any? || b.any?
+                if a.empty?
                     # all items from a have been added
-                    out.push(b[j])
-                    j += 1
-                elsif j == b.length
+                    out << b.shift
+                elsif b.empty?
                     # all items from b have been added
-                    out.push(a[i])
-                    i += 1
-                elsif a[i] < b[j]
+                    out << a.shift
+                elsif a.first < b.first
                     # the next smallest item is from a
-                    out.push(a[i])
-                    i += 1
+                    out << a.shift
                 else
                     # the next smallest item is from b
-                    out.push(b[j])
-                    j += 1
+                    out << b.shift
                 end
             end
 
