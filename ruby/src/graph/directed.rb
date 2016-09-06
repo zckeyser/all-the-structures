@@ -1,6 +1,4 @@
 class DirectedGraphNode
-    :attr value
-
     def initialize(value)
         @value = value
         @neighbors = []
@@ -8,6 +6,10 @@ class DirectedGraphNode
 
     def neighbors
         @neighbors
+    end
+
+    def value
+        @value
     end
 
     def add_neighbor(node)
