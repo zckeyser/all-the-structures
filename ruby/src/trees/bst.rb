@@ -38,10 +38,12 @@ class BinarySearchTree
                 # just null the reference to this in our parent
                 @parent.replace_child(@value, nil)
             elsif self.has_single_child?
-                child = (@left || @right)
+                child = @left || @right
 
-                # replace this node with its only parent
-                @parent.replace_child(@value, child)
+                @value = child.value
+                @count = child.count
+
+                child.remove(child.value)
             else
                 # replace this with the greatest value in its left subtree
                 child = @left.max
