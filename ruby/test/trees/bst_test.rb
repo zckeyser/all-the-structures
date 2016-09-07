@@ -39,9 +39,9 @@ describe BinarySearchTree do
         end
 
         it 'removes a node with a single child correctly' do
-            @root.remove(10)
+            @root.remove(42)
 
-            expected = '3 15 24 30 42 50 60 73 80 83 87 100'
+            expected = '3 10 15 24 30 50 60 73 80 83 87 100'
             TreeTraversal.inorder(@root).must_equal expected
         end
 

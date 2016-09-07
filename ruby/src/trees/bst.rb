@@ -37,16 +37,15 @@ class BinarySearchTree
             elsif self.is_leaf?
                 # just null the reference to this in our parent
                 @parent.replace_child(@value, nil)
-            elsif self.has_single_child?
-                child = @left || @right
-
-                @value = child.value
-                @count = child.count
-
-                child.remove(child.value)
             else
-                # replace this with the greatest value in its left subtree
-                child = @left.max
+                child = nil
+
+                if self.has_single_child?
+                    child = @left.nil? ? @right.min : @left.max
+                else
+                    # replace this with the greatest value in its left subtree
+                    child = @left.max
+                end
 
                 # move the child to this node
                 @value = child.value
@@ -97,5 +96,9 @@ class BinarySearchTree
 
         def max
             return @right.max if !@right.nil? else return self
+        end
+
+        def min
+            return @left.min if !@left.nil? else return self
         end
 end
