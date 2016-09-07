@@ -1,14 +1,11 @@
-// generic dictionary implemented using the bucket method
-// for collision handling. What that means is that
-// each entry in the internal array is a linked list, and
-// when there is a collision (two keys that have the same hash index)
-// the new entry is simply added to the list
+// generic dictionary implemented using rollover for collision handling
+// such that on collision, the value is placed in the next empty bucket
 public class Dictionary<TKey, TValue> {
-    private const int DEFAULT_ARRAY_SIZE = 10000;
-    private LinkedListNode<KeyValuePair<TKey, TValue>>[] values;
+    private const int DEFAULT_ARRAY_SIZE = 64;
+    private KeyValuePair<TKey, TValue>[] values;
 
     public Dictionary<TKey, TValue>() {
-        values = new LinkedListNode<KeyValuePair<TKey, TValue>>[DEFAULT_ARRAY_SIZE];
+        values = new KeyValuePair<TKey, TValue>[DEFAULT_ARRAY_SIZE];
     }
 
     // just for testing
@@ -18,17 +15,32 @@ public class Dictionary<TKey, TValue> {
 
     public void add(TKey key, TValue value) {
         int index = value.hashCode() % values.length;
+
         KeyValuePair<TKey, TValue> pair = new KeyValuePair<TKey, TValue>(key, value);
 
-        if(values[index] == null) {
-            values[index] = new LinkedListNode<KeyValuePair<TKey, TValue>>(pair);
+        if(values[index] == null || values[index].getKey().equals(key)) {
+            values[index] = pair;
         } else {
-            int subIndex = findInBucket(index, key);
+            int i = index + 1;
 
-            if(subIndex == -1) {
-                values[index].add(value);
+            while(i != index && values[i] != null) {
+                i++;
+
+                // roll back to beginning
+                if(i == values.length) {
+                    i = 0;
+                }
+            }
+
+            // there were no open buckets -- we need to expand
+            if(i == index) {
+                expand();
+
+                // try again now that we've expanded
+                add(key, value);
             } else {
-                values[index].set(pair, subIndex);
+                // we found an open bucket to roll into
+                values[index] = pair;
             }
         }
     }
@@ -59,16 +71,18 @@ public class Dictionary<TKey, TValue> {
         }
     }
 
-    private int findInBucket(int index, TKey key) {
-        int listLength = values[index].length();
+    // expand the internal array to double its current size,
+    // reindexing all of the items currently inside
+    private void expand() {
+        int newSize = values.length * 2;
+        KeyValuePair[] oldValues = values;
 
-        for(int i = 0; i < listLength; i++) {
-            // iterate until we find the right value
-            if(values[index].get(i).getKey().equals(key)) {
-                return i;
-            }
+        values = new KeyValuePair[newSize];
+
+        // re-index all the old items
+        for(int i = 0; i < oldValues.length; i++) {
+            // using a normal for-loop for speed, since it's more efficient than foreach
+            add(oldValues[i].getKey(), oldValues[i].getValue());
         }
-
-        return -1;
     }
 }
