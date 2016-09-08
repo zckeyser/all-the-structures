@@ -1,7 +1,7 @@
 // aggregates all test functions into one file
 #include <stdio.h>
 
-#include "stack/stack_test.c"
+#include "stack/stack_test.h"
 
 int main() {
     int passed = 0;

@@ -1,12 +1,9 @@
-#ifndef STACK_TEST_HEADER
-#define STACK_TEST_HEADER
-
 #include <stdio.h>
 
 #include "stack.h"
 #include "../test/assert.h"
 
-void test_stack(int* passed, int* total) {
+void test_stack(int *passed, int *total) {
     printf("\n\nStack\n\n");
     Stack s;
     Stack_init(&s);
@@ -34,5 +31,3 @@ void test_stack(int* passed, int* total) {
     passed += ASSERT_INT_EQUALS(10, result);
     total++;
 }
-
-#endif
