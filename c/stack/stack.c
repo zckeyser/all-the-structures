@@ -13,11 +13,11 @@ void Stack_push(Stack *s, int n) {
     }
 
     s->top++;
-    s->data[s->top] = i;
+    s->data[s->top] = n;
 }
 
 int Stack_pop(Stack *s) {
-    if(top == -1) {
+    if(s->top == -1) {
         printf("Stack underflow on pop");
         return 0;
     }

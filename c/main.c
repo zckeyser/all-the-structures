@@ -2,21 +2,23 @@
 #include <stdio.h>
 
 #include "stack/stack_test.h"
+#include "stack/queue_test.h"
 
 int main() {
     int passed = 0;
     int total = 0;
 
     Stack_test(&passed, &total);
+    Queue_test(&passed, &total);
 
     if(passed != total) {
         int failed = total - passed;
 
-        printf("\n\n%d out of %d tests failed\n\n", &total, &passed);
+        printf("\n\n%d out of %d tests failed\n\n", failed, passed);
 
         return 1;
     } else {
-        printf("\n\nOK\n\n");
+        printf("\n\nOK -- %d tests ran\n\n", total);
         return 0;
     }
 }

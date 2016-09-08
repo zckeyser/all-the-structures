@@ -23,7 +23,7 @@ void Queue_enqueue(Queue *q, int n) {
     }
 
     // the queue is full, can't enqueue
-    if(q->rear == q->front) {
+    if(q->rear == q->front - 1) {
         printf("Queue overflow on inserting %d", n);
         return;
     }
@@ -46,7 +46,7 @@ int Queue_size(Queue *q) {
         return 0;
     } else if(q->front > q->rear) {
         // we've overflowed and need to count things after front and before rear
-        return (QUEUE_MAX - q->front) + (q->rear + 1)
+        return (QUEUE_MAX - q->front) + (q->rear + 1);
     } else {
         return q->rear - q->front + 1;
     }
