@@ -13,3 +13,5 @@ js/node_modules
 
 **/coverage/*
 **/Gemfile.lock
+
+**/*.exe
