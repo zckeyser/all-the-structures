@@ -7,7 +7,7 @@ int main() {
     int passed = 0;
     int total = 0;
 
-    test_stack(&passed, &total);
+    Stack_test(&passed, &total);
 
     if(passed != total) {
         int failed = total - passed;

@@ -1,16 +1,28 @@
+#include <stdio.h>
+
 #include "stack.h"
 
 void Stack_init(Stack *s) {
     s->top = -1;
 }
 
-void Stack_push(Stack *s, int i) {
+void Stack_push(Stack *s, int n) {
+    if(s->top == STACK_MAX - 1) {
+        printf("Stack overflow on pushing %d", n);
+        return;
+    }
+
     s->top++;
-    s->contents[s->top] = i;
+    s->data[s->top] = i;
 }
 
 int Stack_pop(Stack *s) {
-    int retval = s->contents[s->top];
+    if(top == -1) {
+        printf("Stack underflow on pop");
+        return 0;
+    }
+
+    int retval = s->data[s->top];
 
     s->top--;
 

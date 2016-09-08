@@ -4,13 +4,13 @@
 #define STACK_MAX 100
 
 struct Stack {
-    int contents[STACK_MAX];
+    int data[STACK_MAX];
     int top;
 };
 typedef struct Stack Stack;
 
 void Stack_init(Stack *s);
-void Stack_push(Stack *s, int i);
+void Stack_push(Stack *s, int n);
 int Stack_pop(Stack *s);
 int Stack_size(Stack *s);
 

@@ -3,7 +3,7 @@
 #include "stack.h"
 #include "../test/assert.h"
 
-void test_stack(int *passed, int *total) {
+void Stack_test(int *passed, int *total) {
     printf("\n\nStack\n\n");
     Stack s;
     Stack_init(&s);
