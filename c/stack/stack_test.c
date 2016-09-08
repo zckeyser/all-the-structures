@@ -1,3 +1,6 @@
+#ifndef STACK_TEST_HEADER
+#define STACK_TEST_HEADER
+
 #include <stdio.h>
 
 #include "stack.h"
@@ -5,27 +8,31 @@
 
 void test_stack(int* passed, int* total) {
     printf("\n\nStack\n\n");
+    Stack s;
+    Stack_init(&s);
 
-    passed += ASSERT_INT_EQUALS(0, size());
+    passed += ASSERT_INT_EQUALS(0, Stack_size(&s));
     total++;
 
-    push(10);
+    Stack_push(&s, 10);
 
-    passed += ASSERT_INT_EQUALS(1, size());
+    passed += ASSERT_INT_EQUALS(1, Stack_size(&s));
     total++;
 
-    push(20);
+    Stack_push(&s, 20);
 
-    passed += ASSERT_INT_EQUALS(2, size());
+    passed += ASSERT_INT_EQUALS(2, Stack_size(&s));
     total++;
 
-    int result = pop();
+    int result = Stack_pop(&s);
 
     passed += ASSERT_INT_EQUALS(20, result);
     total++;
 
-    result = pop();
+    result = Stack_pop(&s);
 
     passed += ASSERT_INT_EQUALS(10, result);
     total++;
 }
+
+#endif
