@@ -10,7 +10,7 @@ unsigned long hash(char s[]);
 // TODO reimplement as linked list
 
 void Dict_init(Dict *dict) {
-    dict->size = DICT_START_SIZE;
+    dict->size = DICT_SIZE;
 
     // initialize array to be flagged empty
     for(int i = 0; i < dict->size; i++) {
@@ -24,6 +24,7 @@ void Dict_set(Dict *dict, char *key, int value) {
     Pair* p = malloc(sizeof(p));
     p->key = key;
     p->value = value;
+    p->next = NULL;
 
     printf("checking index %d for contains\n", index);
 
@@ -41,33 +42,14 @@ void Dict_set(Dict *dict, char *key, int value) {
     } else {
         printf("collision\n");
 
-        int j = index + 1;
+        Pair *last = &dict->data[index];
 
-        while(j != index && dict->contains[j] != 0) {
-            if (j < dict->size) {
-                j++;
-            } else {
-                // rollover to beginning of the array
-                j = 0;
-            }
+        while(last->next != NULL) {
+            last = last->next;
         }
 
-        if(j != index) {
-            printf("rolled to index %d\n", j);
-
-            dict->data[j] = *p;
-
-            // flag the bucket we just added to
-            dict->contains[j] = 1;
-        } else {
-            printf("expanding array past size %d\n", dict->size);
-
-            // expand the internal array
-            expand(dict);
-
-            // try adding again now that we have room
-            Dict_set(dict, key, value);
-        }
+        // append it to the end of the list
+        last->next = p;
     }
 }
 
@@ -81,52 +63,19 @@ int Dict_get(Dict *dict, char *key) {
     } else if(strcmp(dict->data[index].key, key) == 0) {
         return dict->data[index].value;
     } else {
-        int j = index + 1;
+        Pair* curr = &dict->data[index];
 
-        while(j != index && dict->contains[j] != 0) {
-            if(strcmp(dict->data[j].key, key) == 0) {
-                return dict->data[j].value;
-            }
-
-            if (j < dict->size) {
-                j++;
+        while(curr->next != NULL) {
+            if(strcmp(curr->key, key) == 0) {
+                return curr->value;
             } else {
-                // rollover to beginning of the array
-                j = 0;
+                curr = curr->next;
             }
         }
 
         // couldn't find it
         printf("Attempt to access non-existing key %s in Dict", key);
         return 0;
-    }
-}
-
-void expand(Dict *dict) {
-    printf("copying original array contents\n");
-    // copy original contents
-    int originalSize = dict->size;
-    Pair *tmp = malloc(originalSize * sizeof(Pair));
-    memcpy(tmp, dict->data, originalSize * sizeof(Pair));
-
-    printf("doubling internal array size\n");
-    // double the internal array size
-    dict->size *= 2;
-    realloc(dict->data, dict->size * sizeof(Pair));
-    realloc(dict->contains, dict->size * sizeof(int));
-
-    printf("unflagging all entries\n");
-    // clear out what was in the array
-    for(int i = 0; i < originalSize; i++) {
-        // mark as uncontained
-        dict->contains[i] = 0;
-    }
-
-    printf("re-adding old values\n");
-    // re-add the old contents back into the dictionary
-    for(int i = 0; i < originalSize; i++) {
-        printf("re-adding (%s, %d)", tmp[i].key, tmp[i].value);
-        Dict_set(dict, tmp[i].key, tmp[i].value);
     }
 }
 

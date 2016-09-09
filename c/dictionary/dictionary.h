@@ -1,17 +1,18 @@
 #ifndef DICT_HEADER
 #define DICT_HEADER
 
-#define DICT_START_SIZE 128
+#define DICT_SIZE 256
 
 struct Pair {
     int value;
     char *key;
+    struct Pair* next;
 };
 typedef struct Pair Pair;
 
 struct Dict {
-    struct Pair data[DICT_START_SIZE];
-    int contains[DICT_START_SIZE];
+    struct Pair data[DICT_SIZE];
+    int contains[DICT_SIZE];
     int size;
 };
 typedef struct Dict Dict;
