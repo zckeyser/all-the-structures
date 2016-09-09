@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
-int ASSERT_INT_EQUALS(int expected, int result) {
+int ASSERT_INT_EQUALS(int expected, int result, char* message) {
     if(expected != result) {
-        printf("\n\n%d != %d", expected, result);
+        printf("\n\n%d != %d, %s", expected, result, message);
         return 0;
     } else {
         printf(". ");
@@ -11,9 +11,9 @@ int ASSERT_INT_EQUALS(int expected, int result) {
     }
 }
 
-int ASSERT_STR_EQUALS(char expected[], char result[]) {
+int ASSERT_STR_EQUALS(char expected[], char result[], char *message) {
     if(strcmp(expected, result) != 0) {
-        printf("\n%s != %s\n", expected, result);
+        printf("\n%s != %s, %s\n", expected, result, message);
         return 0;
     } else {
         printf(". ");
@@ -21,7 +21,7 @@ int ASSERT_STR_EQUALS(char expected[], char result[]) {
     }
 }
 
-int ASSERT_TRUE(int result, char message[]) {
+int ASSERT_TRUE(int result, char *message) {
     if(result != 1) {
         printf("\n\nfalse should equal true, %s\n\n", message);
         return 0;
@@ -31,7 +31,7 @@ int ASSERT_TRUE(int result, char message[]) {
     }
 }
 
-int ASSERT_FALSE(int result, char message[]) {
+int ASSERT_FALSE(int result, char *message) {
     if(result != 0) {
         printf("\n\ntrue should equal false, %s\n\n", message);
         return 0;

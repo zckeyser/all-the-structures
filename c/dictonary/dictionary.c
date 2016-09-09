@@ -1,31 +1,37 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
 #include "dictionary.h"
 
-void expand(Dict* dict);
-int hash(char[] s);
+void expand(Dict *dict);
+int hash(char s[]);
 
-void Dict_init(Dict* dict) {
+// TODO reimplement as linked list
+
+void Dict_init(Dict *dict) {
     dict->size = DICT_START_SIZE;
 }
 
-void Dict_set(Dict* dict, char key[], int value) {
+void Dict_set(Dict *dict, char *key, int value) {
     int index = hash(key) % dict->size;
-    Pair p;
+    Pair* p = malloc(sizeof(p));
     p->key = key;
     p->value = value;
 
-    if(dict->data[index] == NULL) {
+    if(dict->contains[index] == 0) {
         // inserting a new value into an empty spot
-        dict->data[index] = p;
-    } else if(strcmp(dict->data[index]->key, p->key) == 0) {
+        dict->data[index] = *p;
+
+        // flag the bucket we just added to
+        dict->contains[index] = 1;
+    } else if(strcmp(dict->data[index].key, p->key) == 0) {
         // updating an existing value
-        dict->data[index] = p;
+        dict->data[index] = *p;
     } else {
         int j = index + 1;
 
-        while(j != index && dict->data[j] != NULL) {
+        while(j != index && dict->contains[j] != 0) {
             if (j < dict->size) {
                 j++;
             } else {
@@ -35,32 +41,35 @@ void Dict_set(Dict* dict, char key[], int value) {
         }
 
         if(j != index) {
-            dict->data[j] = p;
+            dict->data[j] = *p;
+
+            // flag the bucket we just added to
+            dict->contains[j] = 1;
         } else {
-            // the dict is full, we need to expand
+            // expand the internal array
             expand(dict);
 
-            // now try to insert again
+            // try adding again now that we have room
             Dict_set(dict, key, value);
         }
     }
 }
 
-int Dict_get(Dict* dict, char key[]) {
+int Dict_get(Dict *dict, char *key) {
     int index = hash(key) % dict->size;
 
-    if(dict->data[index] == NULL) {
+    if(dict->contains[index] == 0) {
         // we don't have it
-        printf("Attmempt to access non-existing key %s in Dict", key);
+        printf("Attempt to access non-existing key %s in Dict", key);
         return 0;
-    } else if(strcmp(dict->data[index]->key, key) == 0) {
-        return dict->data[index]->value;
+    } else if(strcmp(dict->data[index].key, key) == 0) {
+        return dict->data[index].value;
     } else {
         int j = index + 1;
 
-        while(j != index && dict->data[j] != NULL) {
-            if(strcmp(dict->data[j]->key, key) == 0) {
-                return dict->data[j]->value;
+        while(j != index && dict->contains[j] != 0) {
+            if(strcmp(dict->data[j].key, key) == 0) {
+                return dict->data[j].value;
             }
 
             if (j < dict->size) {
@@ -77,31 +86,33 @@ int Dict_get(Dict* dict, char key[]) {
     }
 }
 
-void expand(Dict* dict) {
-    // so we can re-insert everything
-    int oldSize = dict->size;
-    struct Pair tmp[] = dict->data;
+void expand(Dict *dict) {
+    // copy original contents
+    int originalSize = dict->size;
+    Pair *tmp = malloc(originalSize * sizeof(Pair));
+    memcpy(tmp, dict->data, originalSize * sizeof(Pair));
 
-    // double our size
+    // double the internal array size
     dict->size *= 2;
+    realloc(dict->data, dict->size * sizeof(Pair));
+    realloc(dict->contains, dict->size * sizeof(int));
 
-    // reallocate the array
-    dict->data = malloc(dict->size * sizeof(struct Pair));
-
-    for(int i = 0; i < oldSize; i++) {
-        struct Pair pair = tmp[i];
-
-        Dict_set(dict, pair->key, pair->value);
+    // clear out what was in the array
+    for(int i = 0; i < originalSize; i++) {
+        // mark as uncontained
+        dict->contains[i] = 0;
     }
 
-    free(tmp);
+    // re-add the old contents back into the dictionary
+    for(int i = 0; i < originalSize; i++) {
+        Dict_set(dict, tmp[i].key, tmp[i].value);
+    }
 }
 
-int hash(char[] s) {
-    int length = sizeof(s) / sizeof(char);
+int hash(char s[]) {
     int output = 7;
 
-    for(int i = 0; i < length; i++) {
+    for(int i = 0; i < strlen(s); i++) {
         output *= 11 + s[i];
     }
 
