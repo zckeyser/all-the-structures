@@ -21,26 +21,21 @@ void Dict_init(Dict *dict) {
 void Dict_set(Dict *dict, char *key, int value) {
     int index = hash(key) % dict->size;
 
-    Pair* p = malloc(sizeof(p));
-    p->key = key;
-    p->value = value;
-    p->next = NULL;
-
-    printf("checking index %d for contains\n", index);
-
     if(dict->contains[index] == 0) {
-        printf("add\n");
+        Pair *p = malloc(sizeof(p));
+        p->key = key;
+        p->value = value;
+        p->next = NULL;
+
         // inserting a new value into an empty spot
         dict->data[index] = *p;
 
         // flag the bucket we just added to
         dict->contains[index] = 1;
-    } else if(strcmp(dict->data[index].key, p->key) == 0) {
-        printf("update\n");
-        // updating an existing value
-        dict->data[index] = *p;
+    } else if(strcmp(dict->data[index].key, key) == 0) {
+        // update an existing value
+        dict->data[index].value = value;
     } else {
-        printf("collision\n");
 
         Pair *last = &dict->data[index];
 
@@ -49,7 +44,10 @@ void Dict_set(Dict *dict, char *key, int value) {
         }
 
         // append it to the end of the list
-        last->next = p;
+        last->next = malloc(sizeof(Pair));
+        last->next->key = key;
+        last->next->value = value;
+        last->next->next = NULL;
     }
 }
 
@@ -65,7 +63,7 @@ int Dict_get(Dict *dict, char *key) {
     } else {
         Pair* curr = &dict->data[index];
 
-        while(curr->next != NULL) {
+        while(curr != NULL) {
             if(strcmp(curr->key, key) == 0) {
                 return curr->value;
             } else {

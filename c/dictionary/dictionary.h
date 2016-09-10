@@ -1,7 +1,7 @@
 #ifndef DICT_HEADER
 #define DICT_HEADER
 
-#define DICT_SIZE 256
+#define DICT_SIZE 512
 
 struct Pair {
     int value;

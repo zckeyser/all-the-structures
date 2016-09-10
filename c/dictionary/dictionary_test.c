@@ -1,27 +1,27 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 #include "dictionary_test.h"
 #include "dictionary.h"
 
 #include "../test/assert.h"
 
-char *strFromIndex(int index);
+int randint(int n);
+char *randstr();
 
 void Dict_test(int *passed, int *total) {
     printf("\n\nDictionary\n\n");
+
+    srand(time(NULL));
 
     Dict dict;
 
     Dict_init(&dict);
 
-    printf("initialized\n");
-
     // add a new item
     Dict_set(&dict, "foo", 10);
-
-    printf("added first item\n");
 
     *passed += ASSERT_INT_EQUALS(10, Dict_get(&dict, "foo"), "sets and retrieves a new item");
     *total += 1;
@@ -35,48 +35,64 @@ void Dict_test(int *passed, int *total) {
     Pair inserted[500];
 
     // expansion
-    for(int i = 0; i < 500; i++) {
+    for(int i = 0; i < 200; i++) {
         // get the pair to add
-        char *key = strFromIndex(i);
+        char *key = randstr(i);
         int value = i;
 
         // add the pair to the dict
         Dict_set(&dict, key, value);
 
         // record the pair so we can verify it worked
-        Pair p;
-        p.key = key;
-        p.value = value;
+        Pair* p = malloc(sizeof(Pair));
+        p->key = key;
+        p->value = value;
 
-        inserted[i] = p;
+        inserted[i] = *p;
     }
 
     // test expansion
     // so we can not destroy the test pass/fail count by adding 500 assertions to it
     int expansionPasses = 0;
 
-    for(int i = 0; i < 500; i++) {
-        expansionPasses += ASSERT_INT_EQUALS(inserted[i].value, Dict_get(&dict, inserted[i].key), "expansion check");
+    for(int i = 0; i < 200; i++) {
+        Pair* p = &inserted[i];
     }
 
-    if(expansionPasses == 500) {
+    for(int i = 0; i < 200; i++) {
+        Pair* p = &inserted[i];
+
+        //expansionPasses += ASSERT_INT_EQUALS(p->value, Dict_get(&dict, p->key), "expansion check");
+    }
+
+    if(expansionPasses == 200) {
         *passed += 1;
     }
 
     total += 1;
 }
 
-char *strFromIndex(int index) {
-    // # of times we can go through the alphabet, round up
-    int size = (index / 26) + 1;
-    char *s = malloc(size * sizeof(char));
+char *randstr() {
+    int size = 8;
+    char *s = malloc((size * sizeof(char)));
 
-    // lowercase letter corresponding to index
-    char c = (index % 26) + 97;
+    for(int i = 0; i < size - 1; i++) {
+        char c = randint(26) + 97;
 
-    for(int i = 0; i < size; i++) {
         s[i] = c;
     }
 
+    // needed to terminate the string
+    s[size - 1] = 0;
+
     return s;
+}
+
+// returns a value in the range [0, n)
+int randint(int n) {
+    if ((n - 1) == RAND_MAX) {
+        return rand();
+    } else {
+        return rand() % n;
+    }
 }
