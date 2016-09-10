@@ -55,17 +55,14 @@ void Dict_test(int *passed, int *total) {
     // so we can not destroy the test pass/fail count by adding 500 assertions to it
     int expansionPasses = 0;
 
-    for(int i = 0; i < 200; i++) {
+    for(int i = 0; i < 100; i++) {
         Pair* p = &inserted[i];
+        printf("%s\n", p->key);
+
+        expansionPasses += ASSERT_INT_EQUALS(p->value, Dict_get(&dict, p->key), "expansion check");
     }
 
-    for(int i = 0; i < 200; i++) {
-        Pair* p = &inserted[i];
-
-        //expansionPasses += ASSERT_INT_EQUALS(p->value, Dict_get(&dict, p->key), "expansion check");
-    }
-
-    if(expansionPasses == 200) {
+    if(expansionPasses == 100) {
         *passed += 1;
     }
 
