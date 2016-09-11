@@ -7,8 +7,6 @@
 void expand(Dict *dict);
 unsigned long hash(char s[]);
 
-// TODO reimplement as linked list
-
 void Dict_init(Dict *dict) {
     dict->size = DICT_SIZE;
 
@@ -21,9 +19,12 @@ void Dict_init(Dict *dict) {
 void Dict_set(Dict *dict, char *key, int value) {
     int index = hash(key) % dict->size;
 
+    printf("adding at %d with key %s: ", index, key);
+
     if(dict->contains[index] == 0) {
+        printf("add\n");
         Pair *p = malloc(sizeof(p));
-        p->key = key;
+        p->key = strdup(key);
         p->value = value;
         p->next = NULL;
 
@@ -36,7 +37,7 @@ void Dict_set(Dict *dict, char *key, int value) {
         // update an existing value
         dict->data[index].value = value;
     } else {
-
+        printf("collision\n");
         Pair *last = &dict->data[index];
 
         while(last->next != NULL) {
@@ -45,7 +46,7 @@ void Dict_set(Dict *dict, char *key, int value) {
 
         // append it to the end of the list
         last->next = malloc(sizeof(Pair));
-        last->next->key = key;
+        last->next->key = strdup(key);
         last->next->value = value;
         last->next->next = NULL;
     }
@@ -56,13 +57,19 @@ int Dict_get(Dict *dict, char *key) {
 
     if(dict->contains[index] == 0) {
         // we don't have it
-        printf("Attempt to access non-existing key %s in Dict", key);
+        printf("Attempt to access non-existing key %s in Dict (non-collision)\n", key);
         return 0;
-    } else if(strcmp(dict->data[index].key, key) == 0) {
-        return dict->data[index].value;
-    } else {
+    } else  {
         Pair* curr = &dict->data[index];
 
+        // is it in the first node of this bucket?
+        if(strcmp(curr->key, key) == 0) {
+            return curr->value;
+        } else {
+            printf("collision while trying to access key %s, found %s instead\n", key, curr->key);
+        }
+
+        // collision -- check the other nodes, if any
         while(curr != NULL) {
             if(strcmp(curr->key, key) == 0) {
                 return curr->value;
@@ -72,7 +79,7 @@ int Dict_get(Dict *dict, char *key) {
         }
 
         // couldn't find it
-        printf("Attempt to access non-existing key %s in Dict", key);
+        printf("Attempt to access non-existing key %s in Dict (collision)\n", key);
         return 0;
     }
 }
@@ -80,7 +87,6 @@ int Dict_get(Dict *dict, char *key) {
 unsigned long hash(char str[])
 {
     unsigned long hash = 5381;
-    int c;
 
     for(int i = 0; i < strlen(str); i++) {
         int c = str[i];

@@ -32,34 +32,24 @@ void Dict_test(int *passed, int *total) {
     *passed += ASSERT_INT_EQUALS(20, Dict_get(&dict, "foo"), "sets and retrieves an updated item");
     *total += 1;
 
-    Pair inserted[500];
+    // test expansion
+    // so we can not destroy the test pass/fail count by adding hundreds of assertions to it
+    int expansionPasses = 0;
 
-    // expansion
     for(int i = 0; i < 200; i++) {
         // get the pair to add
         char *key = randstr(i);
         int value = i;
 
+        if(strcmp(key, "") == 0) {
+            printf("invalid key found");
+        }
+
         // add the pair to the dict
         Dict_set(&dict, key, value);
 
-        // record the pair so we can verify it worked
-        Pair* p = malloc(sizeof(Pair));
-        p->key = key;
-        p->value = value;
-
-        inserted[i] = *p;
-    }
-
-    // test expansion
-    // so we can not destroy the test pass/fail count by adding 500 assertions to it
-    int expansionPasses = 0;
-
-    for(int i = 0; i < 100; i++) {
-        Pair* p = &inserted[i];
-        printf("%s\n", p->key);
-
-        expansionPasses += ASSERT_INT_EQUALS(p->value, Dict_get(&dict, p->key), "expansion check");
+        // verify the set worked
+        expansionPasses += ASSERT_INT_EQUALS(value, Dict_get(&dict, key), "extended check");
     }
 
     if(expansionPasses == 100) {
