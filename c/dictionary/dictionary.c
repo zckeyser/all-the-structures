@@ -19,11 +19,8 @@ void Dict_init(Dict *dict) {
 void Dict_set(Dict *dict, char *key, int value) {
     int index = hash(key) % dict->size;
 
-    printf("adding at %d with key %s: ", index, key);
-
     if(dict->contains[index] == 0) {
-        printf("add\n");
-        Pair *p = malloc(sizeof(p));
+        Pair *p = malloc(sizeof(Pair));
         p->key = strdup(key);
         p->value = value;
         p->next = NULL;
@@ -37,7 +34,6 @@ void Dict_set(Dict *dict, char *key, int value) {
         // update an existing value
         dict->data[index].value = value;
     } else {
-        printf("collision\n");
         Pair *last = &dict->data[index];
 
         while(last->next != NULL) {
@@ -65,8 +61,6 @@ int Dict_get(Dict *dict, char *key) {
         // is it in the first node of this bucket?
         if(strcmp(curr->key, key) == 0) {
             return curr->value;
-        } else {
-            printf("collision while trying to access key %s, found %s instead\n", key, curr->key);
         }
 
         // collision -- check the other nodes, if any
