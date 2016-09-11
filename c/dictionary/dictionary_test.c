@@ -7,6 +7,7 @@
 #include "dictionary.h"
 
 #include "../test/assert.h"
+#include "../util/randint.h"
 
 int randint(int n);
 char *randstr();
@@ -73,13 +74,4 @@ char *randstr() {
     s[size - 1] = 0;
 
     return s;
-}
-
-// returns a value in the range [0, n)
-int randint(int n) {
-    if ((n - 1) == RAND_MAX) {
-        return rand();
-    } else {
-        return rand() % n;
-    }
 }

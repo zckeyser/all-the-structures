@@ -3,6 +3,7 @@
 
 #include "stack/stack_test.h"
 #include "stack/queue_test.h"
+#include "sorts/sort_test.h"
 #include "dictionary/dictionary_test.h"
 
 int main() {
@@ -12,6 +13,7 @@ int main() {
     Stack_test(&passed, &total);
     Queue_test(&passed, &total);
     Dict_test(&passed, &total);
+    Sort_test(&passed, &total);
 
     if(passed != total) {
         int failed = total - passed;
