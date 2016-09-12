@@ -11,7 +11,7 @@ void LinkedList_init(LinkedList *list, int n);
 void LinkedList_insert(LinkedList *list, int i, int n);
 void LinkedList_set(LinkedList *list, int i, int n);
 void LinkedList_append(LinkedList *list, int n);
-void LinkedList_remove(LinkedList *list, int i);
+LinkedList* LinkedList_remove(LinkedList *list, int i);
 int LinkedList_get(LinkedList *list, int i);
 int LinkedList_size(LinkedList *list);
 

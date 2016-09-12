@@ -44,31 +44,47 @@ void LinkedList_append(LinkedList *list, int n) {
         curr = curr->next;
 
     // append new node
-    LinkedList *last = malloc(sizeof(LinkedList));
-    list->data = n;
-    list->next = NULL;
-
-    curr->next = last;
+    curr->next = malloc(sizeof(LinkedList));
+    curr->next->data = n;
+    curr->next->next = NULL;
 }
 
-void LinkedList_remove(LinkedList *list, int i) {
-    LinkedList *l = nodeat(list, i - 1);
+LinkedList* LinkedList_remove(LinkedList *list, int i) {
+    LinkedList *l;
 
-    if(l == NULL) return;
+    // beginning removal special case
+    if(i == 0) {
+        l = list->next;
 
-    if(l->next == NULL) {
-        printf("Attempt to access out of range index %d in LinkedList", i);
-        return;
+        // free the unused node
+        list->next = NULL;
+        free(list);
+
+        return l;
     }
 
+    // find the node before the one we're deleting
+    l = nodeat(list, i - 1);
 
+    // couldn't find it -- out of range
+    if(l == NULL) return NULL;
+
+    // the node we're supposed to delete is out of range
+    if(l->next == NULL) {
+        printf("Attempt to access out of range index %d in LinkedList", i);
+        return NULL;
+    }
+
+    // hold a reference so we can free it later
     LinkedList *todelete = l->next;
 
     // link past the node we're deleting
     l->next = l->next->next;
 
-    // get rid of the deleted node
+    // free the unused node
     free(todelete);
+
+    return l;
 }
 
 int LinkedList_get(LinkedList *list, int i) {

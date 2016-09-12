@@ -6,9 +6,12 @@ typedef struct ArrayList {
     int data[];
 } ArrayList;
 
-ArrayList_add(ArrayList *list, int i, int n);
-ArrayList_get(ArrayList *list, int i);
-ArrayList_append(ArrayList *list, int n);
-ArrayList_remove(ArrayList *list, int i);
+void ArrayList_init(ArrayList *list, int n);
+void ArrayList_insert(ArrayList *list, int i, int n);
+void ArrayList_set(ArrayList *list, int i, int n);
+void ArrayList_append(ArrayList *list, int n);
+void ArrayList_remove(ArrayList *list, int i);
+int ArrayList_get(ArrayList *list, int i);
+int ArrayList_size(ArrayList *list);
 
 #endif

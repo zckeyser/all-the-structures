@@ -55,7 +55,7 @@ void LinkedList_test(int *passed, int *total) {
     *total += 1;
 
     // [ 5, 25, 10 ]
-    LinkedList_remove(test, 0);
+    test = LinkedList_remove(test, 0);
 
     *passed += ASSERT_INT_EQUALS(3, LinkedList_size(test), "size correctly changes after removal from start");
     *total += 1;
@@ -64,7 +64,7 @@ void LinkedList_test(int *passed, int *total) {
     *total += 1;
 
     // [ 5, 10 ]
-    LinkedList_remove(test, 1);
+    test = LinkedList_remove(test, 1);
 
     *passed += ASSERT_INT_EQUALS(2, LinkedList_size(test), "size correctly changes after removal from middle");
     *total += 1;
@@ -73,9 +73,9 @@ void LinkedList_test(int *passed, int *total) {
     *total += 1;
 
     // [ 5 ]
-    LinkedList_remove(test, 1);
+    test = LinkedList_remove(test, 1);
 
-    *passed += ASSERT_INT_EQUALS(2, LinkedList_size(test), "size correctly changes after removal from end");
+    *passed += ASSERT_INT_EQUALS(1, LinkedList_size(test), "size correctly changes after removal from end");
     *total += 1;
 
     *passed += ASSERT_INT_EQUALS(5, LinkedList_get(test, 0), "list values are correctly changed after end removal");
