@@ -1,4 +1,4 @@
-#define TEST_ARR_SIZE 10000
+#define TEST_ARR_SIZE 1000
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,24 +34,29 @@ void Sort_test(int *passed, int *total) {
     *passed += ASSERT_TRUE(issorted(input, TEST_ARR_SIZE), "Bubble Sort");
     *total += 1;
 
-    // reset arr
     shuffle(input, TEST_ARR_SIZE);
-
     Insertion_sort(input, TEST_ARR_SIZE);
 
     *passed += ASSERT_TRUE(issorted(input, TEST_ARR_SIZE), "Insertion Sort");
     *total += 1;
 
     shuffle(input, TEST_ARR_SIZE);
-
     Selection_sort(input, TEST_ARR_SIZE);
 
     *passed += ASSERT_TRUE(issorted(input, TEST_ARR_SIZE), "Selection Sort");
     *total += 1;
 
     shuffle(input, TEST_ARR_SIZE);
+    Merge_sort(input, TEST_ARR_SIZE);
 
-    
+    *passed += ASSERT_TRUE(issorted(input, TEST_ARR_SIZE), "Merge Sort");
+    *total += 1;
+
+    shuffle(input, TEST_ARR_SIZE);
+    Quick_sort(input, 0, TEST_ARR_SIZE - 1);
+
+    *passed += ASSERT_TRUE(issorted(input, TEST_ARR_SIZE), "Quick Sort");
+    *total += 1;
 }
 
 void shuffle(int arr[], int length) {
