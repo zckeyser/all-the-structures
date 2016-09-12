@@ -8,7 +8,7 @@ typedef struct LinkedList {
 } LinkedList;
 
 void LinkedList_init(LinkedList *list, int n);
-void LinkedList_add(LinkedList *list, int i, int n);
+void LinkedList_insert(LinkedList *list, int i, int n);
 void LinkedList_set(LinkedList *list, int i, int n);
 void LinkedList_append(LinkedList *list, int n);
 void LinkedList_remove(LinkedList *list, int i);

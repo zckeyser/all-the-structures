@@ -7,10 +7,10 @@ LinkedList* nodeat(LinkedList *list, int i);
 
 void LinkedList_init(LinkedList *list, int n) {
     list->data = n;
-    list->next = NULL
+    list->next = NULL;
 }
 
-void LinkedList_add(LinkedList *list, int i, int n) {
+void LinkedList_insert(LinkedList *list, int i, int n) {
     LinkedList *l = nodeat(list, i);
 
     if(l == NULL) return;
@@ -92,7 +92,7 @@ int LinkedList_size(LinkedList *list) {
 }
 
 LinkedList* nodeat(LinkedList *list, int i) {
-    LinkedList curr = list;
+    LinkedList *curr = list;
     int j = i;
 
     // move to where we're inserting

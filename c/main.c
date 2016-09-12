@@ -5,6 +5,7 @@
 #include "stack/queue_test.h"
 #include "sorts/sort_test.h"
 #include "dictionary/dictionary_test.h"
+#include "list/linkedlist_test.h"
 
 int main() {
     int passed = 0;
@@ -14,6 +15,7 @@ int main() {
     Queue_test(&passed, &total);
     Dict_test(&passed, &total);
     Sort_test(&passed, &total);
+    LinkedList_test(&passed, &total);
 
     if(passed != total) {
         int failed = total - passed;
