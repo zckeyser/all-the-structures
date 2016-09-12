@@ -1,6 +1,6 @@
 #include "bubble.h"
 
-#include "swap.h"
+#include "../util/swap.h"
 #include "issorted.h"
 
 void Bubble_sort(int *arr, int length) {

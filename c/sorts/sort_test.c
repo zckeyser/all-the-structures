@@ -8,7 +8,7 @@
 
 #include "../test/assert.h"
 #include "../util/randint.h"
-#include "swap.h"
+#include "../util/swap.h"
 #include "issorted.h"
 #include "bubble.h"
 #include "insertion.h"

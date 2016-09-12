@@ -3,7 +3,7 @@
 
 typedef struct ArrayList {
     int size;
-    int data[];
+    int *data;
 } ArrayList;
 
 void ArrayList_init(ArrayList *list, int n);
@@ -12,6 +12,5 @@ void ArrayList_set(ArrayList *list, int i, int n);
 void ArrayList_append(ArrayList *list, int n);
 void ArrayList_remove(ArrayList *list, int i);
 int ArrayList_get(ArrayList *list, int i);
-int ArrayList_size(ArrayList *list);
 
 #endif

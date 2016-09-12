@@ -6,6 +6,7 @@
 #include "sorts/sort_test.h"
 #include "dictionary/dictionary_test.h"
 #include "list/linkedlist_test.h"
+#include "list/arraylist_test.h"
 
 int main() {
     int passed = 0;
@@ -16,6 +17,7 @@ int main() {
     Dict_test(&passed, &total);
     Sort_test(&passed, &total);
     LinkedList_test(&passed, &total);
+    ArrayList_test(&passed, &total);
 
     if(passed != total) {
         int failed = total - passed;

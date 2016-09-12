@@ -2,7 +2,7 @@
 
 #include "quick.h"
 
-#include "swap.h"
+#include "../util/swap.h"
 
 int partition(int *arr, int left, int right);
 
