@@ -3,11 +3,10 @@
 
 #define STACK_MAX 100
 
-struct Stack {
+typedef struct Stack {
     int data[STACK_MAX];
     int top;
-};
-typedef struct Stack Stack;
+} Stack;
 
 void Stack_init(Stack *s);
 void Stack_push(Stack *s, int n);

@@ -3,12 +3,11 @@
 
 #define QUEUE_MAX 100
 
-struct Queue {
+typedef struct Queue {
     int data[QUEUE_MAX];
     int front;
     int rear;
-};
-typedef struct Queue Queue;
+} Queue;
 
 void Queue_init(Queue *q);
 void Queue_enqueue(Queue *q, int n);

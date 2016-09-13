@@ -3,6 +3,7 @@
 
 #include "stack/stack_test.h"
 #include "stack/queue_test.h"
+#include "stack/priority_queue_test.h"
 #include "sorts/sort_test.h"
 #include "dictionary/dictionary_test.h"
 #include "list/linkedlist_test.h"
@@ -14,6 +15,7 @@ int main() {
 
     Stack_test(&passed, &total);
     Queue_test(&passed, &total);
+    PriorityQueue_test(&passed, &total);
     Dict_test(&passed, &total);
     Sort_test(&passed, &total);
     LinkedList_test(&passed, &total);
