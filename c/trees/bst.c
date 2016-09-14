@@ -23,7 +23,7 @@ void BinarySearchTree_insert(BinarySearchTree *root, int n) {
         } else {
             // create left node
             root->left = malloc(sizeof(BinarySearchTree));
-            BinarySearchTree_init(root->left, n);
+            BinarySearchTree_init(root->left, root, n);
         }
     } else {
         // right side insert
@@ -33,7 +33,7 @@ void BinarySearchTree_insert(BinarySearchTree *root, int n) {
         } else {
             // create right node
             root->right = malloc(sizeof(BinarySearchTree));
-            BinarySearchTree_init(root->right, n);
+            BinarySearchTree_init(root->right, root, n);
         }
     }
 }
@@ -107,15 +107,23 @@ void BinarySearchTree_remove(BinarySearchTree *root, int n) {
 
 int BinarySearchTree_contains(BinarySearchTree *root, int n) {
     return (root->value == n) ||
-                ((root->value < n && root->left != NULL && BinarySearchTree_contains(root->left)) ||
-                ((root->value > n && root->right != NULL && BinarySearchTree_contains(root->right)))
+                ((root->value < n && root->left != NULL && BinarySearchTree_contains(root->left, n)) ||
+                ((root->value > n && root->right != NULL && BinarySearchTree_contains(root->right, n)))
             );
 }
 
 int BinarySearchTree_max(BinarySearchTree *root) {
-    return root->right == NULL ? root->value ? BinarySearchTree_max(root->right);
+    return root->right == NULL ? root->value : BinarySearchTree_max(root->right);
 }
 
-int BinarySerachTree_min(BinarySearchTree *root) {
-    return root->left == NULL ? root->value ? BinarySearchTree_max(root->left);
+int BinarySearchTree_min(BinarySearchTree *root) {
+    return root->left == NULL ? root->value : BinarySearchTree_min(root->left);
+}
+
+int BinarySearchTree_size(BinarySearchTree *node) {
+    if(node == NULL) {
+        return 0;
+    } else {
+        return 1 + BinarySearchTree_size(node->left) + BinarySearchTree_size(node->right);
+    }
 }

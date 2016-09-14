@@ -8,6 +8,8 @@
 #include "dictionary/dictionary_test.h"
 #include "list/linkedlist_test.h"
 #include "list/arraylist_test.h"
+#include "trees/traversal_test.h"
+#include "trees/bst_test.h"
 
 int main() {
     int passed = 0;
@@ -20,6 +22,7 @@ int main() {
     Sort_test(&passed, &total);
     LinkedList_test(&passed, &total);
     ArrayList_test(&passed, &total);
+    Traversal_test(&passed, &total);
 
     if(passed != total) {
         int failed = total - passed;
