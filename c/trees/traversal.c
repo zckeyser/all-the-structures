@@ -58,19 +58,13 @@ void inorder(char *out, BinaryTree *root) {
     char val[15];
     sprintf(val, "%d ", root->value);
 
-    printf("checking for left\n");
     if(root->left) {
-        printf("left recursion %d\n", root->left->value);
         inorder(out, root->left);
     }
 
-    printf("cat %d\n", root->value);
     strncat(out, val, 15);
-    printf("catted\n");
 
-    printf("checking for right %d\n");
     if(root->right) {
-        printf("right recursion %d\n", root->right->value);
         inorder(out, root->right);
     }
 }

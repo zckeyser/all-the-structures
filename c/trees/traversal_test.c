@@ -27,18 +27,23 @@ void Traversal_test(int *passed, int *total) {
     // verify traversal outputs
     char *result = malloc(sizeof(char));
 
+    // preorder
     Traversal_preorder(result, root);
 
     *passed += ASSERT_STR_EQUALS("1 2 4 5 3 6 7", result, "preorder traversal");
     *total += 1;
 
+    // inorder
+    result = malloc(sizeof(char));
     Traversal_inorder(result, root);
 
     *passed += ASSERT_STR_EQUALS("4 2 5 1 6 3 7", result, "inorder traversal");
     *total += 1;
-    //
-    // Traversal_postorder(result, root);
-    //
-    // *passed += ASSERT_STR_EQUALS("4 5 2 6 7 3 1", result, "postorder traversal");
-    // *total += 1;
+
+    // postorder
+    result = malloc(sizeof(char));
+    Traversal_postorder(result, root);
+
+    *passed += ASSERT_STR_EQUALS("4 5 2 6 7 3 1", result, "postorder traversal");
+    *total += 1;
 }
