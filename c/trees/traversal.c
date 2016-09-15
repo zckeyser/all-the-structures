@@ -36,7 +36,13 @@ void Traversal_postorder(char *out, BinaryTree *root) {
 
     postorder(result, root);
 
-    sanitize(out, result);
+    // copy the string over
+    realloc(out, (sizeof(char) * strlen(result)));
+
+    strncpy(out, result, strlen(result));
+
+    // set the termination character at the last character, since it'll be an extra space
+    out[strlen(out) - 1] = 0;
 }
 
 void preorder(char *out, BinaryTree *root) {
@@ -106,7 +112,13 @@ void Traversal_postorder_bst(char *out, BinarySearchTree *root) {
 
     postorder_bst(result, root);
 
-    sanitize(out, result);
+    // copy the string over
+    realloc(out, (sizeof(char) * strlen(result)));
+
+    strncpy(out, result, strlen(result));
+
+    // set the termination character at the last character, since it'll be an extra space
+    out[strlen(out) - 1] = 0;
 }
 
 void preorder_bst(char *out, BinarySearchTree *root) {
