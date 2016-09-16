@@ -12,7 +12,7 @@ public class ArraySearch {
      * works on any array but is slow
      * O(n) efficiency
      */
-    public static boolean naiveSearch(int[] arr, int n) {
+    public static boolean linearSearch(int[] arr, int n) {
         for(int i = 0; i < arr.length; i++) {
             if (arr[i] == n) {
                 return true;
