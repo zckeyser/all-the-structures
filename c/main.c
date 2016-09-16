@@ -23,6 +23,7 @@ int main() {
     LinkedList_test(&passed, &total);
     ArrayList_test(&passed, &total);
     Traversal_test(&passed, &total);
+    BinarySearchTree_test(&passed, &total);
 
     if(passed != total) {
         int failed = total - passed;

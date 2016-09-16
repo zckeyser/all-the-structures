@@ -41,13 +41,12 @@ void BinarySearchTree_insert(BinarySearchTree *root, int n) {
 void BinarySearchTree_remove(BinarySearchTree *root, int n) {
     if(root->value == n) {
         // delete this node
-
         if(root->count > 1) {
             // decrement the counter -- no need to delete it if there's multiple instances
             root->count -= 1;
         } else if(root->right == NULL && root->left == NULL) {
-            // this is a leaf, just null the reference to it on its parent and free it
 
+            // this is a leaf, just null the reference to it on its parent and free it
             if(root->parent->left == root) {
                 root->parent->left = NULL;
             } else {
@@ -62,7 +61,7 @@ void BinarySearchTree_remove(BinarySearchTree *root, int n) {
             // get min of right or max of left
             // default to max of left so it works for both single child nodes
             // as well as double child nodes
-            if(root->left != NULL) {
+            if(root->left) {
                 node = root->left;
                 while(node->right != NULL) {
                     node = node->right;
@@ -85,19 +84,17 @@ void BinarySearchTree_remove(BinarySearchTree *root, int n) {
             BinarySearchTree_remove(node, node->value);
         }
     } else if(n < root->value) {
-        // try to delete from left subtree
 
+        // try to delete from left subtree
         if(root->left == NULL) {
-            printf("Attempt to delete non-existing value %d from BST", n);
             return;
         }
 
         BinarySearchTree_remove(root->left, n);
     } else {
-        // try to delete from right subtree
 
+        // try to delete from right subtree
         if(root->right == NULL) {
-            printf("Attempt to delete non-existing value %d from BST", n);
             return;
         }
 
@@ -106,10 +103,13 @@ void BinarySearchTree_remove(BinarySearchTree *root, int n) {
 }
 
 int BinarySearchTree_contains(BinarySearchTree *root, int n) {
-    return (root->value == n) ||
-                ((root->value < n && root->left != NULL && BinarySearchTree_contains(root->left, n)) ||
-                ((root->value > n && root->right != NULL && BinarySearchTree_contains(root->right, n)))
-            );
+    if(root->value == n) {
+        return 1;
+    } else if(n < root->value) {
+        return root->left != NULL && BinarySearchTree_contains(root->left, n);
+    } else  {
+        return root->right != NULL && BinarySearchTree_contains(root->right, n);
+    }
 }
 
 int BinarySearchTree_max(BinarySearchTree *root) {

@@ -148,7 +148,6 @@ void inorder_bst(char *out, BinarySearchTree *root) {
 void postorder_bst(char *out, BinarySearchTree *root) {
     char val[15];
     sprintf(val, "%d ", root->value);
-    printf("%s", val);
 
     if(root->left) {
         postorder_bst(out, root->left);
@@ -165,8 +164,9 @@ void copy(char *out, char *in) {
     // copy the string over
     realloc(out, (sizeof(char) * strlen(in)));
 
-    strncpy(out, in, strlen(in));
+    strcpy(out, in);
 
-    // set the termination character at the last character, since it'll be an extra space
-    out[strlen(out) - 1] = 0;
+    out[strlen(out) - 1] = '\0';
+
+    free(in);
 }
