@@ -9,6 +9,7 @@ Implementing data structures in various languages. Currently sticking to pretty 
 - [x] Javascript
 - [x] Python
 - [x] Ruby
+- [ ] Haskell
 - [ ] Rust (maybe)
 - [ ] Go (maybe)
 - [ ] PHP (maybe)
