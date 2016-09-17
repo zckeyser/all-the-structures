@@ -10,7 +10,8 @@
 #include "list/arraylist_test.h"
 #include "trees/traversal_test.h"
 #include "trees/bst_test.h"
-#include "search/list/list_search_test.h"
+#include "search/list_search_test.h"
+#include "search/bfs_test.h"
 
 int main() {
     int passed = 0;
@@ -25,7 +26,8 @@ int main() {
     ArrayList_test(&passed, &total);
     Traversal_test(&passed, &total);
     BinarySearchTree_test(&passed, &total);
-    //ListSearch_test(&passed, &total);
+    ListSearch_test(&passed, &total);
+    BreadthFirst_test(&passed, &total);
 
     if(passed != total) {
         int failed = total - passed;
