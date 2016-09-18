@@ -46,7 +46,7 @@ void preorder(char *out, BinaryTree *root) {
     char val[15];
     sprintf(val, "%d ", root->value);
 
-    strncat(out, val, 15);
+    strcat(out, val);
 
     if(root->left) {
         preorder(out, root->left);
@@ -65,7 +65,7 @@ void inorder(char *out, BinaryTree *root) {
         inorder(out, root->left);
     }
 
-    strncat(out, val, 15);
+    strcat(out, val);
 
     if(root->right) {
         inorder(out, root->right);
@@ -84,7 +84,7 @@ void postorder(char *out, BinaryTree *root) {
         postorder(out, root->right);
     }
 
-    strncat(out, val, 15);
+    strcat(out, val);
 }
 
 
@@ -119,7 +119,7 @@ void preorder_bst(char *out, BinarySearchTree *root) {
     char val[15];
     sprintf(val, "%d ", root->value);
 
-    strncat(out, val, 15);
+    strcat(out, val);
 
     if(root->left) {
         preorder_bst(out, root->left);
@@ -138,7 +138,7 @@ void inorder_bst(char *out, BinarySearchTree *root) {
         inorder_bst(out, root->left);
     }
 
-    strncat(out, val, 15);
+    strcat(out, val);
 
     if(root->right) {
         inorder_bst(out, root->right);
@@ -157,7 +157,7 @@ void postorder_bst(char *out, BinarySearchTree *root) {
         postorder_bst(out, root->right);
     }
 
-    strncat(out, val, 15);
+    strcat(out, val);
 }
 
 void copy(char *out, char *in) {

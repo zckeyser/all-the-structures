@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "bst_test.h"
 #include "bst.h"
@@ -39,8 +40,7 @@ void BinarySearchTree_test(int *passed, int *total) {
 
     *passed += ASSERT_STR_EQUALS("3 10 15 24 30 42 50 60 73 80 83 87 100", result, "insertion");
     *total += 1;
-
-    result = malloc(sizeof(char));
+    memset(result, 0, strlen(result));
 
     // leaf removal
     BinarySearchTree_remove(root, 3);
@@ -49,7 +49,7 @@ void BinarySearchTree_test(int *passed, int *total) {
 
     *passed += ASSERT_STR_EQUALS("10 15 24 30 42 50 60 73 80 83 87 100", result, "leaf removal");
     *total += 1;
-    result = malloc(sizeof(char));
+    memset(result, 0, strlen(result));
 
     // node with one child removal
     BinarySearchTree_remove(root, 87);
@@ -58,7 +58,7 @@ void BinarySearchTree_test(int *passed, int *total) {
 
     *passed += ASSERT_STR_EQUALS("10 15 24 30 42 50 60 73 80 83 100", result, "single child removal");
     *total += 1;
-    result = malloc(sizeof(char));
+    memset(result, 0, strlen(result));
 
     // node with two children removal
     BinarySearchTree_remove(root, 30);
@@ -67,7 +67,7 @@ void BinarySearchTree_test(int *passed, int *total) {
 
     *passed += ASSERT_STR_EQUALS("10 15 24 42 50 60 73 80 83 100", result, "two children removal");
     *total += 1;
-    result = malloc(sizeof(char));
+    memset(result, 0, strlen(result));
 
     // root removal
     BinarySearchTree_remove(root, 50);
@@ -76,7 +76,7 @@ void BinarySearchTree_test(int *passed, int *total) {
 
     *passed += ASSERT_STR_EQUALS("10 15 24 42 60 73 80 83 100", result, "root removal");
     *total += 1;
-    result = malloc(sizeof(char));
+    memset(result, 0, strlen(result));
 
     free(result);
     free(root);
