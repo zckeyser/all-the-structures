@@ -12,4 +12,3 @@ Implementing data structures in various languages. Currently sticking to pretty 
 - [ ] Haskell
 - [ ] Rust (maybe)
 - [ ] Go (maybe)
-- [ ] PHP (maybe)
