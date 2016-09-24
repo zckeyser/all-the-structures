@@ -10,6 +10,7 @@ namespace DataStructures.stack
         private List<Queue<T>> queues;
 
         public int Size { get { return queues.Aggregate(0, (total, curr) => total + curr.Size); } }
+        public int MaxPriority { get { return queues.Count - 1; } }
         public bool Empty { get { return Size == 0; } }
 
         public PriorityQueue(int levels)
@@ -19,8 +20,8 @@ namespace DataStructures.stack
 
         public T Dequeue()
         {
-            for (int i = queues.Count - 1; i >= 0; i--)
-                if (queues[i].Empty)
+            for (int i = MaxPriority; i >= 0; i--)
+                if (!queues[i].Empty)
                     return queues[i].Dequeue();
 
             Console.WriteLine("Warning: attempt to pop from empty PriorityQueue");

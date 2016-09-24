@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace DataStructures.stack
@@ -17,6 +18,12 @@ namespace DataStructures.stack
 
         public T Dequeue()
         {
+            if(Empty)
+            {
+                Console.WriteLine("Warning: Attempt to dequeue from empty queue");
+                return default(T);
+            }
+
             T retval = values[0];
             values.RemoveAt(0);
 

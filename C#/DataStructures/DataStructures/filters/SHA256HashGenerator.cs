@@ -58,7 +58,7 @@ namespace DataStructures.Filters
                 // And return it
                 return sb.ToString();
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
                 // If something occurred during serialization, 
                 // this method is called with a null argument. 
