@@ -57,11 +57,13 @@
     <Compile Include="math\GCDTest.cs" />
     <Compile Include="math\EratosthenesSieveTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sorts\BubbleSortTest.cs" />
     <Compile Include="stack\PriorityQueueTest.cs" />
     <Compile Include="stack\QueueTest.cs" />
     <Compile Include="stack\StackTest.cs" />
     <Compile Include="trees\BinarySearchTreeTest.cs" />
     <Compile Include="trees\BinaryTreeTraverserTest.cs" />
+    <Compile Include="util\TestUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataStructures\DataStructures.csproj">
