@@ -1,7 +1,7 @@
 ﻿using System;
 using DataStructures.trees;
 
-namespace DataStructures.Trees
+namespace DataStructures.trees
 {
     /// <summary>
     /// Generic AVL Tree Implementation

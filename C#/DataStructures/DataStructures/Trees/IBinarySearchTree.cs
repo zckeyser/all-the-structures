@@ -1,7 +1,7 @@
 ﻿using System;
 using DataStructures.trees;
 
-namespace DataStructures.Trees
+namespace DataStructures.trees
 {
 	public interface IBinarySearchTree<T> : IBinaryTree<T> where T : IComparable
 	{

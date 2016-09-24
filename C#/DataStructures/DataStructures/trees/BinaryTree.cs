@@ -1,6 +1,6 @@
-﻿namespace DataStructures.Trees
+﻿namespace DataStructures.trees
 {
-	public class BinaryTree<T>
+	public class BinaryTree<T> : IBinaryTree<T>
 	{
 		private T value;
 		private BinaryTree<T> left;
@@ -16,7 +16,7 @@
 			this.left = left;
 		}
 
-		public BinaryTree<T> GetLeft()
+		public IBinaryTree<T> GetLeft()
 		{
 			return left;
 		}
@@ -26,7 +26,7 @@
 			this.right = right;
 		}
 
-		public BinaryTree<T> GetRight()
+		public IBinaryTree<T> GetRight()
 		{
 			return right;
 		}
