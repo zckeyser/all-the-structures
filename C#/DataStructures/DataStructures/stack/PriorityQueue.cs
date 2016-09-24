@@ -29,7 +29,7 @@ namespace DataStructures.stack
 
         public T Dequeue(int level)
         {
-            if (level >= 0 || level < queues.Count)
+            if (level < 0 || level >= queues.Count)
                 throw new ArgumentOutOfRangeException();
 
             if (!queues[level].Empty)
@@ -37,6 +37,14 @@ namespace DataStructures.stack
 
             Console.WriteLine("Warning: Attempt to dequeue from empty level {0}", level);
             return default(T);
+        }
+
+        public void Enqueue(T item, int level = 0)
+        {
+            if (level < 0 || level >= queues.Count)
+                throw new ArgumentOutOfRangeException();
+
+            queues[level].Enqueue(item);
         }
 
         public IEnumerator<T> GetEnumerator()

@@ -47,12 +47,20 @@
     <Compile Include="math\GCD.cs" />
     <Compile Include="other\FizzBuzz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="stack\PriorityQueue.cs" />
+    <Compile Include="stack\Queue.cs" />
+    <Compile Include="stack\Stack.cs" />
     <Compile Include="trees\AVLTree.cs" />
     <Compile Include="trees\BinarySearchTree.cs" />
     <Compile Include="trees\BinaryTree.cs" />
     <Compile Include="trees\BinaryTreeTraverser.cs" />
     <Compile Include="trees\IBinarySearchTree.cs" />
     <Compile Include="trees\IBinaryTree.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dictionary\" />
+    <Folder Include="search\" />
+    <Folder Include="sorts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
