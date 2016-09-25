@@ -1,88 +1,87 @@
+package dictionary;
+
+import java.util.ArrayList;
+
 // generic dictionary implemented using rollover for collision handling
 // such that on collision, the value is placed in the next empty bucket
 public class Dictionary<TKey, TValue> {
-    private const int DEFAULT_ARRAY_SIZE = 64;
-    private KeyValuePair<TKey, TValue>[] values;
+    private final int DEFAULT_ARRAY_SIZE = 512;
+    private ArrayList<KeyValuePair<TKey, TValue>> values;
 
-    public Dictionary<TKey, TValue>() {
-        values = new KeyValuePair<TKey, TValue>[DEFAULT_ARRAY_SIZE];
+    public Dictionary() {
+        values = new ArrayList<>();
+
+        for(int i = 0; i < DEFAULT_ARRAY_SIZE; i++)
+            values.add(null);
     }
 
     // just for testing
-    public Dictionary<TKey, TValue>(int arraySize) {
-        values = new LinkedListNode<KeyValuePair<TKey, TValue>>[arraySize];
+    public Dictionary(int arraySize) {
+        values = new ArrayList<>();
+
+        for(int i = 0; i < arraySize; i++)
+            values.add(null);
     }
 
     public void add(TKey key, TValue value) {
-        int index = value.hashCode() % values.length;
+        int index = value.hashCode() % values.size();
 
-        KeyValuePair<TKey, TValue> pair = new KeyValuePair<TKey, TValue>(key, value);
+        KeyValuePair<TKey, TValue> pair = new KeyValuePair<>(key, value);
 
-        if(values[index] == null || values[index].getKey().equals(key)) {
-            values[index] = pair;
+        if(values.get(index) == null || values.get(index).getKey().equals(key)) {
+            values.set(index, pair);
         } else {
-            int i = index + 1;
+            // add to the end of the linked list in this bucket
+            KeyValuePair<TKey, TValue> curr = values.get(index);
 
-            while(i != index && values[i] != null) {
-                i++;
+            while(curr.getNext() != null)
+                curr = curr.getNext();
 
-                // roll back to beginning
-                if(i == values.length) {
-                    i = 0;
-                }
-            }
-
-            // there were no open buckets -- we need to expand
-            if(i == index) {
-                expand();
-
-                // try again now that we've expanded
-                add(key, value);
-            } else {
-                // we found an open bucket to roll into
-                values[index] = pair;
-            }
+            curr.setNext(pair);
         }
     }
 
     public TValue get(TKey key) {
-        int index = value.hashCode() % values.length;
+        int index = key.hashCode() % values.size();
 
-        if(values[index] == null) {
+        if(values.get(index) == null) {
+            // its bucket is empty, we don't have it
             return null;
         } else {
-            int subIndex = findInBucket(index, key);
+            // check for it in the relevant bucket
+            KeyValuePair<TKey, TValue> curr = values.get(index);
 
-            return subIndex != -1 ? values[index].get(subIndex).getValue() : null;
+            while(curr.getNext() != null) {
+                if(curr.getKey().equals(key))
+                    return curr.getValue();
+            }
+
+            // wasn't in the bucket
+            return null;
         }
     }
 
     public void remove(TKey key) {
-        int index = value.hashCode() % values.length;
+        int index = key.hashCode() % values.size();
 
-        if(values[index] == null) {
-            return null;
-        } else {
-            int subIndex = findInBucket(index, key);
+        if(values.get(index) != null) {
+            KeyValuePair<TKey, TValue> curr = values.get(index);
 
-            if(subIndex != -1) {
-                values[index].remove(subIndex);
+            if(curr.getKey().equals(key)) {
+                // move this bucket up a node
+                // such that the second element is now the first
+                // and the first is dereferenced
+                values.set(index, curr.getNext());
+            } else {
+                while(curr.getNext() != null) {
+                    if(curr.getNext().getKey().equals(key)) {
+                        // remove the key from the chain
+                        KeyValuePair<TKey, TValue> next = curr.getNext().getNext();
+                        curr.setNext(next);
+                        return;
+                    }
+                }
             }
-        }
-    }
-
-    // expand the internal array to double its current size,
-    // reindexing all of the items currently inside
-    private void expand() {
-        int newSize = values.length * 2;
-        KeyValuePair[] oldValues = values;
-
-        values = new KeyValuePair[newSize];
-
-        // re-index all the old items
-        for(int i = 0; i < oldValues.length; i++) {
-            // using a normal for-loop for speed, since it's more efficient than foreach
-            add(oldValues[i].getKey(), oldValues[i].getValue());
         }
     }
 }

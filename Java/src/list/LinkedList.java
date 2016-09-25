@@ -1,8 +1,10 @@
-public class LinkedListNode<T> {
-    private T value;
-    private LinkedListNode<T> next;
+package list;
 
-    public LinkedListNode<T>(T value) {
+public class LinkedList<T> {
+    private T value;
+    private LinkedList<T> next;
+
+    public LinkedList(T value) {
         this.value = value;
     }
 
@@ -18,7 +20,7 @@ public class LinkedListNode<T> {
         if(index < 0 || index > this.length() - 1) {
             throw new IndexOutOfBoundsException();
         } else if(index == 0) {
-            return this;
+            return this.value;
         } else {
             return next.get(index - 1);
         }
@@ -26,7 +28,7 @@ public class LinkedListNode<T> {
 
     public void add(T value) {
         if(next == null) {
-            next = new LinkedListNode<T> value;
+            next = new LinkedList<T>(value);
         } else {
             next.add(value);
         }
@@ -36,8 +38,8 @@ public class LinkedListNode<T> {
         if(index < 0 || index > this.length() - 1) {
             throw new IndexOutOfBoundsException();
         } else if(index == 1) {
-            LinkedListNode<T> tmp = next;
-            next = new LinkedListNode<T>(value);
+            LinkedList<T> tmp = next;
+            next = new LinkedList<>(value);
             next.next = tmp;
         } else {
             next.add(value, index - 1);

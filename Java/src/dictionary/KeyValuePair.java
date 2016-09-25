@@ -1,10 +1,14 @@
-public class KeyValuePair<TKey, TValue> {
+package dictionary;
+
+class KeyValuePair<TKey, TValue> {
     private TKey key;
     private TValue value;
+    private KeyValuePair<TKey, TValue> next;
 
-    public KeyValuePair<TKey, TValue>(TKey key, TValue value) {
+    public KeyValuePair(TKey key, TValue value) {
         this.key = key;
         this.value = value;
+        this.next = null;
     }
 
     public TKey getKey() {
@@ -15,11 +19,13 @@ public class KeyValuePair<TKey, TValue> {
         return value;
     }
 
+    public KeyValuePair<TKey, TValue> getNext() { return next; }
+
     public void setKey(TKey key) {
         this.key = key;
     }
 
-    public void setValue(TValue value) {
-        this.value = value;
-    }
+    public void setValue(TValue value) { this.value = value; }
+
+    public void setNext(KeyValuePair<TKey, TValue> next) { this.next = next; }
 }

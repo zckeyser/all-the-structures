@@ -1,5 +1,5 @@
 import searches.array.ArraySearchTest;
-import searches.uninformed.UninformedSearchTest;
+import searches.graph.UninformedSearchTest;
 import sorts.SortTest;
 import stack.QueueTest;
 import stack.StackTest;
@@ -12,13 +12,13 @@ import trees.BinarySearchTreeTest;
  * set various flags to choose whether or not to run tests for various types
  */
 public class Main {
-    static boolean BINARY_SEARCH_TREE = true;
-    static boolean STACK = true;
-    static boolean QUEUE = true;
-    static boolean ARRAY_SEARCH = true;
-    static boolean SORT = true;
-    static boolean SORT_TIMING = true;
-    static boolean UNGUIDED_SEARCH = true;
+    private static boolean BINARY_SEARCH_TREE = true;
+    private static boolean STACK = true;
+    private static boolean QUEUE = true;
+    private static boolean ARRAY_SEARCH = true;
+    private static boolean SORT = true;
+    private static boolean SORT_TIMING = true;
+    private static boolean UNGUIDED_SEARCH = true;
 
     //TODO less naive way of deciding what tests to run?
     public static void main(String[] args) {

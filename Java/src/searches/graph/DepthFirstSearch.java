@@ -1,4 +1,4 @@
-package searches.uninformed;
+package searches.graph;
 
 import graphs.DirectedGraphNode;
 import stack.Stack;

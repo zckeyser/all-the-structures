@@ -92,7 +92,7 @@ public class BinarySearchTree {
      */
     public void delete(int i) {
         if(!contains(i)) {
-          System.out.format("The value %d was attempted to be removed from a tree which does not contain it", i)
+          System.out.format("The value %d was attempted to be removed from a tree which does not contain it", i);
         }
 
         //if the value we're looking to delete is less than the current node's value, look in the left subtree
