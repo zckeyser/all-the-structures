@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dictionary\Dict.cs" />
     <Compile Include="filters\BloomFilter.cs" />
     <Compile Include="filters\SHA256HashGenerator.cs" />
     <Compile Include="math\EratosthenesSieve.cs" />
@@ -68,9 +69,7 @@
     <Compile Include="trees\IBinaryTree.cs" />
     <Compile Include="util\SortUtil.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="dictionary\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

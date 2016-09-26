@@ -53,6 +53,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="dictionary\DictTest.cs" />
     <Compile Include="filters\BloomFilterTest.cs" />
     <Compile Include="math\GCDTest.cs" />
     <Compile Include="math\EratosthenesSieveTest.cs" />
