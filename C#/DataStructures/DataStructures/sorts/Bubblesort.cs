@@ -3,9 +3,9 @@ using System;
 
 namespace DataStructures.sorts
 {
-    public class BubbleSort
+    public static class BubbleSort
     {
-        public T[] Sort<T>(T[] input)
+        public static T[] Sort<T>(T[] input)
             where T : IComparable
         {
             T[] output = new T[input.Length];

@@ -32,14 +32,14 @@ namespace DataStructures.sorts
             // partition around pivot
             int i = 0, j = arr.Length - 1;
 
-            while(i <= j)
+            while(i < j)
             {
                 // find values that are out of place
-                while (arr[i].CompareTo(pivot) < 0) i++;
+                while (i < arr.Length && arr[i].CompareTo(pivot) < 0) i++;
                 while (j > 0 && arr[j].CompareTo(pivot) > 0) j--;
 
                 // swap the values
-                if(i <= j)
+                if(i < j)
                 {
                     var tmp = arr[i];
                     arr[i] = arr[j];
@@ -54,7 +54,7 @@ namespace DataStructures.sorts
             var left = arr.Take(j).ToArray();
             var right = arr.Skip(i).ToArray();
 
-            return QSort(left).Concat(right).ToArray();
+            return QSort(left).Concat(QSort(right)).ToArray();
         }
     }
 }

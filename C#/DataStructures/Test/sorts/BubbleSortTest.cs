@@ -9,11 +9,11 @@ namespace Test.sorts
     public class BubbleSortTest
     {
         [TestMethod]
-        public void BubbleSort()
+        public void BubbleSort_SortsCorrectly()
         {
             var input = TestUtil.RandomArray(TestUtil.ARR_SIZE);
 
-            var result = new BubbleSort().Sort(input);
+            var result = BubbleSort.Sort(input);
 
             Assert.IsTrue(SortUtil.IsSorted(result));
         }
