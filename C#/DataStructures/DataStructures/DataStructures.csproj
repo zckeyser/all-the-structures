@@ -47,6 +47,9 @@
     <Compile Include="math\GCD.cs" />
     <Compile Include="other\FizzBuzz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="search\graph\BreadthFirstSearch.cs" />
+    <Compile Include="search\graph\DepthFirstSearch.cs" />
+    <Compile Include="search\graph\DirectedGraphNode.cs" />
     <Compile Include="search\list\BinarySearch.cs" />
     <Compile Include="search\list\LinearSearch.cs" />
     <Compile Include="sorts\BubbleSort.cs" />
