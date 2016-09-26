@@ -4,7 +4,7 @@ namespace Test.util
 {
     public static class TestUtil
     {
-        public const int ARR_SIZE = 10;
+        public const int ARR_SIZE = 100;
 
         public static int[] RandomArray(int length)
         {

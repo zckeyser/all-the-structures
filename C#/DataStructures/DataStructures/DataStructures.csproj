@@ -47,6 +47,8 @@
     <Compile Include="math\GCD.cs" />
     <Compile Include="other\FizzBuzz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="search\list\BinarySearch.cs" />
+    <Compile Include="search\list\LinearSearch.cs" />
     <Compile Include="sorts\BubbleSort.cs" />
     <Compile Include="sorts\InsertionSort.cs" />
     <Compile Include="sorts\MergeSort.cs" />
@@ -65,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dictionary\" />
-    <Folder Include="search\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

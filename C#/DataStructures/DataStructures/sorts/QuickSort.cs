@@ -27,7 +27,7 @@ namespace DataStructures.sorts
                 return arr;
 
             // take random element to pivot around
-            var pivot = arr[rand.Next() % arr.Length];
+            var pivot = arr[0];
 
             // partition around pivot
             int i = 0, j = arr.Length - 1;
