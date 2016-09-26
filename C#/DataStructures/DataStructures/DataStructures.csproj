@@ -48,6 +48,10 @@
     <Compile Include="other\FizzBuzz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sorts\BubbleSort.cs" />
+    <Compile Include="sorts\InsertionSort.cs" />
+    <Compile Include="sorts\MergeSort.cs" />
+    <Compile Include="sorts\QuickSort.cs" />
+    <Compile Include="sorts\SelectionSort.cs" />
     <Compile Include="stack\PriorityQueue.cs" />
     <Compile Include="stack\Queue.cs" />
     <Compile Include="stack\Stack.cs" />

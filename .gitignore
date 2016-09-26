@@ -1,6 +1,6 @@
-Java/out
-Java/*.iml
-Java/.idea
+**/out
+**/*.iml
+**/.idea
 
 js/node_modules
 

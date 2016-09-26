@@ -58,6 +58,10 @@
     <Compile Include="math\EratosthenesSieveTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sorts\BubbleSortTest.cs" />
+    <Compile Include="sorts\InsertionSortTest.cs" />
+    <Compile Include="sorts\MergeSortTest.cs" />
+    <Compile Include="sorts\QuickSortTest.cs" />
+    <Compile Include="sorts\SelectionSortTest.cs" />
     <Compile Include="stack\PriorityQueueTest.cs" />
     <Compile Include="stack\QueueTest.cs" />
     <Compile Include="stack\StackTest.cs" />
