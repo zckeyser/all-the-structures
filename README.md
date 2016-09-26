@@ -3,7 +3,7 @@ Implementing data structures in various languages. Currently sticking to pretty 
 
 ## Languages
 - [x] Java
-- [ ] C# (needs to be completed)
+- [x] C#
 - [ ] C
 - [ ] C++
 - [x] Javascript
