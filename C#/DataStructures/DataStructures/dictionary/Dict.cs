@@ -40,7 +40,11 @@ namespace DataStructures.dictionary
                     var curr = Data[i];
 
                     // sum size of bucket
-                    while (curr != null) size++; curr = curr.Next;
+                    while (curr != null)
+                    {
+                        size++;
+                        curr = curr.Next;
+                    }
                 }
 
                 return size;
@@ -66,7 +70,7 @@ namespace DataStructures.dictionary
 
         private void Set(TKey key, TValue value)
         {
-            int index = key.GetHashCode() % Data.Length;
+            int index = System.Math.Abs(key.GetHashCode() % Data.Length);
 
             if (Data[index] == null || Data[index].Key.Equals(key))
                 Data[index] = new KeyValuePair<TKey, TValue>(key, value);
@@ -95,18 +99,15 @@ namespace DataStructures.dictionary
 
         private TValue Get(TKey key)
         {
-            var index = key.GetHashCode() % Data.Length;
+            var index = System.Math.Abs(key.GetHashCode() % Data.Length);
 
             if (Data[index] == null)
                 throw new ArgumentException(string.Format("Key %s was not found in Dict on Get", key.ToString()));
-            else if (Data[index].Key.Equals(key))
-                return Data[index].Value;
             else
             {
-                // it's a collision -- we'll need to try 
-                // to find it in the bucket
+                // try to find it in the bucket
 
-                var curr = Data[index].Next;
+                var curr = Data[index];
 
                 while(curr != null)
                 {
@@ -123,7 +124,7 @@ namespace DataStructures.dictionary
 
         public bool ContainsKey(TKey key)
         {
-            var index = key.GetHashCode() % Data.Length;
+            var index = System.Math.Abs(key.GetHashCode() % Data.Length);
 
             if (Data[index] == null)
                 return false;

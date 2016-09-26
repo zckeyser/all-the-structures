@@ -64,6 +64,7 @@ namespace Test.dictionary
         [TestMethod]
         public void Dict_ManyGetSet()
         {
+            // to test collision handling
             var rand = new Random();
 
             var pairs = new List<KeyValuePair<string, int>>();
@@ -71,7 +72,7 @@ namespace Test.dictionary
             // build out key value pairs and add them
             foreach(var i in Enumerable.Repeat(0, 5000))
             {
-                var key = new Guid().ToString();
+                var key = Guid.NewGuid().ToString();
                 var value = rand.Next();
                 pairs.Add(new KeyValuePair<string, int>(key, value));
 
