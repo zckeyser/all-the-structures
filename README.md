@@ -1,10 +1,10 @@
 # Data Structures
 
 ## Table of Contents
-  - [Sorts](##Sorts)
-    - [Bubble Sort](###Bubble Sort)
-    - [Insertion Sort](###Insertion Sort)
-    - [Selection Sort](###Selection Sort)
+  - [Sorts](##sorts)
+    - [Bubble Sort](#bubble-sort)
+    - [Insertion Sort](#insertion-sort)
+    - [Selection Sort](#selection-sort)
     - [Merge Sort]()
     - [Quick Sort]()
   - [Stacks and Queues]()
