@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:cc="http://web.resource.org/cc/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:sodipodi="http://inkscape.sourceforge.net/DTD/sodipodi-0.dtd"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	width="690.0px" height="430.0px" version="1.0">
+<defs id="defs4">
+	<style type="text/css"><![CDATA[
+		text {
+			font-style: normal;
+			font-family: sans-serif;
+			stroke: none;
+		}
+
+		text.header {
+			font-size: 30px;
+			font-weight: bold;
+		}
+
+		text.header_indicies {
+			text-align: end;
+			writing-mode: lr-tb;
+			text-anchor: end;
+		}
+
+		text.index, text.key, text.hash {
+			font-size: 19px;
+			font-weight: normal;
+		}
+
+		rect.dot, text {
+			fill: #000000;
+			fill-opacity: 1.0;
+		}
+
+		rect.key   { fill: #9cff9c; }
+		rect.hash  { fill: #00ffff; }
+		rect.index { fill: #ffffff; }
+
+		rect.key, rect.hash, rect.index {
+			fill-opacity: 1.0;
+			fill-rule: evenodd;
+			stroke: #000000;
+			stroke-width: 2.0;
+			stroke-linecap: butt;
+			stroke-linejoin: miter;
+			stroke-miterlimit: 4.0;
+			stroke-dasharray: none;
+			stroke-opacity:  1.0;
+		}
+
+		path.arrow {
+			fill: none;
+			fill-opacity: 0.75;
+			fill-rule: evenodd;
+			stroke: #000000;
+			stroke-width: 3.0;
+			stroke-linecap: butt;
+			stroke-linejoin: miter;
+			marker-end: url(#arrow);
+			stroke-miterlimit: 4.0;
+			stroke-dasharray: none;
+			stroke-opacity: 1.0;
+		}
+
+		path.arrowdef {
+			fill-rule: evenodd;
+			stroke-width: 0.625;
+			stroke-linejoin: round;
+		}
+
+		marker {
+			overflow: visible;
+		}
+	]]></style>
+	<marker orient="auto" refY="0.0" refX="0.0" id="arrow" >
+		<path class="arrowdef"
+			d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z"
+			transform="scale(1.1) rotate(180) translate(-5,0)" />
+	</marker>
+</defs>
+<g>
+	<!-- Arrows -->
+	<path class="arrow" id="hash1_arrow" d="M 170,131 L 300,242" />
+	<path class="arrow" id="hash2_arrow" d="M 170,211 L 300,162" />
+	<path class="arrow" id="hash3_arrow" d="M 170,291 L 300,344" />
+	<path class="arrow" id="hash4_arrow" d="M 170,371 L 300,272" />
+
+	<!-- Hash "John Smith" -->
+	<rect class="hash" id="hash1_box"  width="140" height="30" x="30" y="120" />
+	<text class="key"  id="hash1_text" xml:space="preserve"    x="40" y="142">John Smith</text>
+
+	<!-- Hash "Lisa Smith" -->
+	<rect class="hash" id="hash2_box"  width="140" height="30" x="30" y="200" />
+	<text class="hash" id="hash2_text" xml:space="preserve"    x="40" y="222">Lisa Smith</text>
+
+	<!-- Hash "Sam Doe" -->
+	<rect class="hash" id="hash3_box"  width="140" height="30" x="30" y="280" />
+	<text class="hash" id="hash3_text" xml:space="preserve"    x="40" y="302">Sam Doe</text>
+
+	<!-- Hash "Sandra Dee" -->
+	<rect class="hash" id="hash4_box"  width="140" height="30" x="30" y="360" />
+	<text class="hash" id="hash4_text" xml:space="preserve"    x="40" y="382">Sandra Dee</text>
+
+	<!-- Dots -->
+	<rect class="dot" id="dot1" width="5" height="5" x="481" y="179" />
+	<rect class="dot" id="dot2" width="5" height="5" x="481" y="190" />
+	<rect class="dot" id="dot3" width="5" height="5" x="482" y="311" />
+	<rect class="dot" id="dot4" width="5" height="5" x="482" y="321" />
+
+	<!-- Headers -->
+	<text class="header" xml:space="preserve" x="67" y="50" id="text8577">Keys</text>
+	<text class="header header_indicies" id="header_indicies" xml:space="preserve" x="367.4469" y="51">Indices</text>
+	<text class="header" id="header_keys" xml:space="preserve" x="402" y="51">Key-value pairs</text>
+	<text class="header" xml:space="preserve" x="449" y="85" id="text8593">(records)</text>
+
+	<!-- Element 0 -->
+	<rect class="index" id="0_box_index"    width="50"  height="30" x="320" y="100" />
+	<rect class="key"   id="0_box_key"      width="140" height="30" x="370" y="100" />
+	<rect class="key"   id="0_box_value"    width="140" height="30" x="510" y="100" />
+	<text class="index" id="0_text_index"   xml:space="preserve"    x="325" y="122">0</text>
+
+	<!-- Element 1 -->
+	<rect class="index" id="1_box_index"    width="50"  height="30" x="320" y="130" />
+	<rect class="key"   id="1_box_key"      width="140" height="30" x="370" y="130" />
+	<rect class="key"   id="1_box_value"    width="140" height="30" x="510" y="130" />
+	<text class="index" id="1_text_index"   xml:space="preserve"    x="325" y="152">1</text>
+	<text class="key"   id="1_text_key"     xml:space="preserve"    x="380" y="152">Lisa Smith</text>
+	<text class="key"   id="1_text_value"   xml:space="preserve"    x="516" y="152">+1-555-8976</text>
+
+	<!-- Element 872 -->
+	<rect class="index" id="872_box_index"  width="50"  height="30" x="320" y="210" />
+	<rect class="key"   id="872_box_key"    width="140" height="30" x="370" y="210" />
+	<rect class="key"   id="872_box_value"  width="140" height="30" x="510" y="210" />
+	<text class="index" id="872_box_index"  xml:space="preserve"    x="325" y="231">872</text>
+
+	<!-- Element 873 -->
+	<rect class="index" id="873_box_index"  width="50"  height="30" x="320" y="240" />
+	<rect class="key"   id="873_box_key"    width="140" height="30" x="370" y="240" />
+	<rect class="key"   id="873_box_value"  width="140" height="30" x="510" y="240" />
+	<text class="index" id="873_text_index" xml:space="preserve"    x="325" y="262">873</text>
+	<text class="key"   id="873_text_key"   xml:space="preserve"    x="380" y="262">John Smith</text>
+	<text class="key"   id="873_text_value" xml:space="preserve"    x="516" y="262">+1-555-1234</text>
+
+	<!-- Element 874 -->
+	<rect class="index" id="874_box_index"  width="50"  height="30" x="320" y="270" />
+	<rect class="key"   id="874_box_key"    width="140" height="30" x="370" y="270" />
+	<rect class="key"   id="874_box_value"  width="140" height="30" x="510" y="270" />
+	<text class="index" id="874_text_index" xml:space="preserve"    x="325" y="292">874</text>
+	<text class="key"   id="874_text_key"   xml:space="preserve"    x="380" y="292">Sandra Dee</text>
+	<text class="key"   id="874_text_value" xml:space="preserve"    x="516" y="292">+1-555-9655</text>
+
+	<!-- Element 998 -->
+	<rect class="index" id="998_box_index"  width="50"  height="30" x="320" y="340" />
+	<rect class="key"   id="998_box_key"    width="140" height="30" x="370" y="340" />
+	<rect class="key"   id="998_box_value"  width="140" height="30" x="510" y="340" />
+	<text class="index" id="998_text_index" xml:space="preserve"    x="325" y="362">998</text>
+	<text class="key"   id="998_text_key"   xml:space="preserve"    x="380" y="362">Sam Doe</text>
+	<text class="key"   id="998_text_value" xml:space="preserve"    x="516" y="362">+1-555-5030</text>
+
+	<!-- Element 999 -->
+	<rect class="index" id="999_box_index"  width="50"  height="30" x="320" y="370" />
+	<rect class="key"   id="999_box_value"  width="140" height="30" x="510" y="370" />
+	<rect class="key"   id="999_box_key"    width="140" height="30" x="370" y="370" />
+	<text class="index" id="999_text_index" xml:space="preserve"    x="325" y="392">999</text>
+</g>
+</svg>
