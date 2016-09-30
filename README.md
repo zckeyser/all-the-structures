@@ -32,7 +32,7 @@
 ## Sorts
 
 ### Bubble Sort
-![Bubble Sort Visualization](./img/sorts/bubble-sort.svg)
+![Bubble Sort Visualization](./img/sorts/bubble-sort.png)
 
 [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort) is a simple sorting algorithm which merely goes through an array, and for each item checks if it is out of order compared to the item after it. If the items are out of order, swap them. This process is repeated until the entire array is sorted. Bubble sort's only real boon is its simplicity, because it is far too inefficient to have any practical use cases.
 
@@ -84,12 +84,12 @@ A [dictionary](https://en.wikibooks.org/wiki/Data_Structures/Hash_Tables) (also 
 Sometimes, two different objects can produce the same key (since the hash value needs to have its range reduced to fit in the internal array). This is called a *collision*. There are two strategies commonly used to handle collisions:
 
 ### Chaining
-![An example of chaining using a linked list implementation](./img/hash-table/hash-table-chaining.svg)
+![An example of chaining using a linked list implementation](./img/hash-table/hash-table-chaining.png)
 
 The Chaining strategy for collisions is to make every bucket a linked list. When you get a collision, you just look through the list to see if the key already exists. For a set, if the key exists you change that pair's value, otherwise you append the new value to end of that bucket's list. For a get, you return the value of the key-value pair in the list if you find it, otherwise you return null/throw for not found/etc.
 
 ### Open Addressing
-![An example of open addressing using linear probing](./img/hash-table/hash-table-open-addressing.svg)
+![An example of open addressing using linear probing](./img/hash-table/hash-table-open-addressing.png)
 
 The Open Addressing strategy for collisions is to keep just a single key-value pair in each bucket, and on a collision search through other buckets until you find an open one. Once the internal array gets full, it gets re-instanced to a larger size then all the existing objects get re-inserted into the Dictionary.
 
