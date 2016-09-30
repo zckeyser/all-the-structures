@@ -3,10 +3,10 @@
 ## Table of Contents
   - [Sorts]()
     - [Bubble Sort]()
-      - [Insertion Sort]()
-      - [Selection Sort]()
-      - [Merge Sort]()
-      - [Quick Sort]()
+    - [Insertion Sort]()
+    - [Selection Sort]()
+    - [Merge Sort]()
+    - [Quick Sort]()
   - [Stacks and Queues]()
     - [Stack]()
     - [Queue]()
@@ -59,10 +59,14 @@ A dictionary (also known as a map, hash map or hash table) is a structure which 
 
 Sometimes, two different objects can produce the same key (since the hash value needs to have its range reduced to fit in the internal array). This is called a *collision*. There are two strategies commonly used to handle collisions:
 
-### Linked List
-The Linked List solution for a collision is to make every bucket a linked list. When you get a collision, you just look through the list to see if the key already exists. For a set, if the key exists you change that pair's value, otherwise you append the new value to end of that bucket's list. For a get, you return the value of the key-value pair in the list if you find it, otherwise you return null/throw for not found/etc.
+### Chaining
+![An example of chaining using a linked list implementation](https://upload.wikimedia.org/wikipedia/commons/3/34/HASHTB32.svg)
 
-### Rollover
+The Chaining strategy for collisions is to make every bucket a linked list. When you get a collision, you just look through the list to see if the key already exists. For a set, if the key exists you change that pair's value, otherwise you append the new value to end of that bucket's list. For a get, you return the value of the key-value pair in the list if you find it, otherwise you return null/throw for not found/etc.
+
+### Open Addressing
+The Open Addressing strategy for collisions is to keep just a single key-value pair in each bucket, and on a collision search through other buckets until you find an open one. Once the internal array gets full, it gets re-instanced to a larger size then all the existing objects get re-inserted into the Dictionary.
+
 ---
 
 ## Trees
