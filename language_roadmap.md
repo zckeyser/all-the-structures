@@ -1,0 +1,12 @@
+## Languages
+- [x] Java
+- [x] C#
+- [x] C (just need to fix traversal crashing bug)
+- [ ] C++
+- [x] Javascript
+- [x] Python
+- [x] Ruby
+- [ ] Scala
+- [ ] Haskell
+- [ ] Rust (maybe)
+- [ ] Go (maybe)
