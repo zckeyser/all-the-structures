@@ -1,10 +1,10 @@
 # Data Structures
 
 ## Table of Contents
-  - [Sorts](https://github.com/zckeyser/data-structures/blob/master/README.md#L32)
-    - [Bubble Sort](https://github.com/zckeyser/data-structures/blob/master/README.md#L34)
-    - [Insertion Sort](https://github.com/zckeyser/data-structures/blob/master/README.md#L45)
-    - [Selection Sort](https://github.com/zckeyser/data-structures/blob/master/README.md#L56)
+  - [Sorts](##Sorts)
+    - [Bubble Sort](###Bubble Sort)
+    - [Insertion Sort](###Insertion Sort)
+    - [Selection Sort](###Selection Sort)
     - [Merge Sort]()
     - [Quick Sort]()
   - [Stacks and Queues]()
@@ -38,8 +38,11 @@
 
 #### Efficiency
 Best Case: Ω(n)
+
 Worst Case: O(n<sup>2</sup>)
+
 Average Case: O(n<sup>2</sup>)
+
 Space Complexity: O(1)
 
 ### Insertion Sort
@@ -49,8 +52,11 @@ Space Complexity: O(1)
 
 #### Efficiency
 Best Case: Ω(n)
+
 Worst Case: O(n<sup>2</sup>)
+
 Average Case: O(n<sup>2</sup>)
+
 Space Complexity: O(1)
 
 ### Selection Sort
