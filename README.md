@@ -102,17 +102,17 @@ Space Complexity: O(log(n))
 ### Stack
 ![Stack visualization](./img/stack.png)
 
-A stack is a basic data structure which has two operations: `push` and `pop`. `push` adds an item to the stack, and `pop` removes the last item pushed onto the stack. Stacks have many uses (such as in a non-recursive Depth First Search) and are a key data structure in most languages (e.g. C). Commonly stacks are referred to as a *Last-In First-Out (LIFO)* data structure, due to the way that the last item added to it is the first item removed.
+A [stack](http://www.studytonight.com/data-structures/stack-data-structure) is a basic data structure which has two operations: `push` and `pop`. `push` adds an item to the stack, and `pop` removes the last item pushed onto the stack. Stacks have many uses (such as in a non-recursive Depth First Search) and are a key data structure in most languages (e.g. C). Commonly stacks are referred to as a *Last-In First-Out (LIFO)* data structure, due to the way that the last item added to it is the first item removed.
 
 ### Queue
 ![Queue visualization](./img/queue.png)
 
-A queue is another data structure which has two operations: `enqueue` and `dequeue`. `enqueue` adds an item to the queue, and `dequeue` removes the first item that has been added to the queue but has not been dequeued. As a result of this, queues are commonly referred to as *First-In-First-Out (FIFO)*, a reversal of the LIFO label put on stacks. There are many practical usages for queues, with an example being a worker queue, where items are put onto a queue and different workers remove the items and perform work on them until the queue is empty.
+A [queue](http://www.studytonight.com/data-structures/queue-data-structure) is another data structure which has two operations: `enqueue` and `dequeue`. `enqueue` adds an item to the queue, and `dequeue` removes the first item that has been added to the queue but has not been dequeued. As a result of this, queues are commonly referred to as *First-In-First-Out (FIFO)*, a reversal of the LIFO label put on stacks. There are many practical usages for queues, with an example being a worker queue, where items are put onto a queue and different workers remove the items and perform work on them until the queue is empty.
 
 ### Priority Queue
 ![Priority Queue visualization](./img/priority-queue.png)
 
-A priority queue is a data structure which is essentially a more advanced version of a queue. Like a queue, priority queues are FIFO. However, priority queues remove high priority items before low priority items. The priority of an item must be given when the item is queued, so the priority queue can know how to classify it.
+A [priority queue](https://en.wikipedia.org/wiki/Priority_queue) is a data structure which is essentially a more advanced version of a queue. Like a queue, priority queues are FIFO. However, priority queues remove high priority items before low priority items. The priority of an item must be given when the item is queued, so the priority queue can know how to classify it.
 
 ---
 
