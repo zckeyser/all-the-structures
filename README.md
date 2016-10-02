@@ -1,4 +1,5 @@
 # Data Structures
+All of these data structures (plus some others) implemented in a bunch of languages listed [here](https://github.com/zckeyser/all-the-structures/blob/master/language_roadmap.md).
 
 ## Table of Contents
   - [Sorts](##sorts)
