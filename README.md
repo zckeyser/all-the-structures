@@ -142,12 +142,23 @@ The Open Addressing strategy for collisions is to keep just a single key-value p
 ---
 
 ## Tree Traversal
+Tree traversals are ways of traversing through all the nodes in a binary tree in a certain order. There are 5 types of tree traversals: Pre-order, In-order, Post-order, Depth-first and Breadth-first. Depth and Breadth-first searches are covered in [Directed Graph Traversals](#directed-graph-traversals), but the other three are covered below.
 
-### Preorder
+### Pre-order
+![Preorder Traversal Visualization](./img/preorder.png)
 
-### Inorder
+Pre-order traverses the tree in the order: parent left right. This means that first comes the parent's data, then the pre-order traversal of the left subtree, then the pre-order traversal of the right subtree.
 
-### Postorder
+### In-order
+![Inorder Traversal Visualization](./img/inorder.png)
+
+
+In-order traverses the tree in the order: left parent right. This means that first the left subtree's in-order traversal, then the parent's data, then the right subtree's in-order traversal. A noteworthy aspect of in-order traversals is that an in-order traversal of a binary search tree yields a sorted list of the numbers in the binary search tree.
+
+### Post-order
+![Postorder Traversal Visualization](./img/postorder.png)
+
+Post-order traverses the tree in the order: left right parent. This means that first comes the post-order traversal of the left subtree, preorder traversal of the right subtree, then the parent's data.
 
 ---
 
