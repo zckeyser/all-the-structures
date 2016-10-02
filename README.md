@@ -162,8 +162,16 @@ The Open Addressing strategy for collisions is to keep just a single key-value p
 ## List Searches
 
 ### Linear Search
+[Linear Search](https://en.wikipedia.org/wiki/Linear_search) is the simplest way to search a list. It simply consists of checking each item of the list, in order, and returning the index it finds the target at. If the target is not found, it returns -1.
+
+#### Efficiency
+Worst Case: O(n)
 
 ### Binary Search
+[Binary Search](https://en.wikipedia.org/wiki/Binary_search_algorithm) is a search algorithm which requires that the list being searched is sorted, and the type of object in the list be comparable. In binary search, the section of the list is cut in half on each iteration. On each iteration, the midpoint of the current left and right bounds is checked. If the target is less than the value at the midpoint, the left side is searched, otherwise the right side is searched. This continues until the left and right bounds are equal or the item is found.
+
+#### Efficiency
+Worst Case: O(log(n))
 
 --
 
