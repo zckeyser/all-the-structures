@@ -9,13 +9,13 @@ import java.util.Random;
  * 2-way partition quicksort implementation
  */
 public class QuickSort {
-    public int[] sort(int[] arr) {
+    public static int[] sort(int[] arr) {
         shuffle(arr);
         quicksort(arr, 0, arr.length - 1);
         return arr;
     }
 
-    private void quicksort(int[] arr, int lowerIndex, int higherIndex) {
+    private static void quicksort(int[] arr, int lowerIndex, int higherIndex) {
 
         int i = lowerIndex;
         int j = higherIndex;
@@ -51,7 +51,7 @@ public class QuickSort {
 
     //standard shuffling algorithm
     //used to avoid bad case for qsort of almost-sorted array
-    private void shuffle(int[] arr) {
+    private static void shuffle(int[] arr) {
         Random rand = new Random();
 
         for(int i = 0; i < arr.length; i++) {

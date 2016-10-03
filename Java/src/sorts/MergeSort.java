@@ -7,7 +7,7 @@ import java.util.Arrays;
  * mergesort implementation
  */
 public class MergeSort {
-    public int[] sort(int[] arr) {
+    public static int[] sort(int[] arr) {
         if(arr.length == 1) {
             return arr;
         }
@@ -21,7 +21,7 @@ public class MergeSort {
     /**
      * merges two sorted arrays into a larger sorted array
      */
-    private int[] merge(int[] a, int[] b) {
+    private static int[] merge(int[] a, int[] b) {
         int i = 0, j = 0;
         int merged[] = new int[a.length + b.length];
 

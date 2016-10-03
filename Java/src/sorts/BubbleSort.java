@@ -7,7 +7,7 @@ import util.SortUtil;
  * Bubble sort implementation
  */
 public class BubbleSort {
-    public int[] sort(int[] arr) {
+    public static int[] sort(int[] arr) {
         while(!SortUtil.isSorted(arr)) {
             for(int i = 0; i < arr.length - 1; i++) {
                 if(arr[i] > arr[i + 1]) {

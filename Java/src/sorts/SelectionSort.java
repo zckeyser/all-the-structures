@@ -7,7 +7,7 @@ import util.SortUtil;
  * Selection sort implementation
  */
 public class SelectionSort {
-    public int[] sort(int[] arr) {
+    public static int[] sort(int[] arr) {
         for(int i = 0; i < arr.length; i++) {
             int min = 0;
 

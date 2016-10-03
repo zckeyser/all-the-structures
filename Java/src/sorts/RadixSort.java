@@ -8,7 +8,7 @@ import java.util.Arrays;
  * currently can't handle negative numbers
  */
 public class RadixSort {
-    public int[] sort(int[] arr) {
+    public static int[] sort(int[] arr) {
         int max = getMax(arr);
 
         for(int exp = 1; max / exp > 0; exp *= 10) {
@@ -22,7 +22,7 @@ public class RadixSort {
     // the digit represented by exp.
     // taken from http://www.geeksforgeeks.org/radix-sort/
     // because I couldn't figure out the parts at 52 or 57
-    private void countSort(int[] arr, int exp)
+    private static void countSort(int[] arr, int exp)
     {
         int output[] = new int[arr.length]; // output array
         int i;
@@ -54,7 +54,7 @@ public class RadixSort {
     /**
      * helper function to get the largest number in
      */
-    private int getMax(int[] arr) {
+    private static int getMax(int[] arr) {
         int max = Integer.MIN_VALUE;
 
         for(int n : arr) {

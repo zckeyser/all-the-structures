@@ -6,7 +6,7 @@ import util.SortUtil;
  * Insertion sort implementation
  */
 public class InsertionSort {
-    public int[] sort(int[] arr) {
+    public static int[] sort(int[] arr) {
         for(int i = 0; i < arr.length; i++) {
             for(int j = i; j > 0 && arr[j] > arr[j - 1]; j--) {
                 SortUtil.swap(arr, j, j - 1);
