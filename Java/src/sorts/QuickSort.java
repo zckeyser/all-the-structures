@@ -1,24 +1,21 @@
 package sorts;
 
+import util.SortUtil;
+
 import java.util.Random;
 
 /**
  * Created by Chris Keyser on 3/17/2016.
  * 2-way partition quicksort implementation
  */
-public class QuickSort extends Sort {
-    public QuickSort(int[] arr) {
-        this.arr = arr;
-    }
-
-    @Override
-    public int[] sort() {
-        shuffle();
-        quicksort(0, arr.length - 1);
+public class QuickSort {
+    public int[] sort(int[] arr) {
+        shuffle(arr);
+        quicksort(arr, 0, arr.length - 1);
         return arr;
     }
 
-    private void quicksort(int lowerIndex, int higherIndex) {
+    private void quicksort(int[] arr, int lowerIndex, int higherIndex) {
 
         int i = lowerIndex;
         int j = higherIndex;
@@ -38,7 +35,7 @@ public class QuickSort extends Sort {
 
             //swap them
             if (i <= j) {
-                swap(i, j);
+                SortUtil.swap(arr, i, j);
 
                 i++;
                 j--;
@@ -47,18 +44,18 @@ public class QuickSort extends Sort {
 
         // call quickSort() method recursively
         if (lowerIndex < j)
-            quicksort(lowerIndex, j);
+            quicksort(arr, lowerIndex, j);
         if (i < higherIndex)
-            quicksort(i, higherIndex);
+            quicksort(arr, i, higherIndex);
     }
 
     //standard shuffling algorithm
     //used to avoid bad case for qsort of almost-sorted array
-    private void shuffle() {
+    private void shuffle(int[] arr) {
         Random rand = new Random();
 
         for(int i = 0; i < arr.length; i++) {
-            swap(i, rand.nextInt(arr.length));
+            SortUtil.swap(arr, i, rand.nextInt(arr.length));
         }
     }
 }

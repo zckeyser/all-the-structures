@@ -1,25 +1,17 @@
 package sorts;
 
+import util.SortUtil;
+
 /**
  * Created by Chris Keyser on 3/17/2016.
  * Bubble sort implementation
  */
-public class BubbleSort extends Sort {
-    public BubbleSort(int[] arr) {
-        this.arr = arr;
-    }
-
-    @Override
-    public int[] sort() {
-        boolean swapped = true;
-
-        while(swapped) {
-            swapped = false;
-
+public class BubbleSort {
+    public int[] sort(int[] arr) {
+        while(!SortUtil.isSorted(arr)) {
             for(int i = 0; i < arr.length - 1; i++) {
                 if(arr[i] > arr[i + 1]) {
-                    swap(i, i + 1);
-                    swapped = true;
+                    SortUtil.swap(arr, i, i + 1);
                 }
             }
         }

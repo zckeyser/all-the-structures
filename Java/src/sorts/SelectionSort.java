@@ -1,28 +1,23 @@
 package sorts;
 
+import util.SortUtil;
+
 /**
  * Created by Chris Keyser on 3/17/2016.
  * Selection sort implementation
  */
-public class SelectionSort extends Sort {
-    public SelectionSort(int[] arr) {
-        this.arr = arr;
-    }
-
-    @Override
-    public int[] sort() {
+public class SelectionSort {
+    public int[] sort(int[] arr) {
         for(int i = 0; i < arr.length; i++) {
-            int min = Integer.MAX_VALUE;
-            int minIndex = -1;
+            int min = 0;
 
             for(int j = i; j < arr.length; j++) {
-                if(arr[j] < min) {
-                    min = arr[j];
-                    minIndex = j;
+                if(arr[j] < arr[min]) {
+                    min = j;
                 }
             }
 
-            swap(i, minIndex);
+            SortUtil.swap(arr, i, min);
         }
 
         return arr;
