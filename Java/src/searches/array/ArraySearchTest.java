@@ -1,5 +1,6 @@
 package searches.array;
 
+import searches.ArraySearch;
 import test.Test;
 
 /**

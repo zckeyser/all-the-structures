@@ -5,11 +5,11 @@ import java.util.List;
 
 /**
  * Created by Chris Keyser on 3/18/2016.
- * represents a node in a graph
+ * represents a node in a directed graph
  */
 public class DirectedGraphNode {
-    List<DirectedGraphNode> neighbors;
-    int val;
+    private List<DirectedGraphNode> neighbors;
+    private int val;
 
     public DirectedGraphNode(int val) {
         this.val = val;

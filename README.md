@@ -12,6 +12,9 @@ All of these data structures (plus some others) implemented in a bunch of langua
     - [Stack](#stack)
     - [Queue](#queue)
     - [Priority Queue](#priority-queue)
+  - [Linked List](#linked-list)
+    - [Singly Linked List](#singly-linked-list)
+    - [Doubly Linked List](#doubly-linked-list)
   - [Dictionary](#dictionary)
   - [Trees](#trees)
     - [Binary Tree](#binary-tree)
@@ -113,6 +116,11 @@ A [queue](http://www.studytonight.com/data-structures/queue-data-structure) is a
 ![Priority Queue visualization](./img/priority-queue.png)
 
 A [priority queue](https://en.wikipedia.org/wiki/Priority_queue) is a data structure which is essentially a more advanced version of a queue. Like a queue, priority queues are FIFO. However, priority queues remove high priority items before low priority items. The priority of an item must be given when the item is queued, so the priority queue can know how to classify it.
+
+---
+
+## Linked List
+
 
 ---
 

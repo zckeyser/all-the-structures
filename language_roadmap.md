@@ -1,5 +1,5 @@
 ## Languages
-- [x] Java
+- [ ] Java (update to use maven/junit)
 - [x] C#
 - [x] C (just need to fix traversal crashing bug)
 - [ ] C++

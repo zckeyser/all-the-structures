@@ -1,5 +1,7 @@
 package searches.graph;
 
+import graphs.BreadthFirstSearch;
+import graphs.DepthFirstSearch;
 import graphs.DirectedGraphNode;
 import test.Test;
 
