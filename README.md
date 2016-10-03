@@ -136,8 +136,11 @@ The Open Addressing strategy for collisions is to keep just a single key-value p
 ## Trees
 
 ### Binary Tree
+![Binary Tree Visualization](./img/binary-tree.png)
+A [Binary Tree]()
 
 ### Binary Search Tree
+![Binary Search Tree Visualization](./img/binary-search-tree.png)
 
 ---
 
@@ -206,7 +209,7 @@ Worst Case: O(log(n))
 ```
 
 ### Sieve of Eratosthenes
-The Sieve of Eratosthenes is a prime sieve which finds all primes up to a given number N. This sieve works by taking a list of all numbers from [2..N - 1], then for every number in the range [2..N / 2] crossing out (removing) every number in the list which can be evenly divided by the current number. The numbers checked for division are also numbers in the prime list, such that if a number is crossed out from the prime list you no longer need to check if other numbers are divisible by it (any numbers that would be should already have been crossed out by its divisor). Once every number up to N / 2 has been checked, the remaining numbers are known to be primes. An example of the sieve working for 1..30 is as follows:
+[The Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) is a prime sieve which finds all primes up to a given number N. This sieve works by taking a list of all numbers from [2..N - 1], then for every number in the range [2..N / 2] crossing out (removing) every number in the list which can be evenly divided by the current number. The numbers checked for division are also numbers in the prime list, such that if a number is crossed out from the prime list you no longer need to check if other numbers are divisible by it (any numbers that would be should already have been crossed out by its divisor). Once every number up to N / 2 has been checked, the remaining numbers are known to be primes. An example of the sieve working for 1..30 is as follows:
 
 ```
 [2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30] // beginning list
