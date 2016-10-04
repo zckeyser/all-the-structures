@@ -1,12 +1,14 @@
 package dictionary;
 
 import java.util.ArrayList;
+import java.util.List;
 
-// generic dictionary implemented using rollover for collision handling
-// such that on collision, the value is placed in the next empty bucket
-public class Dictionary<TKey, TValue> {
-    private final int DEFAULT_ARRAY_SIZE = 512;
-    private ArrayList<KeyValuePair<TKey, TValue>> values;
+/**
+ * generic dictionary implemented using chaining for collision handling
+ */
+ public class Dictionary<TKey, TValue> {
+    private final int DEFAULT_ARRAY_SIZE = 1024;
+    private List<KeyValuePair<TKey, TValue>> values;
 
     public Dictionary() {
         values = new ArrayList<>();
@@ -23,8 +25,8 @@ public class Dictionary<TKey, TValue> {
             values.add(null);
     }
 
-    public void add(TKey key, TValue value) {
-        int index = value.hashCode() % values.size();
+    public void set(TKey key, TValue value) {
+        int index = Math.abs(key.hashCode()) % values.size();
 
         KeyValuePair<TKey, TValue> pair = new KeyValuePair<>(key, value);
 
@@ -42,7 +44,7 @@ public class Dictionary<TKey, TValue> {
     }
 
     public TValue get(TKey key) {
-        int index = key.hashCode() % values.size();
+        int index = Math.abs(key.hashCode()) % values.size();
 
         if(values.get(index) == null) {
             // its bucket is empty, we don't have it
@@ -51,9 +53,11 @@ public class Dictionary<TKey, TValue> {
             // check for it in the relevant bucket
             KeyValuePair<TKey, TValue> curr = values.get(index);
 
-            while(curr.getNext() != null) {
+            while(curr != null) {
                 if(curr.getKey().equals(key))
                     return curr.getValue();
+                else
+                    curr = curr.getNext();
             }
 
             // wasn't in the bucket
@@ -62,7 +66,7 @@ public class Dictionary<TKey, TValue> {
     }
 
     public void remove(TKey key) {
-        int index = key.hashCode() % values.size();
+        int index = Math.abs(key.hashCode()) % values.size();
 
         if(values.get(index) != null) {
             KeyValuePair<TKey, TValue> curr = values.get(index);
@@ -70,7 +74,7 @@ public class Dictionary<TKey, TValue> {
             if(curr.getKey().equals(key)) {
                 // move this bucket up a node
                 // such that the second element is now the first
-                // and the first is dereferenced
+                // and the first is de-referenced
                 values.set(index, curr.getNext());
             } else {
                 while(curr.getNext() != null) {
@@ -83,5 +87,52 @@ public class Dictionary<TKey, TValue> {
                 }
             }
         }
+    }
+
+    public boolean containsKey(TKey key) {
+        int index = Math.abs(key.hashCode()) % values.size();
+
+        if(values.get(index) != null) {
+            KeyValuePair<TKey, TValue> curr = values.get(index);
+
+            while(curr != null) {
+                if(curr.getKey().equals(key))
+                    return true;
+                else
+                    curr = curr.getNext();
+            }
+        }
+
+        return false;
+    }
+
+    private class KeyValuePair<UKey, UValue> {
+        private UKey key;
+        private UValue value;
+        private KeyValuePair<UKey, UValue> next;
+
+        KeyValuePair(UKey key, UValue value) {
+            this.key = key;
+            this.value = value;
+            this.next = null;
+        }
+
+        UKey getKey() {
+            return key;
+        }
+
+        UValue getValue() {
+            return value;
+        }
+
+        KeyValuePair<UKey, UValue> getNext() { return next; }
+
+        void setKey(UKey key) {
+            this.key = key;
+        }
+
+        void setValue(UValue value) { this.value = value; }
+
+        void setNext(KeyValuePair<UKey, UValue> next) { this.next = next; }
     }
 }
