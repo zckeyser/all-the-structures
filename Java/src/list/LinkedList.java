@@ -1,21 +1,43 @@
 package list;
 
+/**
+ * Generic singly linked list implementation
+ *
+ * Uses a flag to handle the list being empty, since it's
+ * safer than using a null check on value
+ *
+ * This implementation uses recursion
+ * instead of iterative approaches to various methods
+ */
 public class LinkedList<T> {
     private T value;
     private LinkedList<T> next;
+    private boolean empty;
 
-    public LinkedList(T value) {
+    public LinkedList() { empty = true; }
+
+    private LinkedList(T value) {
+        this.empty = false;
         this.value = value;
     }
 
     public int length() {
-        if(next == null) {
+        if(empty) {
+            return 0;
+        } else if(next == null) {
             return 1;
         } else {
             return 1 + next.length();
         }
     }
 
+    public boolean isEmpty() {
+        return empty;
+    }
+
+    /**
+     * get the value at the given index
+     */
     public T get(int index) {
         if(index < 0 || index > this.length() - 1) {
             throw new IndexOutOfBoundsException();
@@ -26,17 +48,29 @@ public class LinkedList<T> {
         }
     }
 
+    /**
+     * append a value to the list
+     */
     public void add(T value) {
-        if(next == null) {
-            next = new LinkedList<T>(value);
+        if(empty) {
+            this.value = value;
+            empty = false;
+        } if(next == null) {
+            next = new LinkedList<>(value);
         } else {
             next.add(value);
         }
     }
 
+    /**
+     * insert a value before the given index
+     */
     public void add(T value, int index) {
-        if(index < 0 || index > this.length() - 1) {
+        if(index < 0 || index > this.length()) {
             throw new IndexOutOfBoundsException();
+        } else if(index == 0){
+            this.value = value;
+            empty = false; // in case this was the first insert
         } else if(index == 1) {
             LinkedList<T> tmp = next;
             next = new LinkedList<>(value);
@@ -46,6 +80,9 @@ public class LinkedList<T> {
         }
     }
 
+    /**
+     * set the value at the given index
+     */
     public void set(T value, int index) {
         if(index < 0 || index > this.length() - 1) {
             throw new IndexOutOfBoundsException();
@@ -56,6 +93,9 @@ public class LinkedList<T> {
         }
     }
 
+    /**
+     * get the index of the given value, -1 if not found
+     */
     public int indexOf(T target) {
         if(!this.contains(target)) {
             return -1;
@@ -66,11 +106,10 @@ public class LinkedList<T> {
         }
     }
 
+    /**
+     * check if the given value is contained in the list
+     */
     public boolean contains(T target) {
-        if(this.value.equals(target)) {
-            return true;
-        } else {
-            return this.next != null && this.next.contains(target);
-        }
+        return this.value.equals(target) || (this.next != null && this.next.contains(target));
     }
 }
