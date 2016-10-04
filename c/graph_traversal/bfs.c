@@ -6,7 +6,7 @@
 #include "../stack/queue.h"
 #include "../util/sb.h"
 
-char* BreadthFirst_traversal(int *graph, int length, int start) {
+char* BreadthFirst_traversal(int **graph, int length, int start) {
     Queue *q = malloc(sizeof(Queue));
     Queue_init(q);
     Queue_enqueue(q, start);
@@ -22,9 +22,7 @@ char* BreadthFirst_traversal(int *graph, int length, int start) {
 
         // add neighbors to queue
         for(int i = 0; i < length; i++) {
-            // since we can't pass a 2d array normally
-            // we need to use pointer arithmetic instead
-            int edge = *((graph + current * length) + i);
+            int edge = graph[current][i];
 
             if(edge && !visited[i]) {
                 visited[i] = 1;
