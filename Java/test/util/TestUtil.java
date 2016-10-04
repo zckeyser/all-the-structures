@@ -6,7 +6,7 @@ import java.util.Random;
  * Created by Chris Keyser on 10/3/2016.
  */
 public class TestUtil {
-    public static final int ARR_SIZE = 1000;
+    public static final int ARR_SIZE = 500;
 
     private static Random rand = new Random();
 

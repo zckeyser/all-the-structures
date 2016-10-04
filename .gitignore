@@ -1,6 +1,7 @@
 **/out
 **/*.iml
 **/.idea
+**/target/**/*
 
 js/node_modules
 

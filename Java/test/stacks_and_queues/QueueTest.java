@@ -50,10 +50,12 @@ public class QueueTest {
         queue.enqueue(5);
         queue.enqueue(11);
         queue.dequeue();
+
+        Assert.assertEquals("The size of Queue to be 1 after first dequeue", 1, queue.size());
+
         queue.dequeue();
 
-        Assert.assertEquals("The size of Queue to decrease by 1 after dequeue", 1, queue.size());
-        Assert.assertEquals("The size of Queue to decrease by 1 after dequeue", 0, queue.size());
+        Assert.assertEquals("The size of Queue to be 0 after second dequeue", 0, queue.size());
         Assert.assertTrue("The queue to be empty after all items are dequeued", queue.isEmpty());
     }
 }

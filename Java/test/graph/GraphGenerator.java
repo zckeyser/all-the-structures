@@ -1,17 +1,14 @@
-package searches.graph;
+package graph;
 
-import graphs.BreadthFirstSearch;
-import graphs.DepthFirstSearch;
 import graphs.DirectedGraphNode;
-import test.Test;
 
 /**
- * Created by Chris Keyser on 3/18/2016.
- * Tests BFS and DFS
+ * Created by Chris Keyser on 10/3/2016.
+ *
+ * crates the graph used by DFS and BFS tests
  */
-public class UninformedSearchTest extends Test {
-    @Override
-    public void run() {
+public class GraphGenerator {
+    public static DirectedGraphNode makeGraph() {
         //initialize graph
         DirectedGraphNode root = new DirectedGraphNode(21);
 
@@ -46,26 +43,6 @@ public class UninformedSearchTest extends Test {
         n9.addNeighbor(n10);
         n10.addNeighbor(n11);
 
-        DepthFirstSearch dfs = new DepthFirstSearch();
-        BreadthFirstSearch bfs = new BreadthFirstSearch();
-        String expected;
-
-        //DFS tests
-        expect("DFS contains to find a value in the graph correctly", dfs.contains(63, root, false));
-        expect("DFS contains to not find a value that is not in the graph", !dfs.contains(60, root, false));
-
-        //expected result string for DFS traversal on root
-        expected = "21 39 27 30 33 36 16 11 84 18 63 14 51";
-
-        expectEquals("DFS to traverse the graph correctly", dfs.traverse(root), expected);
-
-        //BFS tests
-        expect("BFS contains to find a value in the graph correctly", bfs.contains(63, root, false));
-        expect("BFS contains to not find a value that is not in the graph", !bfs.contains(60, root, false));
-
-        //expected result string for BFS traversal on root
-        expected = "21 14 18 39 51 63 16 27 84 11 30 33 36";
-
-        expectEquals("DFS to traverse the graph correctly", bfs.traverse(root), expected);
+        return root;
     }
 }

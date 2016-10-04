@@ -8,10 +8,10 @@ import org.junit.Test;
  * Created by Chris Keyser on 10/3/2016.
  */
 public class BinarySearchTest {
-    private int[] arr;
+    private static int[] arr;
 
     @BeforeClass
-    public void setUp() {
+    public static void setUp() {
         arr = new int[] {1, 2, 7, 10, 32, 59, 77, 89, 102, 310, 1240, 11404};
     }
 
