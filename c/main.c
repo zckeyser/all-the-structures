@@ -11,7 +11,7 @@
 #include "trees/traversal_test.h"
 #include "trees/bst_test.h"
 #include "search/list_search_test.h"
-#include "search/bfs_test.h"
+#include "graph_traversal/bfs_test.h"
 
 int main() {
     int passed = 0;

@@ -16,3 +16,4 @@ js/node_modules
 **/Gemfile.lock
 
 **/*.stackdump
+**/*.o

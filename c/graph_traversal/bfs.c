@@ -4,14 +4,15 @@
 
 #include "bfs.h"
 #include "../stack/queue.h"
+#include "../util/sb.h"
 
-void BreadthFirst_traversal(char *out, int *graph, int length, int start) {
+char* BreadthFirst_traversal(int *graph, int length, int start) {
     Queue *q = malloc(sizeof(Queue));
     Queue_init(q);
     Queue_enqueue(q, start);
 
-    char *result = malloc((sizeof(char) * length * 10) + 1);
-    result[0] = '\0';
+    StringBuilder *sb = malloc(sizeof(StringBuilder));
+    StringBuilder_init(sb);
 
     int visited[length];
 
@@ -32,16 +33,17 @@ void BreadthFirst_traversal(char *out, int *graph, int length, int start) {
         }
 
         // add to output
-        char val[10];
+        char val[11];
         sprintf(val, "%d ", current);
 
-        strcat(result, val);
+        StringBuilder_append(sb, val);
     }
 
-    out = realloc(out, sizeof(char) * strlen(result));
-    strcpy(out, result);
+    char* out = StringBuilder_build(sb);
 
     free(q);
-    free(result);
+    free(sb);
     free(visited);
+
+    return out;
 }

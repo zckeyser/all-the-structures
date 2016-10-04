@@ -16,10 +16,8 @@ void BreadthFirst_test(int *passed, int *total) {
         { 0, 0, 1, 0, 0 },
         { 0, 1, 0, 0, 0}
     };
-
-    char *result = malloc(sizeof(char) * 5);
-
-    BreadthFirst_traversal(result, (int *)test, 5, 0);
+    
+    char *result = BreadthFirst_traversal((int *)test, 5, 0);
 
     *passed += ASSERT_STR_EQUALS("0 1 3 4 2", result, "Breadth First Traversal");
     *total += 1;
