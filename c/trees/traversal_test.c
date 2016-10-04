@@ -25,10 +25,10 @@ void Traversal_test(int *passed, int *total) {
     BinaryTree_insertright(root->right, 7);
 
     // verify traversal outputs
-    char *result = malloc(sizeof(char));
+    char *result;
 
     // preorder
-    Traversal_preorder(result, root);
+    result = Traversal_preorder(root);
 
     *passed += ASSERT_STR_EQUALS("1 2 4 5 3 6 7", result, "preorder traversal");
     *total += 1;

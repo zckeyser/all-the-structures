@@ -3,170 +3,196 @@
 #include <string.h>
 
 #include "traversal.h"
+#include "../util/sb.h"
 
 // helpers so we can trim the output;
-void preorder(char *out, BinaryTree *root);
-void inorder(char *out, BinaryTree *root);
-void postorder(char *out, BinaryTree *root);
-void preorder_bst(char *out, BinarySearchTree *root);
-void inorder_bst(char *out, BinarySearchTree *root);
-void postorder_bst(char *out, BinarySearchTree *root);
+void preorder(StringBuilder *sb, BinaryTree *root);
+void inorder(StringBuilder *sb, BinaryTree *root);
+void postorder(StringBuilder *sb, BinaryTree *root);
+void preorder_bst(StringBuilder *sb, BinarySearchTree *root);
+void inorder_bst(StringBuilder *sb, BinarySearchTree *root);
+void postorder_bst(StringBuilder *sb, BinarySearchTree *root);
 
 // for sanitizing and copying over output
-void copy(char *out, char *in);
+void copy(char *in);
 
-void Traversal_preorder(char *out, BinaryTree *root) {
-    char *result = malloc((sizeof(char) * BinaryTree_size(root) * 15) + 1);
-    result[0] = '\0';
+char* Traversal_preorder(BinaryTree *root) {
+    StringBuilder *sb = malloc(sizeof(StringBuilder));
+    StringBuilder_init(sb);
 
-    preorder(result, root);
+    preorder(sb, root);
 
-    copy(out, result);
-}
-
-void Traversal_inorder(char *out, BinaryTree *root) {
-    char *result = malloc((sizeof(char) * BinaryTree_size(root) * 15) + 1);
-    result[0] = '\0';
-
-    inorder(result, root);
-
-    copy(out, result);
-}
-
-void Traversal_postorder(char *out, BinaryTree *root) {
-    char *result = malloc((sizeof(char) * BinaryTree_size(root) * 15) + 1);
-    result[0] = '\0';
-
-    postorder(result, root);
-
-    copy(out, result);
-}
-
-void preorder(char *out, BinaryTree *root) {
-    char val[15];
-    sprintf(val, "%d ", root->value);
-
-    strcat(out, val);
-
-    if(root->left) {
-        preorder(out, root->left);
-    }
-
-    if(root->right) {
-        preorder(out, root->right);
-    }
-}
-
-void inorder(char *out, BinaryTree *root) {
-    char val[15];
-    sprintf(val, "%d ", root->value);
-
-    if(root->left) {
-        inorder(out, root->left);
-    }
-
-    strcat(out, val);
-
-    if(root->right) {
-        inorder(out, root->right);
-    }
-}
-
-void postorder(char *out, BinaryTree *root) {
-    char val[15];
-    sprintf(val, "%d ", root->value);
-
-    if(root->left) {
-        postorder(out, root->left);
-    }
-
-    if(root->right) {
-        postorder(out, root->right);
-    }
-
-    strcat(out, val);
-}
-
-
-void Traversal_preorder_bst(char *out, BinarySearchTree *root) {
-    char *result = malloc((sizeof(char) * BinarySearchTree_size(root) * 15) + 1);
-    result[0] = '\0';
-
-    preorder_bst(result, root);
-
-    copy(out, result);
-}
-
-void Traversal_inorder_bst(char *out, BinarySearchTree *root) {
-    char *result = malloc((sizeof(char) * BinarySearchTree_size(root) * 15) + 1);
-    result[0] = '\0';
-
-    inorder_bst(result, root);
-
-    copy(out, result);
-}
-
-void Traversal_postorder_bst(char *out, BinarySearchTree *root) {
-    char *result = malloc((sizeof(char) * BinarySearchTree_size(root) * 15) + 1);
-    result[0] = '\0';
-
-    postorder_bst(result, root);
-
-    copy(out, result);
-}
-
-void preorder_bst(char *out, BinarySearchTree *root) {
-    char val[15];
-    sprintf(val, "%d ", root->value);
-
-    strcat(out, val);
-
-    if(root->left) {
-        preorder_bst(out, root->left);
-    }
-
-    if(root->right) {
-        preorder_bst(out, root->right);
-    }
-}
-
-void inorder_bst(char *out, BinarySearchTree *root) {
-    char val[15];
-    sprintf(val, "%d ", root->value);
-
-    if(root->left) {
-        inorder_bst(out, root->left);
-    }
-
-    strcat(out, val);
-
-    if(root->right) {
-        inorder_bst(out, root->right);
-    }
-}
-
-void postorder_bst(char *out, BinarySearchTree *root) {
-    char val[15];
-    sprintf(val, "%d ", root->value);
-
-    if(root->left) {
-        postorder_bst(out, root->left);
-    }
-
-    if(root->right) {
-        postorder_bst(out, root->right);
-    }
-
-    strcat(out, val);
-}
-
-void copy(char *out, char *in) {
-    // copy the string over
-    realloc(out, (sizeof(char) * strlen(in)));
-
-    strcpy(out, in);
-
+    char* out = StringBuilder_build(sb);
+    // remove trailing whitespace
     out[strlen(out) - 1] = '\0';
 
-    free(in);
+    free(sb);
+
+    return out;
+}
+
+char* Traversal_inorder(BinaryTree *root) {
+    StringBuilder *sb = malloc(sizeof(StringBuilder));
+    StringBuilder_init(sb);
+
+    inorder(sb, root);
+
+    char* out = StringBuilder_build(sb);
+    // remove trailing whitespace
+    out[strlen(out) - 1] = '\0';
+
+    free(sb);
+
+    return out;
+}
+
+char* Traversal_postorder(BinaryTree *root) {
+    StringBuilder *sb = malloc(sizeof(StringBuilder));
+    StringBuilder_init(sb);
+
+    postorder(sb, root);
+
+    char* out = StringBuilder_build(sb);
+    // remove trailing whitespace
+    out[strlen(out) - 1] = '\0';
+
+    free(sb);
+
+    return out;
+}
+
+void preorder(StringBuilder *sb, BinaryTree *root) {
+    char val[11];
+    sprintf(val, "%d ", root->value);
+
+    StringBuilder_append(sb, val);
+
+    if(root->left) {
+        preorder(sb, root->left);
+    }
+
+    if(root->right) {
+        preorder(sb, root->right);
+    }
+}
+
+void inorder(StringBuilder *sb, BinaryTree *root) {
+    char val[11];
+    sprintf(val, "%d ", root->value);
+
+    if(root->left) {
+        inorder(sb, root->left);
+    }
+
+    StringBuilder_append(sb, val);
+
+    if(root->right) {
+        inorder(sb, root->right);
+    }
+}
+
+void postorder(StringBuilder *sb, BinaryTree *root) {
+    char val[11];
+    sprintf(val, "%d ", root->value);
+
+    if(root->left) {
+        postorder(sb, root->left);
+    }
+
+    if(root->right) {
+        postorder(sb, root->right);
+    }
+
+    StringBuilder_append(sb, val);
+}
+
+
+char* Traversal_preorder_bst(BinarySearchTree *root) {
+    StringBuilder *sb = malloc(sizeof(StringBuilder));
+    StringBuilder_init(sb);
+
+    preorder_bst(sb, root);
+
+    char* out = StringBuilder_build(sb);
+    // remove trailing whitespace
+    out[strlen(out) - 1] = '\0';
+
+    free(sb);
+
+    return out;
+}
+
+char* Traversal_inorder_bst(BinarySearchTree *root) {
+    StringBuilder *sb = malloc(sizeof(StringBuilder));
+    StringBuilder_init(sb);
+
+    inorder_bst(sb, root);
+
+    char* out = StringBuilder_build(sb);
+    // remove trailing whitespace
+    out[strlen(out) - 1] = '\0';
+
+    free(sb);
+
+    return out;
+}
+
+char* Traversal_postorder_bst(BinarySearchTree *root) {
+    StringBuilder *sb = malloc(sizeof(StringBuilder));
+    StringBuilder_init(sb);
+
+    postorder_bst(sb, root);
+
+    char* out = StringBuilder_build(sb);
+    // remove trailing whitespace
+    out[strlen(out) - 1] = '\0';
+
+    free(sb);
+
+    return out;
+}
+
+void preorder_bst(StringBuilder *sb, BinarySearchTree *root) {
+    char val[11];
+    sprintf(val, "%d ", root->value);
+
+    StringBuilder_append(sb, val);
+
+    if(root->left) {
+        preorder_bst(sb, root->left);
+    }
+
+    if(root->right) {
+        preorder_bst(sb, root->right);
+    }
+}
+
+void inorder_bst(StringBuilder *sb, BinarySearchTree *root) {
+    char val[11];
+    sprintf(val, "%d ", root->value);
+
+    if(root->left) {
+        inorder_bst(sb, root->left);
+    }
+
+    StringBuilder_append(sb, val);
+
+    if(root->right) {
+        inorder_bst(sb, root->right);
+    }
+}
+
+void postorder_bst(StringBuilder *sb, BinarySearchTree *root) {
+    char val[11];
+    sprintf(val, "%d ", root->value);
+
+    if(root->left) {
+        postorder_bst(sb, root->left);
+    }
+
+    if(root->right) {
+        postorder_bst(sb, root->right);
+    }
+
+    StringBuilder_append(sb, val);
 }

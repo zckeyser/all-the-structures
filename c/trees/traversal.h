@@ -4,12 +4,12 @@
 #include "bst.h"
 #include "binary.h"
 
-void Traversal_preorder(char *out, BinaryTree *root);
-void Traversal_inorder(char *out, BinaryTree *root);
-void Traversal_postorder(char *out, BinaryTree *root);
+char* Traversal_preorder(BinaryTree *root);
+char* Traversal_inorder(BinaryTree *root);
+char* Traversal_postorder(BinaryTree *root);
 
-void Traversal_preorder_bst(char *out, BinarySearchTree *root);
-void Traversal_inorder_bst(char *out, BinarySearchTree *root);
-void Traversal_postorder_bst(char *out, BinarySearchTree *root);
+char* Traversal_preorder_bst(BinarySearchTree *root);
+char* Traversal_inorder_bst(BinarySearchTree *root);
+char* Traversal_postorder_bst(BinarySearchTree *root);
 
 #endif

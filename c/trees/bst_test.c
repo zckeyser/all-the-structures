@@ -36,7 +36,7 @@ void BinarySearchTree_test(int *passed, int *total) {
     // initial insertions
     char *result = malloc(sizeof(char));
 
-    Traversal_inorder_bst(result, root);
+    result = Traversal_inorder_bst(root);
 
     *passed += ASSERT_STR_EQUALS("3 10 15 24 30 42 50 60 73 80 83 87 100", result, "insertion");
     *total += 1;
@@ -45,7 +45,7 @@ void BinarySearchTree_test(int *passed, int *total) {
     // leaf removal
     BinarySearchTree_remove(root, 3);
 
-    Traversal_inorder_bst(result, root);
+    result = Traversal_inorder_bst(root);
 
     *passed += ASSERT_STR_EQUALS("10 15 24 30 42 50 60 73 80 83 87 100", result, "leaf removal");
     *total += 1;
@@ -54,7 +54,7 @@ void BinarySearchTree_test(int *passed, int *total) {
     // node with one child removal
     BinarySearchTree_remove(root, 87);
 
-    Traversal_inorder_bst(result, root);
+    result = Traversal_inorder_bst(root);
 
     *passed += ASSERT_STR_EQUALS("10 15 24 30 42 50 60 73 80 83 100", result, "single child removal");
     *total += 1;
@@ -63,7 +63,7 @@ void BinarySearchTree_test(int *passed, int *total) {
     // node with two children removal
     BinarySearchTree_remove(root, 30);
 
-    Traversal_inorder_bst(result, root);
+    result = Traversal_inorder_bst(root);
 
     *passed += ASSERT_STR_EQUALS("10 15 24 42 50 60 73 80 83 100", result, "two children removal");
     *total += 1;
@@ -72,7 +72,7 @@ void BinarySearchTree_test(int *passed, int *total) {
     // root removal
     BinarySearchTree_remove(root, 50);
 
-    Traversal_inorder_bst(result, root);
+    result = Traversal_inorder_bst(root);
 
     *passed += ASSERT_STR_EQUALS("10 15 24 42 60 73 80 83 100", result, "root removal");
     *total += 1;
