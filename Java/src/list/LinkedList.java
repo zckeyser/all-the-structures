@@ -55,7 +55,7 @@ public class LinkedList<T> {
         if(empty) {
             this.value = value;
             empty = false;
-        } if(next == null) {
+        } else if(next == null) {
             next = new LinkedList<>(value);
         } else {
             next.add(value);
