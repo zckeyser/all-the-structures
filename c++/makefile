@@ -3,12 +3,17 @@ CFLAGS = -c -Wall -g -Os
 
 SOURCES=$(shell find . -type f -iname '*.cpp')
 
-OBJECTS=$(foreach x, $(basename $(SOURCES)), $(x).o)
+OBJECTS=$(patsubst %.cpp, %.o, $(wildcard *.cpp))
 
 TARGET=Structures
 
+all: $(TARGET)
+
 $(TARGET): $(OBJECTS)
-	$(CC) $^ -o $@
+		$(CC) -o $@ $^
+
+%.o: %.c
+		$(CC) $(CFLAGS) $^ -o $@
 
 clean:
 	rm -f $(TARGET) $(OBJECTS)
