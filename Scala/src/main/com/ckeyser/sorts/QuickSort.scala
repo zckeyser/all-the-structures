@@ -12,6 +12,6 @@ object QuickSort {
         val center = for(x <- arr if x == arr(0)) yield x
         val right = sort(for(x <- arr if x > arr(0)) yield x)
 
-        return left ++ center ++ right
+        left ++ center ++ right
     }
 }
