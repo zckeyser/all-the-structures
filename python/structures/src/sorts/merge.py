@@ -4,7 +4,7 @@ def mergesort(arr):
     if len(arr) <= 1:
         return arr
 
-    midpoint = len(arr) / 2
+    midpoint = int(len(arr) / 2)
 
     # merge the sorted left and right halves together
     return __merge(mergesort(arr[:midpoint]), mergesort(arr[midpoint:]))
