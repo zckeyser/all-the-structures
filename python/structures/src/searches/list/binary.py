@@ -4,7 +4,7 @@ def contains(arr, value):
     elif len(arr) == 0:
         return False
 
-    index = len(arr) / 2
+    index = int(len(arr) / 2)
 
     if arr[index] == value:
         return True

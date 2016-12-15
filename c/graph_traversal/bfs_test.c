@@ -21,6 +21,10 @@ void BreadthFirst_test(int *passed, int *total) {
 
     for(int i = 0; i < 5; i++) {
         test[i] = malloc(sizeof(int) * 5);
+
+        for(int j = 0; j < 5; j++) {
+            test[i][j] = 0;
+        }
     }
 
     test[0][1] = 1;

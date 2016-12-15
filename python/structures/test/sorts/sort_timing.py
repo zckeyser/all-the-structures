@@ -18,17 +18,11 @@ def main():
 
     arr = util.random_array(size)
 
-    bubble_time = timing.time(bubble_sort.sort, arr)
-    insertion_time = timing.time(insertion_sort.sort, arr)
-    selection_time = timing.time(selection_sort.sort, arr)
-    merge_time = timing.time(merge_sort.mergesort, arr)
-    quick_time = timing.time(qsort.quicksort, arr)
-
-    print "Bubble Sort: " + str(bubble_time) + "s"
-    print "Insertion Sort: " + str(insertion_time) + "s"
-    print "Selection Sort: " + str(selection_time) + "s"
-    print "Merge Sort: " + str(merge_time) + "s"
-    print "Quick Sort: " + str(quick_time) + "s"
+    print("Bubble Sort: " + str(timing.time(bubble_sort.sort, arr)) + "s")
+    print("Insertion Sort: " + str(timing.time(insertion_sort.sort, arr)) + "s")
+    print("Selection Sort: " + str(timing.time(selection_sort.sort, arr)) + "s")
+    print("Merge Sort: " + str(timing.time(merge_sort.mergesort, arr)) + "s")
+    print("Quick Sort: " + str(timing.time(qsort.quicksort, arr)) + "s")
 
 if __name__ == '__main__':
     main()

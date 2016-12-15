@@ -12,6 +12,7 @@ import java.util.List;
 public class PriorityQueue<T> {
     private List<Queue<T>> queues;
 
+
     public PriorityQueue(int levels) {
         queues = new ArrayList<>();
 
@@ -26,12 +27,16 @@ public class PriorityQueue<T> {
             queues.get(level).enqueue(value);
     }
 
-    public T dequeue(T value) {
+    public T dequeue() {
         for(int i = queues.size() - 1; i >= 0; i--)
             if(!queues.get(i).isEmpty())
                 return queues.get(i).dequeue();
 
         return null;
+    }
+
+    public int levels() {
+        return queues.size();
     }
 
     public int size() {

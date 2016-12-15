@@ -68,7 +68,7 @@ class Dictionary(object):
         elif self.__values[i][0] == key:
             self.__values[i] = (key, value)
         else:
-            j = i + 1
+            j = i + 1 if i < len(self.__values) - 1 else 0
 
             # use linear scanning to find the next open bucket
             while self.__values[j] != None and j != i:

@@ -2,7 +2,7 @@ def sieve(upTo):
     if upTo < 2:
         return []
 
-    primes = range(2, upTo)
+    primes = [x for x in range(2, upTo)]
 
     i = 0
 

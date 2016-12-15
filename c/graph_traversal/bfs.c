@@ -16,6 +16,10 @@ char* BreadthFirst_traversal(int **graph, int length, int start) {
 
     int visited[length];
 
+    for(int i = 0; i < length; i++) {
+        visited[i] = 0;
+    }
+
     while(Queue_size(q) != 0) {
         int current = Queue_dequeue(q);
         visited[current] = 1;
@@ -38,7 +42,8 @@ char* BreadthFirst_traversal(int **graph, int length, int start) {
     }
 
     char* out = StringBuilder_build(sb);
-
+    // remove trailing whitespace
+    out[strlen(out) - 1] = '\0';
     free(q);
     free(sb);
     free(visited);

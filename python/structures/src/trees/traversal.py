@@ -47,5 +47,6 @@ def postorder(node):
     return __postorderHelper(node).strip()
 
 # prettier view which displays the tree as trees are commonly drawn
+# incomplete?
 def treeview(node):
-    print node.value
+    print(node.value)

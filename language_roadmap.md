@@ -1,7 +1,7 @@
 ## Languages
 - [x] Java
 - [x] C#
-- [x] C (just need to fix traversal crashing bug)
+- [x] C
 - [ ] C++
 - [x] Javascript
 - [x] Python

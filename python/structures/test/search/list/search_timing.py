@@ -21,7 +21,7 @@ def main():
 
     targets = []
 
-    print 'Time to find ' + str(numItems) + ' items'
+    print('Time to find ' + str(numItems) + ' items')
 
     # time to find 20 random items
     for i in range(0, numItems):
@@ -34,8 +34,8 @@ def main():
         linearTiming += timing.time(linearSearch.contains, arr, target)
         binaryTiming += timing.time(binarySearch.contains, arr, target)
 
-    print 'Linear Search: ' + str(linearTiming) + 's'
-    print 'Binary Search: ' + str(binaryTiming) + 's'
+    print('Linear Search: ' + str(linearTiming) + 's')
+    print('Binary Search: ' + str(binaryTiming) + 's')
 
 if __name__ == '__main__':
     main()
