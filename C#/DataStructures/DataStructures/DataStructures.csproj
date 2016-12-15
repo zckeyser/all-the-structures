@@ -65,7 +65,6 @@
     <Compile Include="trees\BinarySearchTree.cs" />
     <Compile Include="trees\BinaryTree.cs" />
     <Compile Include="trees\BinaryTreeTraverser.cs" />
-    <Compile Include="trees\IBinarySearchTree.cs" />
     <Compile Include="trees\IBinaryTree.cs" />
     <Compile Include="util\SortUtil.cs" />
   </ItemGroup>

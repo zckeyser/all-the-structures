@@ -19,12 +19,12 @@ namespace Test.trees
             var test = new BinaryTree<int>(1);
             var left = new BinaryTree<int>(2);
             var right = new BinaryTree<int>(3);
-            test.SetLeft(left);
-            test.SetRight(right);
-            left.SetLeft(new BinaryTree<int>(4));
-            left.SetRight(new BinaryTree<int>(5));
-            right.SetLeft(new BinaryTree<int>(6));
-            right.SetRight(new BinaryTree<int>(7));
+            test.Left = left;
+            test.Right = right;
+            left.Left = new BinaryTree<int>(4);
+            left.Right = new BinaryTree<int>(5);
+            right.Left = new BinaryTree<int>(6);
+            right.Right = new BinaryTree<int>(7);
 
             root = test;
         }

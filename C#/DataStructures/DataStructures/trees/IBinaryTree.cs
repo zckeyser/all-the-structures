@@ -2,8 +2,8 @@
 {
 	public interface IBinaryTree<T>
 	{
-		IBinaryTree<T> GetLeft();
-		IBinaryTree<T> GetRight();
-		T GetValue();
+		IBinaryTree<T> Left { get; }
+		IBinaryTree<T> Right { get; }
+		T Value { get; }
 	}
 }

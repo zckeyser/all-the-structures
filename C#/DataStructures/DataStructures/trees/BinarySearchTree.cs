@@ -2,9 +2,8 @@
 
 namespace DataStructures.trees
 {
-	public class BinarySearchTree<T> : IBinarySearchTree<T> where T : IComparable
+	public class BinarySearchTree<T> : IBinaryTree<T> where T : IComparable
 	{
-		private T value;
 		private int count;
 		private BinarySearchTree<T> left;
 		private BinarySearchTree<T> right;
@@ -13,16 +12,16 @@ namespace DataStructures.trees
 		public BinarySearchTree(BinarySearchTree<T> parent, T value)
 		{
 			this.parent = parent;
-			this.value = value;
+			this.Value = value;
 			count = 1;
 		}
 
         /// <summary>
         /// insert value T into the tree, maintaining correct order
         /// </summary>
-		public IBinarySearchTree<T> Insert(T toInsert)
+		public BinarySearchTree<T> Insert(T toInsert)
 		{
-			var compareValue = toInsert.CompareTo(value);
+			var compareValue = toInsert.CompareTo(Value);
 
 			if (compareValue > 0)
 			{
@@ -84,7 +83,7 @@ namespace DataStructures.trees
 				throw new ArgumentException(string.Format("Value {0} attempted to be removed from a tree which does not contain it", toRemove));
 			}
 
-			var compareVal = toRemove.CompareTo(value);
+			var compareVal = toRemove.CompareTo(Value);
 
 			if (compareVal < 0)
 			{
@@ -112,7 +111,7 @@ namespace DataStructures.trees
 					if (IsLeaf())
 					{
 						// if this is a leaf, we can just remove its reference
-						parent.ReplaceChild(value, null);
+						parent.ReplaceChild(Value, null);
 					}
 					else
 					{
@@ -120,11 +119,11 @@ namespace DataStructures.trees
 						var desc = left != null ? left.GreatestDescendant() : right.SmallestDescendant();
 
 						// replace this node's values with that node's values, and remove it
-						value = desc.value;
+						Value = desc.Value;
 						count = desc.count;
 
 						// get rid of the old copy of the descendant node
-						desc.Remove(desc.value);
+						desc.Remove(desc.Value);
 					}
 				}
 			}
@@ -132,9 +131,9 @@ namespace DataStructures.trees
 
 		private void ReplaceChild(T val, BinarySearchTree<T> replacement)
 		{
-			if (left != null && left.value.CompareTo(val) == 0)
+			if (left != null && left.Value.CompareTo(val) == 0)
 				left = replacement;
-			else if (right != null && right.value.CompareTo(val) == 0)
+			else if (right != null && right.Value.CompareTo(val) == 0)
 				right = replacement;
 			else
 				throw new ArgumentException("attempt to replace child that does not exist", "val");
@@ -157,7 +156,7 @@ namespace DataStructures.trees
 
 		public bool Contains(T target)
 		{
-			var compareVal = target.CompareTo(value);
+			var compareVal = target.CompareTo(Value);
 
 			if (compareVal == 0)
 				return true;
@@ -169,19 +168,8 @@ namespace DataStructures.trees
 				return false;
 		}
 
-		public IBinaryTree<T> GetLeft()
-		{
-			return left;
-		}
-
-		public IBinaryTree<T> GetRight()
-		{
-			return right;
-		}
-
-		public T GetValue()
-		{
-			return value;
-		}
+		public IBinaryTree<T> Left { get { return left; } }
+		public IBinaryTree<T> Right { get { return right; } }
+		public T Value { get; private set; }
 	}
 }

@@ -11,28 +11,31 @@ namespace DataStructures.trees
     /// unlike a normal BST which ranges from
     /// O(log(n)) to O(n)
     /// </summary>
-	public class AVLTree<T> : IBinarySearchTree<T> where T : IComparable
+	public class AVLTree<T> : IBinaryTree<T> where T : IComparable
 	{
-		private T value;
-		private int count;
+	    private int count;
 		private int height;
 		private AVLTree<T> left;
 		private AVLTree<T> right;
-		private readonly AVLTree<T> parent; 
+		private readonly AVLTree<T> parent;
 
-		public AVLTree(AVLTree<T> parent, T value)
+		public IBinaryTree<T> Left { get { return left; } }
+		public IBinaryTree<T> Right { get { return right; } }
+		public T Value { get; private set; }
+
+	    public AVLTree(AVLTree<T> parent, T value)
 		{
 			this.parent = parent;
-			this.value = value;
+			this.Value = value;
 			count = 1;
 			height = parent != null ? parent.height + 1 : 1;
 		}
 
 		#region Modified BST Methods
-		public IBinarySearchTree<T> Insert(T toInsert)
+		public AVLTree<T> Insert(T toInsert)
 		{
             var curr = BSTInsert(toInsert);
-            var newKey = curr.value;
+            var newKey = curr.Value;
 
             // check up the parent chain to see if we got unbalanced somewhere
             while(curr.parent != null && System.Math.Abs(curr.BalanceFactor()) <= 1)
@@ -46,7 +49,7 @@ namespace DataStructures.trees
             {
                 // we're biased towards the right -- 
                 // we'll need a Left-Left or a Left-Right rotation
-                if(newKey.CompareTo(curr.value) < 0)
+                if(newKey.CompareTo(curr.Value) < 0)
                 {
                     // Left-Left rotation
                     return curr.RotateLeft();
@@ -62,9 +65,7 @@ namespace DataStructures.trees
             {
                 // we're biased towards the left -- 
                 // we'll need a Right-Right or a Left-Right rotation
-                // we're biased towards the right -- 
-                // we'll need a Left-Left or a Left-Right rotation
-                if (newKey.CompareTo(curr.value) > 0)
+                if (newKey.CompareTo(curr.Value) > 0)
                 {
                     // Right-Left rotation
                     return curr.RotateRight();
@@ -82,7 +83,7 @@ namespace DataStructures.trees
 
         private AVLTree<T> BSTInsert(T toInsert)
         {
-            var compareValue = toInsert.CompareTo(value);
+            var compareValue = toInsert.CompareTo(Value);
 
             if (compareValue > 0)
             {
@@ -137,7 +138,7 @@ namespace DataStructures.trees
 				throw new ArgumentException(string.Format("Value {0} attempted to be removed from a tree which does not contain it", toRemove));
 			}
 
-			var compareVal = toRemove.CompareTo(value);
+			var compareVal = toRemove.CompareTo(Value);
 
 			if (compareVal < 0)
 			{
@@ -165,7 +166,7 @@ namespace DataStructures.trees
 					if (IsLeaf())
 					{
 						// if this is a leaf, we can just remove its reference
-						parent.ReplaceChild(value, null);
+						parent.ReplaceChild(Value, null);
 					}
 					else
 					{
@@ -173,11 +174,11 @@ namespace DataStructures.trees
 						var desc = left != null ? left.GreatestDescendant() : right.SmallestDescendant();
 
 						// replace this node's values with that node's values, and remove it
-						value = desc.value;
+						Value = desc.Value;
 						count = desc.count;
 
 						// get rid of the old copy of the descendant node
-						desc.Remove(desc.value);
+						desc.Remove(desc.Value);
 					}
 				}
 			}
@@ -231,9 +232,9 @@ namespace DataStructures.trees
 		#region BST Methods
 		private void ReplaceChild(T val, AVLTree<T> replacement)
 		{
-			if (left != null && left.value.CompareTo(val) == 0)
+			if (left != null && left.Value.CompareTo(val) == 0)
 				left = replacement;
-			else if (right != null && right.value.CompareTo(val) == 0)
+			else if (right != null && right.Value.CompareTo(val) == 0)
 				right = replacement;
 			else
 				throw new ArgumentException("attempt to replace child that does not exist", "val");
@@ -256,7 +257,7 @@ namespace DataStructures.trees
 
 		public bool Contains(T target)
 		{
-			var compareVal = target.CompareTo(value);
+			var compareVal = target.CompareTo(Value);
 
 			if (compareVal == 0)
 				return true;
@@ -268,20 +269,5 @@ namespace DataStructures.trees
 				return false;
 		}
 		#endregion
-
-	    public IBinaryTree<T> GetLeft()
-	    {
-		    return left;
-	    }
-
-	    public IBinaryTree<T> GetRight()
-	    {
-		    return right;
-	    }
-
-	    public T GetValue()
-	    {
-		    return value;
-	    }
 	}
 }

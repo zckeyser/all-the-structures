@@ -11,13 +11,13 @@
         {
             string output = "";
 
-            output += tree.GetValue() + " ";
+            output += tree.Value + " ";
 
-            if (tree.GetLeft() != null)
-                output += PreOrderHelper(tree.GetLeft());
+            if (tree.Left != null)
+                output += PreOrderHelper(tree.Left);
 
-            if (tree.GetRight() != null)
-                output += PreOrderHelper(tree.GetRight());
+            if (tree.Right != null)
+                output += PreOrderHelper(tree.Right);
 
             return output;
         }
@@ -31,13 +31,13 @@
         {
             string output = "";
 
-            if (tree.GetLeft() != null)
-                output += InOrderHelper(tree.GetLeft());
+            if (tree.Left != null)
+                output += InOrderHelper(tree.Left);
 
-            output += tree.GetValue() + " ";
+            output += tree.Value + " ";
 
-            if (tree.GetRight() != null)
-                output += InOrderHelper(tree.GetRight());
+            if (tree.Right != null)
+                output += InOrderHelper(tree.Right);
 
             return output;
         }
@@ -51,13 +51,13 @@
         {
             string output = "";
 
-            if (tree.GetLeft() != null)
-                output += PostOrderHelper(tree.GetLeft());
+            if (tree.Left != null)
+                output += PostOrderHelper(tree.Left);
 
-            if (tree.GetRight() != null)
-                output += PostOrderHelper(tree.GetRight());
+            if (tree.Right != null)
+                output += PostOrderHelper(tree.Right);
 
-            output += tree.GetValue() + " ";
+            output += tree.Value + " ";
 
             return output;
         }
