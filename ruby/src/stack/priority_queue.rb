@@ -1,43 +1,65 @@
 class PriorityQueue
-    def initialize(num_levels)
-        if num_levels <= 0
-            raise ArgumentError, 'number of levels in PriorityQueue must be >= 0'
-        end
-
-        @queues = []
-
-        for i in (0...num_levels)
-            @queues.push([])
-        end
+    def initialize()
+        @data = nil
     end
 
-    # default to minimum priority
-    def push(val, level = 0)
-        @queues[level].push(val)
-    end
+    def enqueue(val, key)
+        to_insert = PriorityQueueNode.new(val, key)
 
-    def pop
-        max_level = @queues.length - 1
+        if @data == nil
+            @data = to_insert
+        elsif key > @data.key
+            to_insert.next = @data
+            @data = to_insert
+        else
+            curr = @data
 
-        retval = nil
-
-        # pop an item from the highest priority queue with items
-        for level in (max_level).downto(0)
-            if @queues[level].length > 0
-                retval = @queues[level].shift
-                break
+            while curr.next != nil && curr.next.key >= key
+                curr = curr.next
             end
+
+            if @curr.next != nil
+                to_insert.next = @curr.next.next
+            end
+
+            curr.next = to_insert
+        end
+    end
+
+    def extract_max
+        if @data == nil
+            raise RangeError, 'attempted to extract from empty queue'
         end
 
+        retval = @data.value
+        @data = @data.next
         retval
     end
 
     def size
-        # sum internal queue lengths
-        @queues.map{ |x| x.length }.reduce(:+)
+        if @data
+            @data.length()
+        else
+            0
+        end
+    end
+end
+
+class PriorityQueueNode
+    attr_reader :value, :key, :next
+    attr_writer :value, :key, :next
+
+    def initialize(val, key)
+        @value = val
+        @key = key
+        @next = nil
     end
 
-    def levels
-        @queues.length
+    def length
+        if @next != nil
+            @next.length() + 1
+        else
+            1
+        end
     end
 end
