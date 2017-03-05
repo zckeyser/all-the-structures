@@ -8,6 +8,7 @@ import Core.StackTest
 import Core.QueueTest
 import Graph.DirectedGraphTest
 import Graph.BreadthFirstSearchTest
+import Graph.DepthFirstSearchTest
 import Math.SieveTest
 import Math.GCDTest
 
@@ -20,6 +21,7 @@ tests = [ harness
         , queueTest
         , directedGraphTest
         , bfsTest
+        , dfsTest
         , sieveTest
         , gcdTest
         ]
