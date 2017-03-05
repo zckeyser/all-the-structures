@@ -8,7 +8,7 @@ newStack x = [x]
 
 -- push an item onto the top of the stack
 push :: Stack a -> a -> Stack a
-push s x  = x : s
+push s x = x : s
 
 -- pop an item off the top of the stack
 -- returns both the item that was popped and the state of the
