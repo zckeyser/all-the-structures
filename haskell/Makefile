@@ -17,7 +17,7 @@ cabal.sandbox.config : ~/.cabal/config
 .PHONY : clean
 clean :
 	$(CABAL) clean
-	rm -f test
+	rm -f test.exe
 
 .PHONY : distclean
 distclean : clean

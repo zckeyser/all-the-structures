@@ -1,30 +1,29 @@
+module Graph.BreadthFirstSearch (bfs) where
+
+import Data.List
+
 import Core.Queue
 import Graph.DirectedGraph
 
-module Graph.BreadthFirstSearch
-  ( bfs
-  ) where
-
 -- breadth first traversal of a directed graph
--- makes the assumption that nodes with equal values are duplicates
--- so if multiple nodes with the same value are in
 bfs :: (Eq a) => Node a -> [a]
-bfs start = bfsHelper $ newQueue [value start]
+bfs start = bfsHelper [start] []
 
-bfsHelper :: (Eq a) => (Queue (Node a))  -> [a] -> [a]
-bfsHelper [] = []
+doesNotContain :: (Eq a) => [a] -> a -> Bool
+doesNotContain l x = not $ elem x l
+
+isNew :: (Eq a) => Queue (Node a) -> [Node a] -> Node a -> Bool
+isNew q visited n = and [doesNotContain q n, doesNotContain visited n]
+
+bfsHelper :: (Eq a) => Queue (Node a) -> [Node a] -> [a]
+bfsHelper [] _ = []
 bfsHelper q visited = let curr = dequeue q -- get the next node
                           currNode = fst curr
                           currQueue = snd curr
                           currValue = value currNode
-                          currNeighors = neighbors currNode -- get the neighbors of the current node
-                          notVisited = not . elem visited
-                          notQueued = \x -> not . any (\n -> value n == x) q
-                          isNew = \n -> notVisited $ value x && notQueued x
-                          newNeighbors = filter isNew currNeighbors -- filter neighbors to ones that aren't enqueued or visited
+                          currNeighbors = neighbors currNode -- get the neighbors of the current node
+                          newNeighbors = filter (isNew q visited) currNeighbors -- filter neighbors to ones that aren't enqueued or visited
+                          newQueue = currQueue ++ newNeighbors -- updated queue for next iteration
+                          newVisited = currNode : visited
                       in
-                          currValue : (bfsHelper $ enqueueList q newNeighbors $ currValue : visited) -- recurse on the rest of the queue with updated visited list
-
-enqueueList :: (Queue a) -> [a] -> (Queue a)
-enqueueList q [] = q
-enqueueList q (x:xs) = enqueueList (enqueue q x) xs
+                          currValue : (bfsHelper newQueue newVisited) -- recurse on the rest of the queue with updated visited list
