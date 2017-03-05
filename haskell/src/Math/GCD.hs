@@ -1,10 +1,8 @@
-module Math.GCD (
-  gcd
-) where
+module Math.GCD where
 
 -- euclidean algorithm for calculating gcd(a, b)
-gcd :: Integer -> Integer -> Integer
-gcd a b
-  | a < b        = gcd b a
-  | a `mod` b    = b
-  | otherwise    = gcd $ a `mod` b $ b
+euclidean :: Integer -> Integer -> Integer
+euclidean a b
+  | a < b             = euclidean b a
+  | a `mod` b == 0    = b
+  | otherwise         = euclidean (a `mod` b) b

@@ -1,17 +1,22 @@
+# IntelliJ
 **/out
 **/*.iml
 **/.idea
 **/target/**/*
 
+# js
 js/node_modules
 
+# C#
 **/obj
 **/bin
 **/.vs
 **/*.suo
 
+# python
 **/*.pyc
 
+#ruby
 **/coverage/*
 **/Gemfile.lock
 
@@ -50,6 +55,9 @@ dist
 test-output
 build.log
 
+# haskell
+.cabal-sandbox
+
 # other scm
 .svn
 .CVS
@@ -59,5 +67,5 @@ build.log
 #  syntax: regexp
 #  ^\.pc/
 
-#SHITTY output not in target directory
+# SHITTY output not in target directory
 build.log

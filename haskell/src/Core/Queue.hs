@@ -1,9 +1,4 @@
-module Queue
-( Queue
-, newQueue
-, enqueue
-, dequeue
-) where
+module Core.Queue where
 
 type Queue a = [a]
 

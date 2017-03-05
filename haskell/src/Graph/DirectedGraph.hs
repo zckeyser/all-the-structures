@@ -1,9 +1,4 @@
-module Graph
-( Node
-, newNode
-, addNeighbor
-, removeNeighbor
-) where
+module Graph.DirectedGraph where
 
 data Node a = Node a { value :: a, neighbors :: [Node a] } deriving (Eq, Show, Read)
 

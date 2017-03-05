@@ -1,9 +1,4 @@
-module Stack
-( Stack
-, newStack
-, push
-, pop
-) where
+module Core.Stack where
 
 type Stack a = [a]
 

@@ -1,6 +1,6 @@
 module Math.Sieve
-( eratosthenes
-) where
+  ( eratosthenes
+  ) where
 
 type Divisor = Integer
 type Prime = Integer
@@ -18,9 +18,9 @@ divisible divisor num = num `mod` divisor == 0
 
 eratosthenesHelper :: [Integer] -> Divisor -> [Prime]
 eratosthenesHelper primes divisor
-    | divisor > max primes `div` 2 = primes
-    | otherwise                = let filteredPrimes = filter (divisible divisor) primes
-                                 in eratosthenesHelper filteredPrimes $ nextDivisor divisor filteredPrimes
+    | divisor > maximum primes `div` 2 = primes
+    | otherwise                        = let filteredPrimes = filter (divisible divisor) primes
+                                         in eratosthenesHelper filteredPrimes $ nextDivisor divisor filteredPrimes
 
 nextDivisor :: Divisor -> ([Integer] -> Divisor)
 nextDivisor current = head . filter (> current)
