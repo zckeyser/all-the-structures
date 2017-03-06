@@ -11,6 +11,7 @@ import Graph.BreadthFirstSearchTest
 import Graph.DepthFirstSearchTest
 import Math.SieveTest
 import Math.GCDTest
+import Tree.BSTTest
 
 main :: IO ()
 main = defaultMain tests
@@ -24,6 +25,7 @@ tests = [ harness
         , dfsTest
         , sieveTest
         , gcdTest
+        , bstTest
         ]
 
 harness :: Test
