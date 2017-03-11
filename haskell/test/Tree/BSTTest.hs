@@ -25,10 +25,10 @@ bstTest = let -- this will be better if I convert the project to be monadic
           in
           testGroup "BST"
                     [ testCase "Insert" $ Traversal.inorder t @?= [3, 10, 15, 24, 30, 42, 50, 60, 73, 80, 83, 87, 100]
-                    , testCase "Remove leaf" $ Traversal.inorder $ delete t 3 @?= [10, 15, 24, 30, 42, 50, 60, 73, 80, 83, 87, 100]
-                    , testCase "Remove node with single child" $ Traversal.inorder $ delete t 10 @?= [3, 15, 24, 30, 42, 50, 60, 73, 80, 83, 87, 100]
-                    , testCase "Remove node with two children" $ Traversal.inorder $ delete t 30 @?= [3, 10, 15, 24, 42, 50, 60, 73, 80, 83, 87, 100]
-                    , testCase "Remove root" $ Traversal.inorder $ delete t 50 @?= [3, 10, 15, 24, 30, 42, 60, 73, 80, 83, 87, 100]
+                    , testCase "Remove leaf" $ (Traversal.inorder $ delete t 3) @?= [10, 15, 24, 30, 42, 50, 60, 73, 80, 83, 87, 100]
+                    , testCase "Remove node with single child" $ (Traversal.inorder $ delete t 10) @?= [3, 15, 24, 30, 42, 50, 60, 73, 80, 83, 87, 100]
+                    , testCase "Remove node with two children" $ (Traversal.inorder $ delete t 30) @?= [3, 10, 15, 24, 42, 50, 60, 73, 80, 83, 87, 100]
+                    , testCase "Remove root" $ (Traversal.inorder $ delete t 50) @?= [3, 10, 15, 24, 30, 42, 60, 73, 80, 83, 87, 100]
                     , testCase "Contains positive" $ BST.contains t 24 @?= True
                     , testCase "Contains negative" $ BST.contains t 25 @?= False
                     ]

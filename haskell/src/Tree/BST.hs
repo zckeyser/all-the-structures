@@ -1,4 +1,4 @@
-module Tree.BST (Tree, singleton, insert, delete, contains, height) where
+module Tree.BST where
 
 data Tree a = EmptyTree | Node { value :: a, left :: Tree a, right :: Tree a, count :: Int } deriving (Show, Read, Eq)
 
@@ -28,7 +28,7 @@ insert (Node v l r c) x
     | otherwise = (Node v l r (c + 1))
 
 delete :: (Ord a) => Tree a -> a -> Tree a
-delete (t@(Node v l r c)) x
+delete t@(Node v l r c) x
     | x < v           = if l /= EmptyTree
                         then (Node v (delete l x) r c)
                         else t
@@ -74,11 +74,11 @@ singleChild _                                    = False
 -- returns the rightmost node of the tree
 rightmost :: Tree a -> Tree a
 rightmost EmptyTree                  = EmptyTree
-rightmost (t@(Node _ _ EmptyTree _)) = t
+rightmost t@(Node _ _ EmptyTree _) = t
 rightmost (Node _ _ r _)             = rightmost r
 
 -- returns the leftmost node of the tree
 leftmost :: Tree a -> Tree a
 leftmost EmptyTree                  = EmptyTree
-leftmost (t@(Node _ EmptyTree _ _)) = t
+leftmost t@(Node _ EmptyTree _ _) = t
 leftmost (Node _ l _ _)             = l
