@@ -1,4 +1,4 @@
-module LinkedList where
+module LinkedList.LinkedList where
 
 import Data.Maybe
 
@@ -7,11 +7,15 @@ data List a = EmptyNode | Node{value :: a, rest :: List a}
 newNode :: a -> List a
 newNode x = (Node x EmptyNode)
 
+isEmpty :: List a -> Bool
+isEmpty EmptyNode = True
+isEmpty _ = False
+
 any' :: (a -> Bool) -> List a -> Bool
 any' _ EmptyNode = False
 any' f (Node x n)
   | f x        = True
-  | otherwise  = find f n
+  | otherwise  = any' f n
 
 contains :: Eq a => List a -> a -> Bool
 contains EmptyNode _ = False
@@ -21,7 +25,7 @@ contains (Node x' n) x
 
 -- look for a value in the list which matches the given predicate
 find :: (a -> Bool) -> List a -> Maybe a
-find _ EmptyNode = None
+find _ EmptyNode = Nothing
 find f (Node x n)
   | f x        = Just x
   | otherwise  = find f n

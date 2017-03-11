@@ -6,6 +6,8 @@ import Test.HUnit ((@?=))
 
 import Core.StackTest
 import Core.QueueTest
+import Dictionary.StringHashTest
+import Dictionary.DictionaryTest
 import Graph.DirectedGraphTest
 import Graph.BreadthFirstSearchTest
 import Graph.DepthFirstSearchTest
@@ -20,6 +22,8 @@ tests :: [Test]
 tests = [ harness
         , stackTest
         , queueTest
+        , stringHashTest
+        , dictionaryTest
         , directedGraphTest
         , bfsTest
         , dfsTest
