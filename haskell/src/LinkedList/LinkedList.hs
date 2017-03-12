@@ -30,6 +30,12 @@ find f (Node x n)
   | f x        = Just x
   | otherwise  = find f n
 
+findNode :: (a -> Bool) -> List a -> Maybe (List a)
+findNode _ EmptyNode = Nothing
+findNode f curr@(Node x n)
+  | f x        = Just curr
+  | otherwise  = findNode f n
+
 replaceWhere :: (a -> Bool) -> List a -> a -> List a
 replaceWhere _ EmptyNode _ = EmptyNode
 replaceWhere f (Node x' n) x
