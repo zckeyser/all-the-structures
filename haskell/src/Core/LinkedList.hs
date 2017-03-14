@@ -1,8 +1,8 @@
-module LinkedList.LinkedList where
+module Core.LinkedList where
 
 import Data.Maybe
 
-data List a = EmptyNode | Node{value :: a, rest :: List a}
+data List a = EmptyNode | Node{value :: a, rest :: List a} deriving (Eq, Show, Read)
 
 newNode :: a -> List a
 newNode x = (Node x EmptyNode)
@@ -36,12 +36,21 @@ findNode f curr@(Node x n)
   | f x        = Just curr
   | otherwise  = findNode f n
 
-replaceWhere :: (a -> Bool) -> List a -> a -> List a
-replaceWhere _ EmptyNode _ = EmptyNode
-replaceWhere f (Node x' n) x
+-- replace the first value that matches f with x
+replaceWhere :: (a -> Bool) -> a -> List a -> List a
+replaceWhere _ _ EmptyNode = EmptyNode
+replaceWhere f x (Node x' n)
   | f x'      = (Node x n)
-  | otherwise = (Node x' (replaceWhere f n x'))
+  | otherwise = (Node x' (replaceWhere f x n))
 
 append :: List a -> a -> List a
 append EmptyNode x   = newNode x
 append (Node x' n) x = (Node x' (append n x))
+
+fromList :: [a] -> List a
+fromList [] = EmptyNode
+fromList (x:xs) = (Node x (fromList xs))
+
+toList :: List a -> [a]
+toList EmptyNode = []
+toList (Node x n) = x : toList n

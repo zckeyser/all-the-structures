@@ -4,6 +4,8 @@ import Test.Framework
 import Test.Framework.Providers.HUnit
 import Test.HUnit ((@?=))
 
+import Core.LinkedListTest
+import Core.HelperTest
 import Core.StackTest
 import Core.QueueTest
 import Dictionary.StringHashTest
@@ -20,6 +22,8 @@ main = defaultMain tests
 
 tests :: [Test]
 tests = [ harness
+        , linkedListTest
+        , helperTest
         , stackTest
         , queueTest
         , stringHashTest
