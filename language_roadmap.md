@@ -7,6 +7,6 @@
 - [x] Python
 - [x] Ruby
 - [ ] Scala
-- [ ] Haskell
+- [ ] Haskell (partially done)
 - [ ] Rust (maybe)
 - [ ] Go (maybe)
