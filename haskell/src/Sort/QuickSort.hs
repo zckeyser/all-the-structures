@@ -1,4 +1,4 @@
-module Sort.QuickSort where
+module Sort.Quicksort where
   -- this is the prettier, immutable version which isn't a true quicksort
   -- this is because one of the major advantages of quicksort is that it
   -- has in-place sorting, which allows for better utilization of the L1/L2
@@ -10,6 +10,8 @@ module Sort.QuickSort where
   -- array has a lot of duplicates
   quicksort :: (Ord a) => [a] -> [a]
   quicksort [] = []
-  quicksort (x:xs) = quicksort (filter (< x) xs)
-                 ++ filter (== x) xs
-                 ++ quicksort (filter (> x) xs)
+  quicksort (x:xs) = left ++ center ++ right
+    where
+      left   = quicksort [y | y <- xs, y < x]
+      center = x : [y | y <- xs, y == x]
+      right  = quicksort [y | y <- xs, y > x]

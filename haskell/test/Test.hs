@@ -16,6 +16,7 @@ import Graph.DepthFirstSearchTest
 import Math.SieveTest
 import Math.GCDTest
 import Tree.BSTTest
+import Sort.SortTest
 
 main :: IO ()
 main = defaultMain tests
@@ -35,6 +36,8 @@ tests = [ harness
         , gcdTest
         , bstTest
         ]
+        ++
+        sortTests
 
 harness :: Test
 harness = testGroup "Harness Verification"

@@ -18,7 +18,6 @@ dictionaryTest = testGroup "Dictionary"
                             , testCase "newDict size" $ Dictionary.size newDict @?= 0
                             , testCase "set and get single value" $ (Dictionary.get (Dictionary.set newDict "foo" 1) "foo") @?= Just 1
                             , testCase "set and get bad key" $ Dictionary.get (Dictionary.set newDict "foo" 1) "bar" @?= Nothing
-                            , testCase "copy" $ allMatching (Dictionary.copy dict newDict) (Dictionary.toList dict) @?= True
                             , testCase "expand" $ allMatching dict pairs @?= True
                             ]
   where
@@ -34,7 +33,7 @@ dictionaryTest = testGroup "Dictionary"
     allMatching d []      = True -- if we got this far, everything matched
     allMatching d ((k, v):xs)
       | Dictionary.get d k == Just v = allMatching d xs
-      | otherwise         = False
+      | otherwise                    = False
 
     genKeyFromInt :: Int -> String
     genKeyFromInt 1 = ""
@@ -44,7 +43,7 @@ dictionaryTest = testGroup "Dictionary"
     -- returns the updated dict and the key value pairs used
     insertN :: Dictionary.Dictionary Int -> Int -> (Dictionary.Dictionary Int, [(String, Int)])
     insertN d 0 = (d, [])
-    insertN d n = let s' = show n
+    insertN d n = let s'      = show n
                       updated = insertN (Dictionary.set d s' n) (n - 1)
                   in
                      (fst updated, (s', n) : snd updated)
