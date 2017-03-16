@@ -23,7 +23,7 @@ set d k v = let updatedDict = setHelper d k v
               -- after updating the dictionary, make sure we
               -- don't need to expand it (using saturation limit of 70%)
               if isSaturated updatedDict
-              then expand updatedDict
+              then updatedDict
               else updatedDict
   where
     bucketCount :: Dictionary a -> Int
@@ -46,28 +46,17 @@ set d k v = let updatedDict = setHelper d k v
     -- except it has twice as many buckets
     expand :: Dictionary a -> Dictionary a
     expand d'@(Dictionary b' _) = let resized = (Dictionary (arrayOf LinkedList.EmptyNode $ 2 * length b') 0) :: Dictionary a
-                                 in copy d' resized -- copy the existing dict into a new dict
-                                                    -- with twice as many buckets
+                                  in copy d' resized -- copy the existing dict into a new dict
+                                                     -- with twice as many buckets
       where
         arrayOf :: a -> Int -> [a]
         arrayOf _ 0 = []
         arrayOf a i = a : arrayOf a (i - 1)
 
-        -- copy the contents of d into d'
-        copy :: Dictionary a -> Dictionary a -> Dictionary a
-        copy (Dictionary b _) d'' = foldl (\curr next -> copyListIntoDict curr next) d'' b
-
-        copyListIntoDict :: Dictionary a -> LinkedList.List (String, a) -> Dictionary a
-        copyListIntoDict d'' LinkedList.EmptyNode       = d''
-        copyListIntoDict d'' (LinkedList.Node (k', v') n) = set (copyListIntoDict d'' n) k' v'
-
     setHelper :: Dictionary a -> String -> a -> Dictionary a
     setHelper (Dictionary b' s') k' v'
       | isBucketEmpty bucket  = (Dictionary (replaceElementAt b' index newNode) (s' + 1)) -- no collision
-      | isJust keyMatchedNode = (Dictionary -- update an existing value in this bucket
-                                  (replaceElementAt b' index $
-                                      LinkedList.replaceWhere (matchingKey k') (k', v') bucket) -- replace the bucket with an updated bucket
-                                  s') -- since it's an update, no size change
+      | isJust keyMatchedNode = (Dictionary (replaceElementAt b' index $ updateValue bucket (k', v')) s') -- since it's an update, no size change
       | otherwise             = (Dictionary (replaceElementAt b' index $ LinkedList.append bucket (k', v')) (s' + 1)) -- add this node to the bucket and update size
         where
           index = hash k' `mod` length b'
@@ -75,6 +64,17 @@ set d k v = let updatedDict = setHelper d k v
 
           keyMatchedNode = LinkedList.findNode (matchingKey k') bucket
           newNode = LinkedList.newNode (k', v')
+
+          updateValue :: (LinkedList.List (String, a)) -> (String, a) -> (LinkedList.List (String, a))
+          updateValue l p@(k'', _) = LinkedList.replaceWhere (matchingKey k'') p l
+
+-- copy the contents of d into d'
+copy :: Dictionary a -> Dictionary a -> Dictionary a
+copy (Dictionary b _) d = foldl (\curr next -> copyListIntoDict curr next) d b
+  where
+    copyListIntoDict :: Dictionary a -> LinkedList.List (String, a) -> Dictionary a
+    copyListIntoDict d' LinkedList.EmptyNode         = d'
+    copyListIntoDict d' (LinkedList.Node (k, v) n) = set (copyListIntoDict d' n) k v
 
 get :: Dictionary a -> String -> Maybe a
 get (Dictionary b _) k
@@ -105,6 +105,9 @@ keys (Dictionary b _) = foldl (\curr next -> curr ++ bucketKeys next) [] b
   where
     bucketKeys :: (LinkedList.List (String, a) -> [String])
     bucketKeys = (map fst) . LinkedList.toList
+
+pairs :: Dictionary a -> [(String, a)]
+pairs (Dictionary b _) = foldl (\curr next -> curr ++ LinkedList.toList next) [] b
 
 toList :: Dictionary a -> [(String, a)]
 toList (Dictionary b _) = foldl (++) [] (map (LinkedList.toList) b)

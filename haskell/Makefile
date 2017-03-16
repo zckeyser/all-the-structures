@@ -24,5 +24,5 @@ distclean : clean
 	rm -rf cabal.sandbox.config .cabal-sandbox
 
 .PHONY : run-tests
-run : all
+test : all
 	./test
