@@ -9,24 +9,22 @@ import Test.Framework.Providers.HUnit
 import Test.HUnit ((@?=))
 
 import qualified Dictionary.Dictionary as Dictionary
-import qualified Core.LinkedList as LinkedList
 import Dictionary.StringHash
 
 dictionaryTest :: Test
 dictionaryTest = testGroup "Dictionary"
                             [ testCase "newDict bucket count" $ length (Dictionary.buckets newDict) @?= 1024
-                            , testCase "newDict bucket contents" $ all LinkedList.isEmpty (Dictionary.buckets newDict) @?= True
+                            , testCase "newDict bucket contents" $ all null (Dictionary.buckets newDict) @?= True
                             , testCase "newDict size" $ Dictionary.size newDict @?= 0
                             , testCase "set and get single value" $ (Dictionary.get (Dictionary.set newDict "foo" 1) "foo") @?= Just 1
                             , testCase "set and get bad key" $ Dictionary.get (Dictionary.set newDict "foo" 1) "bar" @?= Nothing
-                            , testCase "copy" $ allMatching (Dictionary.copy dict newDict) (Dictionary.pairs dict) @?= True
+                            , testCase "copy" $ allMatching (Dictionary.copy dict newDict) (Dictionary.toList dict) @?= True
                             , testCase "expand" $ allMatching dict pairs @?= True
-                            , testCase "hash" $ map hash (map show [1..30]) @?= []-- filter (== (hash "30")) [1..29] @?= []
                             ]
   where
     newDict = Dictionary.newDict :: Dictionary.Dictionary Int
 
-    size = 30
+    size = 2000
 
     inserted = insertN Dictionary.newDict size -- insert enough to trigger an expansion
     dict = fst inserted
