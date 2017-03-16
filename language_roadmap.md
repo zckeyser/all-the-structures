@@ -2,11 +2,11 @@
 - [x] Java
 - [x] C#
 - [x] C
-- [ ] C++
 - [x] Javascript
 - [x] Python
 - [x] Ruby
+- [x] Haskell
+- [ ] C++
 - [ ] Scala
-- [ ] Haskell (partially done)
 - [ ] Rust (maybe)
 - [ ] Go (maybe)
