@@ -2,7 +2,7 @@ module Sort.Mergesort where
 
 import Data.List
 
-mergesort :: (Ord a) => [a] -> [a]
+mergesort :: Ord a => [a] -> [a]
 mergesort [] = []
 mergesort [x] = [x]
 mergesort xs = merge left right -- merge sorted sublists
@@ -14,7 +14,7 @@ mergesort xs = merge left right -- merge sorted sublists
     left = mergesort $ fst splitLists
     right = mergesort $ snd splitLists
 
-merge :: (Ord a) => [a] -> [a] -> [a]
+merge :: Ord a => [a] -> [a] -> [a]
 merge xs [] = xs
 merge [] ys = ys
 merge xxs@(x:xs) yys@(y:ys)

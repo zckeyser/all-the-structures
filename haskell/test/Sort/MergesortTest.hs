@@ -7,7 +7,7 @@ import Test.HUnit ((@?=))
 import Sort.Mergesort
 
 mergesortTest :: Test
-mergesortTest = testGroup "mergesort"
+mergesortTest = testGroup "Merge Sort"
                           [ testCase "mergesort []" $ mergesort ([] :: [Int]) @?= []
                           , testCase "mergesort [1]" $ mergesort ([1] :: [Int]) @?= [1]
                           , testCase "mergesort [1, 2, 3]" $ mergesort ([1, 2, 3] :: [Int]) @?= [1, 2, 3]

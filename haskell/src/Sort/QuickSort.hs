@@ -8,7 +8,7 @@ module Sort.Quicksort where
   -- quicksort which uses the first element of the array as a pivot
   -- uses a 3-way partition, which is more efficient when the
   -- array has a lot of duplicates
-  quicksort :: (Ord a) => [a] -> [a]
+  quicksort :: Ord a => [a] -> [a]
   quicksort [] = []
   quicksort (x:xs) = left ++ center ++ right
     where
