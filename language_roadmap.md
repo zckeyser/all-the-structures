@@ -9,4 +9,4 @@
 - [ ] C++
 - [ ] Scala
 - [ ] Rust (maybe)
-- [ ] Go (maybe)
+- [ ] Go
