@@ -4,37 +4,22 @@ import "reflect"
 import "errors"
 import "fmt"
 
-func IsOfComparable(arr []interface{}) bool {
-  // need to be able to get an element to check if the contained elements are comparable
-  if len(arr) == 0 {
-    return false
-  } else {
-    return reflect.TypeOf(arr[0]).Comparable()
-  }
-}
+func IsSorted(arr []int) (isSorted bool) {
+  isSorted = true
 
-func IsSorted(arr []interface{}) (isSorted bool, err error) {
-  if len(arr) == 0 {
-    err = nil
-    isSorted = true
-  } else if !IsOfComparable(arr) {
-    err = errors.New("slice must contain a comparable type")
-    isSorted = false
-  } else {
+  if len(arr) != 0 {
     for i := 0; i < len(arr) - 1; i++ {
       if arr[i] > arr[i + 1] {
         isSorted = false
         break
       }
     }
-
-    err = nil
   }
 
   return
 }
 
-func Swap(arr []interface{}, i int, j int) (swapped []interface{}, err error) {
+func Swap(arr []int, i int, j int) (swapped []int, err error) {
   swapped = arr
   err = nil
 
