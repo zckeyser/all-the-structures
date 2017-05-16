@@ -1,31 +1,26 @@
-package mysort
-
-// sort for arbitrary types
-type Comparable interface {
-  Less(other interface{}) bool
-}
+package sorts
 
 // mergesort
-func Sort(arr []Comparable) ([]Comparable) {
+func Mergesort(arr []int) ([]int) {
   if len(arr) <= 1 {
     return arr
   }
 
   mid := len(arr) / 2
 
-  left := Sort(arr[:mid])
-  right := Sort(arr[mid:])
+  left := Mergesort(arr[:mid])
+  right := Mergesort(arr[mid:])
 
   return merge(left, right)
 }
 
-func merge(a []Comparable, b []Comparable) (sorted []Comparable) {
+func merge(a []int, b []int) (sorted []int) {
   sorted = nil
 
   i, j := 0, 0
 
   for i < len(a) && j < len(b) {
-    if a[i].Less(b[j]) {
+    if a[i] < b[j] {
       sorted = append(sorted, a[i])
       i++
     } else {

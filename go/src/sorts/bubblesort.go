@@ -1,4 +1,4 @@
-package mysort
+package sorts
 //
 // import "../helper/array.go"
 //

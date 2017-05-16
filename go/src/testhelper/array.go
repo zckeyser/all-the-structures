@@ -1,22 +1,14 @@
 package testhelper
 
-import "rand"
+import "math/rand"
 import "time"
+
+var rng = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 func RandomIntSlice(size int) (arr []int) {
   for i := 0; i < size; i++ {
-    arr = append(arr, randomInt())
+    arr = append(arr, rng.Int())
   }
 
   return
-}
-
-rng rand.Rand := nil
-
-func randomInt() (int) {
-  if rng == nil {
-    rng := rand.New(rand.NewSource(time.Now().UnixNano()))
-  }
-
-  return rng.Int()
 }

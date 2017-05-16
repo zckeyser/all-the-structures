@@ -4,19 +4,16 @@ import "reflect"
 import "errors"
 import "fmt"
 
-func IsSorted(arr []int) (isSorted bool) {
-  isSorted = true
-
+func IsSorted(arr []int) bool {
   if len(arr) != 0 {
     for i := 0; i < len(arr) - 1; i++ {
       if arr[i] > arr[i + 1] {
-        isSorted = false
-        break
+        return false
       }
     }
   }
 
-  return
+  return true
 }
 
 func Swap(arr []int, i int, j int) (swapped []int, err error) {

@@ -1,4 +1,4 @@
-package mysort
+package sorts
 
 import "testing"
 
