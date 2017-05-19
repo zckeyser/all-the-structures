@@ -5,6 +5,8 @@ import "math/rand"
 import "time"
 import "fmt"
 
+var ArraySize = 1000
+
 var rng = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 func RandomIntSlice(size int) (arr []int) {
@@ -15,7 +17,7 @@ func RandomIntSlice(size int) (arr []int) {
   return
 }
 
-func TestIsSorted(arr []int, t *testing.T) {
+func AssertIsSorted(arr []int, t *testing.T) {
   if len(arr) == 0 {
     return
   }

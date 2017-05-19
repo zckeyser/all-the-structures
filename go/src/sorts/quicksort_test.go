@@ -4,10 +4,10 @@ import "../testhelper"
 
 import "testing"
 
-func TestBubbleSort(t *testing.T) {
+func TestQuicksort(t *testing.T) {
   arr := testhelper.RandomIntSlice(testhelper.ArraySize)
 
-  sorted := BubbleSort(arr)
+  sorted := Quicksort(arr)
 
   testhelper.AssertIsSorted(sorted, t)
 }

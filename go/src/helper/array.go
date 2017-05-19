@@ -13,13 +13,3 @@ func IsSorted(arr []int) bool {
 
   return true
 }
-
-func Swap(arr []int, i int, j int) (swapped []int) {
-  swapped = arr
-
-  tmp := swapped[i]
-  swapped[i] = swapped[j]
-  swapped[j] = tmp
-
-  return
-}

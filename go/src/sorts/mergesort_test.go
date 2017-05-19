@@ -4,14 +4,10 @@ import "../testhelper"
 
 import "testing"
 
-func TestIntMergesort(t *testing.T) {
-  arr := testhelper.RandomIntSlice(100)
+func TestMergesort(t *testing.T) {
+  arr := testhelper.RandomIntSlice(testhelper.ArraySize)
 
   sorted := Mergesort(arr)
 
-  testhelper.TestIsSorted(sorted, t)
-}
-
-func TestInterfaceMergesort(t *testing.T) {
-
+  testhelper.AssertIsSorted(sorted, t)
 }

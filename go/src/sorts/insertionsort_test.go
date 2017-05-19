@@ -5,9 +5,9 @@ import "../testhelper"
 import "testing"
 
 func InsertionSortTest(t *testing.T) {
-  arr := testhelper.RandomIntSlice(100)
+  arr := testhelper.RandomIntSlice(testhelper.ArraySize)
 
   sorted := InsertionSort(arr)
 
-  testhelper.TestIsSorted(sorted, t)
+  testhelper.AssertIsSorted(sorted, t)
 }
