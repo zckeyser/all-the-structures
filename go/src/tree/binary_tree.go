@@ -1,3 +1,5 @@
+package tree
+
 type BinaryTree struct {
   left *BinaryTree
   right *BinaryTree
@@ -5,9 +7,7 @@ type BinaryTree struct {
 }
 
 // preorder walk of the binary tree
-func (b *BinaryTree) Walk []interface{} {
-  []interface{} retval := nil
-
+func (b *BinaryTree) Walk() []interface{} {
   var left, right []interface{}
 
   if b.left != nil {
@@ -18,5 +18,5 @@ func (b *BinaryTree) Walk []interface{} {
     right = b.right.Walk()
   }
 
-  return append(left, b.value, right...)
+  return append(append(left, b.value), right...)
 }

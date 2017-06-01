@@ -2,21 +2,30 @@ package graphs
 
 import "../core"
 
-func (d *DirectedNode) BreadthFirstSearch() []int {
-    s := new(Stack)
+func (d *DirectedNode) DepthFirstSearch() []int {
+    s := new(core.Stack)
     s.Push(d)
 
-    visited := make([]*DirectedNode, 0)
+    var visited []*DirectedNode
 
-    for n := s.Pop(); s.Size != 0; n = s.Pop() {
-        for neighbor := range n.neighbors {
-            if !(visited.Contains(neighbor) || s.Contains(neighbor)) {
+    for n, _ := s.Pop(); s.Size() != 0; n, _ = s.Pop() {
+        curr := n.(*DirectedNode)
+
+        for _, neighbor := range curr.neighbors {
+            if !(sliceContains(visited, neighbor) || s.Contains(neighbor, compareNode)) {
                 s.Push(neighbor)
             }
         }
-        
-        visited = append(visited, n)
+
+        visited = append(visited, curr)
     }
 
-    return visited
+    // extract the actual values
+    var out []int
+
+    for _, n := range visited {
+      out = append(out, n.value)
+    }
+
+    return out
 }

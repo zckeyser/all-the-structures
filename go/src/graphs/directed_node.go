@@ -2,10 +2,10 @@ package graphs
 
 type DirectedNode struct {
     value int
-    neighbors []DirectedNode
+    neighbors []*DirectedNode
 }
 
-func (nodes []*DirectedNode) Contains(target *DirectedNode) {
+func sliceContains(nodes []*DirectedNode, target *DirectedNode) bool {
     for _, n := range nodes {
         if n == target {
             return true
@@ -13,4 +13,8 @@ func (nodes []*DirectedNode) Contains(target *DirectedNode) {
     }
 
     return false
+}
+
+func compareNode(a, b interface{}) bool {
+    return a.(*DirectedNode) == b.(*DirectedNode)
 }
