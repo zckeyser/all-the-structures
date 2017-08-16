@@ -10,7 +10,6 @@
 #include "../util/randint.h"
 #include "../util/swap.h"
 #include "issorted.h"
-#include "bubble.h"
 #include "insertion.h"
 #include "selection.h"
 #include "merge.h"
@@ -28,11 +27,6 @@ void Sort_test(int *passed, int *total) {
     for(int i = 0; i < TEST_ARR_SIZE; i++) {
         input[i] = rand();
     }
-
-    Bubble_sort(input, TEST_ARR_SIZE);
-
-    *passed += ASSERT_TRUE(issorted(input, TEST_ARR_SIZE), "Bubble Sort");
-    *total += 1;
 
     shuffle(input, TEST_ARR_SIZE);
     Insertion_sort(input, TEST_ARR_SIZE);
