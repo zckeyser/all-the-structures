@@ -39,7 +39,7 @@ all:    $(MAIN)
 	@echo Structures has been compiled
 
 $(MAIN): $(OBJS)
-	$(CC) $(CFLAGS) -o $(MAIN) $(OBJS)
+	$(CC) $(CFLAGS) -o $(MAIN) $(OBJS) main.c
 
 # this is a suffix replacement rule for building .o's from .c's
 # it uses automatic variables $<: the name of the prerequisite of
