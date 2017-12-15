@@ -44,9 +44,9 @@ char* BreadthFirst_traversal(int **graph, int length, int start) {
     char* out = StringBuilder_build(sb);
     // remove trailing whitespace
     out[strlen(out) - 1] = '\0';
+    
     free(q);
     free(sb);
-    free(visited);
 
     return out;
 }
