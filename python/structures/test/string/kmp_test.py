@@ -1,6 +1,6 @@
 import unittest
 
-import structures.src.string.kmp as kmp
+from structures.src.string.kmp import knuth_morris_pratt_string_search
 
 class TestKnuthMorrisPratt(unittest.TestCase):
     def setUp(self):
@@ -10,7 +10,7 @@ class TestKnuthMorrisPratt(unittest.TestCase):
         s = self.__target + ('abcd' * 80)
         expected = 0
 
-        result = kmp.kmp(s, self.__target)
+        result = knuth_morris_pratt_string_search(s, self.__target)
 
         self.assertEquals(result, expected)
 
@@ -18,7 +18,7 @@ class TestKnuthMorrisPratt(unittest.TestCase):
         s = ('abcd' * 40) + self.__target + ('abcd' * 40)
         expected = 160
 
-        result = kmp.kmp(s, self.__target)
+        result = knuth_morris_pratt_string_search(s, self.__target)
 
         self.assertEquals(result, expected)
 
@@ -26,7 +26,7 @@ class TestKnuthMorrisPratt(unittest.TestCase):
         s = ('abcd' * 80) + self.__target
         expected = 320
 
-        result = kmp.kmp(s, self.__target)
+        result = knuth_morris_pratt_string_search(s, self.__target)
 
         self.assertEquals(result, expected)
 
@@ -34,6 +34,6 @@ class TestKnuthMorrisPratt(unittest.TestCase):
         s = ('abcd' * 80)
         expected = -1
 
-        result = kmp.kmp(s, self.__target)
+        result = knuth_morris_pratt_string_search(s, self.__target)
 
         self.assertEquals(result, expected)

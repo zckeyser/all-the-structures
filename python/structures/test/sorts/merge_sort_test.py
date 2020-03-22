@@ -1,21 +1,21 @@
 import unittest
 
 import structures.src.sorts.merge as merge_sort
-import structures.src.util.sort_util as util
 import structures.src.util.constants as const
+from structures.src.util.sort_util import is_sorted, random_array
 
 class TestMergeSort(unittest.TestCase):
     def test_sorted(self):
-        arr = util.random_array(const.ARRAY_SIZE)
+        arr = random_array(const.ARRAY_SIZE)
 
         # make sure the starting array isn't sorted
-        self.assertFalse(util.is_sorted(arr))
+        self.assertFalse(is_sorted(arr))
 
         # sort the array
-        result = merge_sort.mergesort(arr)
+        result = merge_sort.merge_sort(arr)
 
         # make sure it worked
-        self.assertTrue(util.is_sorted(result))
+        self.assertTrue(is_sorted(result))
 
 if __name__ == '__main__':
     unittest.main()

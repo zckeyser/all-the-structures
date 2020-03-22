@@ -1,17 +1,17 @@
 import structures.src.util.sort_util as util
 
-def mergesort(arr):
+def merge_sort(arr):
     if len(arr) <= 1:
         return arr
 
     midpoint = int(len(arr) / 2)
 
     # merge the sorted left and right halves together
-    return __merge(mergesort(arr[:midpoint]), mergesort(arr[midpoint:]))
+    return _merge(merge_sort(arr[:midpoint]), merge_sort(arr[midpoint:]))
 
 # merge two arrays together into a single sorted array
 # inputs are assumed to be sorted
-def __merge(a, b):
+def _merge(a, b):
     out = []
     i, j = 0, 0
 

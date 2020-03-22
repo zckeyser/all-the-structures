@@ -1,4 +1,5 @@
 # class representing a directed graph node
+# TODO clean up comparisons
 class Node(object):
     def __init__(self, value):
         self.value = value

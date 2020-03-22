@@ -1,5 +1,5 @@
 # knuth-morris-pratt string searching algorithm
-def kmp(s, m):
+def knuth_morris_pratt_string_search(s, m):
     m = list(m)
 
     # build table of shift amounts

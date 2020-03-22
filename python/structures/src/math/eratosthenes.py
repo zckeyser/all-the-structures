@@ -1,8 +1,8 @@
-def sieve(upTo):
-    if upTo < 2:
+def sieve(max_num):
+    if max_num < 2:
         return []
 
-    primes = [x for x in range(2, upTo)]
+    primes = [x for x in range(2, max_num)]
 
     i = 0
 

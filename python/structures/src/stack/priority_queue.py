@@ -1,39 +1,39 @@
 # ordered linked list implementation of a priority queue
 class PriorityQueue(object):
     def __init__(self):
-        self.__values = None
+        self._values = None
 
     def __max__(self):
-        return self.__values.value if self.__values != None else None
+        return self._values.value if self._values else None
 
     def enqueue(self, value, key):
-        toInsert = _PriorityQueueNode(value, key)
+        to_insert = _PriorityQueueNode(value, key)
 
-        if self.__values == None:
-            self.__values = toInsert
-        elif key > self.__values.key:
-            toInsert.next = self.__values
-            self.__values = toInsert
+        if self._values == None:
+            self._values = to_insert
+        elif key > self._values.key:
+            to_insert.next = self._values
+            self._values = to_insert
         else:
-            curr = self.__values
+            curr = self._values
             while curr.next != None and curr.next.key >= key:
                 curr = curr.next
 
             nxt = curr.next
-            curr.next = toInsert
+            curr.next = to_insert
             curr.next.next = nxt
 
 
     def extract_max(self):
-        if self.__values != None:
-            retval = self.__values.value
-            self.__values = self.__values.next if self.__values != None else None
+        if self._values:
+            retval = self._values.value
+            self._values = self._values.next if self._values.next else None
             return retval
         else:
             return None
 
     def __len__(self):
-        return len(self.__values) if self.__values != None else 0
+        return len(self._values) if self._values != None else 0
 
 
 class _PriorityQueueNode(object):

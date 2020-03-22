@@ -1,7 +1,7 @@
 def contains(arr, value):
     if len(arr) == 1:
         return arr[0] == value
-    elif len(arr) == 0:
+    elif not arr:
         return False
 
     index = int(len(arr) / 2)

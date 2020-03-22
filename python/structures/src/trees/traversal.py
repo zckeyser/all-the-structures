@@ -1,52 +1,52 @@
-def __preorderHelper(node):
+def _preorderHelper(node):
     output = ''
 
     output += str(node.value) + ' '
 
     if node.left != None:
-        output += __preorderHelper(node.left)
+        output += _preorderHelper(node.left)
 
     if node.right != None:
-        output += __preorderHelper(node.right)
+        output += _preorderHelper(node.right)
 
     return output
 
 def preorder(node):
-    return __preorderHelper(node).strip()
+    return _preorderHelper(node).strip()
 
-def __inorderHelper(node):
+def _inorderHelper(node):
     output = ''
 
     if node.left != None:
-        output += __inorderHelper(node.left)
+        output += _inorderHelper(node.left)
 
     output += str(node.value) + ' '
 
     if node.right != None:
-        output += __inorderHelper(node.right)
+        output += _inorderHelper(node.right)
 
     return output
 
 def inorder(node):
-    return __inorderHelper(node).strip()
+    return _inorderHelper(node).strip()
 
-def __postorderHelper(node):
+def _postorderHelper(node):
     output = ''
 
     if node.left != None:
-        output += __postorderHelper(node.left)
+        output += _postorderHelper(node.left)
 
     if node.right != None:
-        output += __postorderHelper(node.right)
+        output += _postorderHelper(node.right)
 
     output += str(node.value) + ' '
 
     return output
 
 def postorder(node):
-    return __postorderHelper(node).strip()
+    return _postorderHelper(node).strip()
 
 # prettier view which displays the tree as trees are commonly drawn
-# incomplete?
+# TODO pretty-print logic
 def treeview(node):
     print(node.value)
