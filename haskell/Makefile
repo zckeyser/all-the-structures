@@ -6,13 +6,10 @@ all : cabal.sandbox.config
 	$(CABAL) install --disable-documentation
 	cp .cabal-sandbox/bin/test* .
 
-~/.cabal/config :
-	$(CABAL) update
-
-cabal.sandbox.config : ~/.cabal/config
-	$(CABAL) update
-	$(CABAL) sandbox init
-	$(CABAL) install --dependencies-only
+cabal.sandbox.config :
+	$(CABAL) v1-update
+	$(CABAL) v1-sandbox init
+	$(CABAL) v1-install --dependencies-only
 
 .PHONY : clean
 clean :
