@@ -1,75 +1,75 @@
-import unittest
-
 import structures.src.dictionary.dictionary as mydict
 
-class TestDictionary(unittest.TestCase):
-    def test_insert(self):
-        dictionary = mydict.Dictionary()
 
-        dictionary['foo'] = 'bar'
+def test_insert():
+    dictionary = mydict.Dictionary()
 
-        self.assertEquals(dictionary['foo'], 'bar')
+    dictionary['foo'] = 'bar'
 
-    def test_update(self):
-        dictionary = mydict.Dictionary()
+    assert dictionary['foo'] == 'bar'
 
-        dictionary['foo'] = 'bar'
-        dictionary['foo'] = 'buzz'
 
-        self.assertEquals(dictionary['foo'], 'buzz')
-        self.assertEquals(len(dictionary), 1)
+def test_update():
+    dictionary = mydict.Dictionary()
 
-    def test_containskey(self):
-        dictionary = mydict.Dictionary()
+    dictionary['foo'] = 'bar'
+    dictionary['foo'] = 'buzz'
 
-        dictionary['foo'] = 'bar'
+    assert dictionary['foo'] == 'buzz'
+    assert len(dictionary) == 1
 
-        self.assertTrue(dictionary.contains_key('foo'))
-        self.assertFalse(dictionary.contains_key('bar'))
 
-    def test_size(self):
-        dictionary = mydict.Dictionary()
+def test_contains_key():
+    dictionary = mydict.Dictionary()
 
-        self.assertEquals(len(dictionary), 0)
+    dictionary['foo'] = 'bar'
 
-        dictionary['foo'] = 'bar'
+    assert dictionary.contains_key('foo')
+    assert not dictionary.contains_key('bar')
 
-        self.assertEquals(len(dictionary), 1)
 
-        dictionary['fizz'] = 'buzz'
+def test_size():
+    dictionary = mydict.Dictionary()
 
-        self.assertEquals(len(dictionary), 2)
+    assert len(dictionary) == 0
 
-        dictionary.remove('fizz')
+    dictionary['foo'] = 'bar'
 
-        self.assertEquals(len(dictionary), 1)
+    assert len(dictionary) == 1
 
-    def test_remove(self):
-        dictionary = mydict.Dictionary()
+    dictionary['fizz'] = 'buzz'
 
-        dictionary['foo'] = 'bar'
+    assert len(dictionary) == 2
 
-        dictionary.remove('foo')
+    dictionary.remove('fizz')
 
-        self.assertFalse(dictionary.contains_key('foo'))
+    assert len(dictionary) == 1
 
-    def test_expand(self):
-        dictionary = mydict.Dictionary()
 
-        inserted = []
+def test_remove():
+    dictionary = mydict.Dictionary()
 
-        for i in range(0, 5000):
-            key = 'a' * i
-            value = i
+    dictionary['foo'] = 'bar'
 
-            dictionary[key] = value
+    dictionary.remove('foo')
 
-            inserted.append((key, value))
+    assert not dictionary.contains_key('foo')
 
-        for pair in inserted:
-            self.assertEquals(dictionary[pair[0]], pair[1])
 
-        self.assertEquals(len(dictionary), 5000)
+def test_expand():
+    dictionary = mydict.Dictionary()
 
-if __name__ == '__main__':
-    unittest.main()
+    inserted = []
+
+    for i in range(0, 5000):
+        key = 'a' * i
+        value = i
+
+        dictionary[key] = value
+
+        inserted.append((key, value))
+
+    for key, value in inserted:
+        assert dictionary[key] == value
+
+    assert len(dictionary) == 5000
