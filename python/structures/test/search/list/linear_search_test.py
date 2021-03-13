@@ -1,22 +1,24 @@
-import unittest
+import pytest
 
-import structures.src.searches.list.linear as linearSearch
+import structures.src.searches.list.linear as linear_search
 
-class TestLinearSearch(unittest.TestCase):
-    def test_contains(self):
-        arr = range(0, 2000, 3)
 
+@pytest.mark.parametrize(
+    "index,expected",
+    [
         # lower half
-        self.assertTrue(linearSearch.contains(arr, 27))
-
+        (27, True),
         # top half
-        self.assertTrue(linearSearch.contains(arr, 1800))
-
-        # in range
-        self.assertFalse(linearSearch.contains(arr, 28))
-
+        (1800, True),
+        # in range, but doesn't exist in set
+        (28, False),
         # below range
-        self.assertFalse(linearSearch.contains(arr, -1))
-
+        (-1, False),
         # above range
-        self.assertFalse(linearSearch.contains(arr, 2000))
+        (2000, False)
+    ]
+)
+def test_contains(index, expected):
+    arr = range(0, 2000, 3)
+
+    assert linear_search.contains(arr, index) == expected

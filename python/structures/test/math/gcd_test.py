@@ -1,11 +1,15 @@
-import unittest
+import pytest
 
 import structures.src.math.gcd as gcd
 
-class TestEuclideanAlgorithm(unittest.TestCase):
-    def test_gcd(self):
-        self.assertEquals(gcd.gcd(24, 36), 12)
 
-        self.assertEquals(gcd.gcd(374, 8), 2)
-
-        self.assertEquals(gcd.gcd(7, 31), 1)
+@pytest.mark.parametrize(
+    "a,b,expected",
+    [
+        (24, 36, 12),
+        (374, 8, 2),
+        (7, 31, 1)
+    ]
+)
+def test_gcd(a, b, expected):
+    assert gcd.gcd(a, b) == expected

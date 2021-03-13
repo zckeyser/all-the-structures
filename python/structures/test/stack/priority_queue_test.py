@@ -1,161 +1,175 @@
-import unittest
+from pytest import fixture
 
-import structures.src.stack.priority_queue as queue
+import structures.src.stack.priority_queue as priority_queue
 
-class TestPriorityQueue(unittest.TestCase):
-    def setUp(self):
-        self.q = queue.PriorityQueue()
 
-    def test_init_is_empty(self):
-        self.assertEquals(0, len(self.q))
+@fixture(name='queue')
+def init_queue():
+    yield priority_queue.PriorityQueue()
 
-    def test_single_default_enqueue_is_correct_size(self):
-        self.q.enqueue(2, 0)
 
-        self.assertEquals(1, len(self.q))
+def test_init_is_empty(queue):
+    assert len(queue) == 0
 
-    def test_single_default_enqueue_extract_maxs_correct_value(self):
-        self.q.enqueue(2, 0)
 
-        self.assertEquals(2, self.q.extract_max())
+def test_single_default_enqueue_is_correct_size(queue):
+    queue.enqueue(2, 0)
 
-    def test_single_default_enqueue_removes_value_on_extract_max(self):
-        self.q.enqueue(2, 0)
-        self.q.extract_max()
+    assert len(queue) == 1
 
-        self.assertEquals(0, len(self.q))
 
-    def test_single_level_enqueue_is_correct_size(self):
-        self.q.enqueue(2, 3)
+def test_single_default_enqueue_extract_maxs_correct_value(queue):
+    queue.enqueue(2, 0)
 
-        self.assertEquals(1, len(self.q))
+    assert queue.extract_max() == 2
 
-    def test_single_level_enqueue_extract_maxs_correct_value(self):
-        self.q.enqueue(2, 3)
 
-        self.assertEquals(2, self.q.extract_max())
+def test_single_default_enqueue_removes_value_on_extract_max(queue):
+    queue.enqueue(2, 0)
+    queue.extract_max()
 
-    def test_single_level_enqueue_removes_value_on_extract_max(self):
-        self.q.enqueue(2, 3)
-        self.q.extract_max()
+    assert len(queue) == 0
 
-        self.assertEquals(0, len(self.q))
 
-    def test_each_level_enqueue_correct_size(self):
-        self.q.enqueue(5, 0)
-        self.q.enqueue(4, 1)
-        self.q.enqueue(3, 2)
-        self.q.enqueue(2, 3)
-        self.q.enqueue(1, 4)
+def test_single_level_enqueue_is_correct_size(queue):
+    queue.enqueue(2, 3)
 
-        self.assertEquals(5, len(self.q))
+    assert len(queue) == 1
 
-    def test_each_level_enqueue_correct_extract_max_order(self):
-        self.q.enqueue(5, 0)
-        self.q.enqueue(4, 1)
-        self.q.enqueue(3, 2)
-        self.q.enqueue(2, 3)
-        self.q.enqueue(1, 4)
 
-        self.assertEquals(1, self.q.extract_max())
-        self.assertEquals(2, self.q.extract_max())
-        self.assertEquals(3, self.q.extract_max())
-        self.assertEquals(4, self.q.extract_max())
-        self.assertEquals(5, self.q.extract_max())
+def test_single_level_enqueue_extract_maxs_correct_value(queue):
+    queue.enqueue(2, 3)
 
-    def test_each_level_enqueue_removes_on_extract_max(self):
-        self.q.enqueue(5, 0)
-        self.q.enqueue(4, 1)
-        self.q.enqueue(3, 2)
-        self.q.enqueue(2, 3)
-        self.q.enqueue(1, 4)
+    assert queue.extract_max() == 2
 
-        # for test_each extract_max make sure length decrements by 1
-        for i in range(4, -1, -1):
-            self.q.extract_max()
-            self.assertEquals(i, len(self.q))
 
-    def test_varied_multi_level_enqueue_correct_size(self):
-        self.q.enqueue(0, 0)
-        self.q.enqueue(2, 0)
+def test_single_level_enqueue_removes_value_on_extract_max(queue):
+    queue.enqueue(2, 3)
+    queue.extract_max()
 
-        self.q.enqueue(4, 1)
+    assert len(queue) == 0
 
-        self.q.enqueue(6, 2)
-        self.q.enqueue(8, 2)
-        self.q.enqueue(10, 2)
 
-        # skip around to make sure insert order for different prios doesn't matter
-        self.q.enqueue(12, 4)
-        self.q.enqueue(14, 4)
-        self.q.enqueue(16, 4)
-        self.q.enqueue(18, 4)
+def test_each_level_enqueue_correct_size(queue):
+    queue.enqueue(5, 0)
+    queue.enqueue(4, 1)
+    queue.enqueue(3, 2)
+    queue.enqueue(2, 3)
+    queue.enqueue(1, 4)
 
-        # now fill out prio 3
-        self.q.enqueue(20, 3)
-        self.q.enqueue(22, 3)
+    assert len(queue) == 5
 
-        self.assertEquals(12, len(self.q))
 
-    def test_varied_multi_level_enqueue_correct_extract_maxs(self):
-        self.q.enqueue(0, 0)
-        self.q.enqueue(2, 0)
+def test_each_level_enqueue_correct_extract_max_order(queue):
+    queue.enqueue(5, 0)
+    queue.enqueue(4, 1)
+    queue.enqueue(3, 2)
+    queue.enqueue(2, 3)
+    queue.enqueue(1, 4)
 
-        self.q.enqueue(4, 1)
+    assert queue.extract_max() == 1
+    assert queue.extract_max() == 2
+    assert queue.extract_max() == 3
+    assert queue.extract_max() == 4
+    assert queue.extract_max() == 5
 
-        self.q.enqueue(6, 2)
-        self.q.enqueue(8, 2)
-        self.q.enqueue(10, 2)
 
-        # skip around to make sure insert order for different prios doesn't matter
-        self.q.enqueue(12, 4)
-        self.q.enqueue(14, 4)
-        self.q.enqueue(16, 4)
-        self.q.enqueue(18, 4)
+def test_each_level_enqueue_removes_on_extract_max(queue):
+    queue.enqueue(5, 0)
+    queue.enqueue(4, 1)
+    queue.enqueue(3, 2)
+    queue.enqueue(2, 3)
+    queue.enqueue(1, 4)
 
-        # now fill out prio 3
-        self.q.enqueue(20, 3)
-        self.q.enqueue(22, 3)
+    # for test_each extract_max make sure length decrements by 1
+    for i in range(4, -1, -1):
+        queue.extract_max()
+        assert len(queue) == i
 
-        # prio 4
-        self.assertEquals(12, self.q.extract_max())
-        self.assertEquals(14, self.q.extract_max())
-        self.assertEquals(16, self.q.extract_max())
-        self.assertEquals(18, self.q.extract_max())
-        # prio 3
-        self.assertEquals(20, self.q.extract_max())
-        self.assertEquals(22, self.q.extract_max())
-        # prio 2
-        self.assertEquals(6, self.q.extract_max())
-        self.assertEquals(8, self.q.extract_max())
-        self.assertEquals(10, self.q.extract_max())
-        # prio 1
-        self.assertEquals(4, self.q.extract_max())
-        self.assertEquals(0, self.q.extract_max())
-        # prio 0
-        self.assertEquals(2, self.q.extract_max())
 
-    def test_varied_multi_level_enqueue_removes_on_extract_max(self):
-        self.q.enqueue(0, 0)
-        self.q.enqueue(2, 0)
+def test_varied_multi_level_enqueue_correct_size(queue):
+    queue.enqueue(0, 0)
+    queue.enqueue(2, 0)
 
-        self.q.enqueue(4, 1)
+    queue.enqueue(4, 1)
 
-        self.q.enqueue(6, 2)
-        self.q.enqueue(8, 2)
-        self.q.enqueue(10, 2)
+    queue.enqueue(6, 2)
+    queue.enqueue(8, 2)
+    queue.enqueue(10, 2)
 
-        # skip around to make sure insert order for different prios doesn't matter
-        self.q.enqueue(12, 4)
-        self.q.enqueue(14, 4)
-        self.q.enqueue(16, 4)
-        self.q.enqueue(18, 4)
+    # skip around to make sure insert order for different prios doesn't matter
+    queue.enqueue(12, 4)
+    queue.enqueue(14, 4)
+    queue.enqueue(16, 4)
+    queue.enqueue(18, 4)
 
-        # now fill out prio 3
-        self.q.enqueue(20, 3)
-        self.q.enqueue(22, 3)
+    # now fill out prio 3
+    queue.enqueue(20, 3)
+    queue.enqueue(22, 3)
 
-        # for test_each extract_max make sure length decrements by 1
-        for i in range(11, -1, -1):
-            self.q.extract_max()
-            self.assertEquals(i, len(self.q))
+    assert len(queue) == 12
+
+
+def test_varied_multi_level_enqueue_correct_extract_maxs(queue):
+    queue.enqueue(0, 0)
+    queue.enqueue(2, 0)
+
+    queue.enqueue(4, 1)
+
+    queue.enqueue(6, 2)
+    queue.enqueue(8, 2)
+    queue.enqueue(10, 2)
+
+    # skip around to make sure insert order for different prios doesn't matter
+    queue.enqueue(12, 4)
+    queue.enqueue(14, 4)
+    queue.enqueue(16, 4)
+    queue.enqueue(18, 4)
+
+    # now fill out prio 3
+    queue.enqueue(20, 3)
+    queue.enqueue(22, 3)
+
+    # prio 4
+    assert queue.extract_max() == 12
+    assert queue.extract_max() == 14
+    assert queue.extract_max() == 16
+    assert queue.extract_max() == 18
+    # prio 3
+    assert queue.extract_max() == 20
+    assert queue.extract_max() == 22
+    # prio 2
+    assert queue.extract_max() == 6
+    assert queue.extract_max() == 8
+    assert queue.extract_max() == 10
+    # prio 1
+    assert queue.extract_max() == 4
+    assert queue.extract_max() == 0
+    # prio 0
+    assert queue.extract_max() == 2
+
+
+def test_varied_multi_level_enqueue_removes_on_extract_max(queue):
+    queue.enqueue(0, 0)
+    queue.enqueue(2, 0)
+
+    queue.enqueue(4, 1)
+
+    queue.enqueue(6, 2)
+    queue.enqueue(8, 2)
+    queue.enqueue(10, 2)
+
+    # skip around to make sure insert order for different prios doesn't matter
+    queue.enqueue(12, 4)
+    queue.enqueue(14, 4)
+    queue.enqueue(16, 4)
+    queue.enqueue(18, 4)
+
+    # now fill out prio 3
+    queue.enqueue(20, 3)
+    queue.enqueue(22, 3)
+
+    # for test_each extract_max make sure length decrements by 1
+    for i in range(11, -1, -1):
+        queue.extract_max()
+        len(queue) == i

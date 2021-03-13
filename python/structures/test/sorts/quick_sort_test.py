@@ -1,21 +1,16 @@
-import unittest
-
 import structures.src.sorts.quick as qsort
-import structures.src.util.sort_util as util
+from structures.src.util.sort_util import is_sorted, random_array
 import structures.src.util.constants as const
 
-class TestQuickSort(unittest.TestCase):
-    def test_sorted(self):
-        arr = util.random_array(const.ARRAY_SIZE)
 
-        # make sure the starting array isn't sorted
-        self.assertFalse(util.is_sorted(arr))
+def test_sorted():
+    arr = random_array(const.ARRAY_SIZE)
 
-        # sort the array
-        result = qsort.quicksort(arr)
+    # make sure the starting array isn't sorted
+    assert not is_sorted(arr)
 
-        # make sure it worked
-        self.assertTrue(util.is_sorted(result))
+    # sort the array
+    result = qsort.quicksort(arr)
 
-if __name__ == '__main__':
-    unittest.main()
+    # make sure it worked
+    assert is_sorted(result)

@@ -1,38 +1,43 @@
-import unittest
+from pytest import fixture
 
 import structures.src.trees.binary_tree as tree
 import structures.src.trees.traversal as traversal
 
-class TestTreeTraversal(unittest.TestCase):
-    #        1
-    #    2       3
-    #  4   5   6   7
-    def setUp(self):
-        self.root = tree.BinaryTree(1)
-        self.root.left = tree.BinaryTree(2)
-        self.root.right = tree.BinaryTree(3)
-        self.root.left.left = tree.BinaryTree(4)
-        self.root.left.right = tree.BinaryTree(5)
-        self.root.right.left = tree.BinaryTree(6)
-        self.root.right.right = tree.BinaryTree(7)
+#        1
+#    2       3
+#  4   5   6   7
+@fixture(name='tree_root')
+def init_tree():
+    root = tree.BinaryTree(1)
+    root.left = tree.BinaryTree(2)
+    root.right = tree.BinaryTree(3)
+    root.left.left = tree.BinaryTree(4)
+    root.left.right = tree.BinaryTree(5)
+    root.right.left = tree.BinaryTree(6)
+    root.right.right = tree.BinaryTree(7)
 
-    def test_preorder(self):
-        expected = '1 2 4 5 3 6 7'
+    yield root
 
-        result = traversal.preorder(self.root)
 
-        self.assertEquals(result, expected)
+def test_preorder(tree_root):
+    expected = '1 2 4 5 3 6 7'
 
-    def test_inorder(self):
-        expected = '4 2 5 1 6 3 7'
+    result = traversal.preorder(tree_root)
+    
+    assert result == expected
 
-        result = traversal.inorder(self.root)
 
-        self.assertEquals(result, expected)
+def test_inorder(tree_root):
+    expected = '4 2 5 1 6 3 7'
 
-    def test_postorder(self):
-        expected = '4 5 2 6 7 3 1'
+    result = traversal.inorder(tree_root)
 
-        result = traversal.postorder(self.root)
+    assert result == expected
 
-        self.assertEquals(result, expected)
+
+def test_postorder(tree_root):
+    expected = '4 5 2 6 7 3 1'
+
+    result = traversal.postorder(tree_root)
+
+    assert result == expected

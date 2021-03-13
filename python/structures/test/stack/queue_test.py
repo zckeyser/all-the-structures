@@ -1,36 +1,40 @@
-import unittest
+from pytest import fixture
 
-import structures.src.stack.queue as queue
+import structures.src.stack.queue as queue_mod
 
-class TestQueue(unittest.TestCase):
-    def setUp(self):
-        self.q = queue.Queue()
 
-    def test_starts_empty(self):
-        self.assertEquals(len(self.q), 0)
+# @fixture('queue')
+# def init_queue():
+#     yield queue_mod.Queue()
 
-    def test_single_item(self):
-        self.q.push(10)
 
-        self.assertEquals(len(self.q), 1)
+# def test_starts_empty(queue):
+#     assert len(queue) == 0
 
-        result = self.q.pop()
 
-        self.assertEquals(result, 10)
-        self.assertEquals(len(self.q), 0)
+# def test_single_item(queue):
+#     queue.push(10)
 
-    def test_multiple_items(self):
-        self.q.push(10)
-        self.q.push(20)
+#     assert len(queue) == 1
 
-        self.assertEquals(len(self.q), 2)
+#     result = queue.pop()
 
-        result = self.q.pop()
+#     assert result == 10
+#     assert len(queue) == 0
 
-        self.assertEquals(result, 10)
-        self.assertEquals(len(self.q), 1)
 
-        result = self.q.pop()
+# def test_multiple_items(queue):
+#     queue.push(10)
+#     queue.push(20)
 
-        self.assertEquals(result, 20)
-        self.assertEquals(len(self.q), 0)
+#     assert len(queue) == 2
+
+#     result = queue.pop()
+
+#     assert result == 10
+#     assert len(queue) == 1
+
+#     result = queue.pop()
+
+#     assert result == 20
+#     assert len(queue) == 0

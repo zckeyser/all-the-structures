@@ -1,9 +1,6 @@
 import structures.src.graph.directed as graph
 
-def getGraph():
-    # This is going to be a bit of a mess because it's pre-planned
-    # I'll include a scanned image of the graph later
-    # it'll be hand drawn but should at least make this kinda legible
+def get_graph():
     root = graph.Node(21)
     n1 = graph.Node(14)
     n2 = graph.Node(18)
