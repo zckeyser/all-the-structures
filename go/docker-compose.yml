@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  tester:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      - CGO_ENABLED=0
+    volumes:
+      - ./src:/app/src
+    entrypoint:
+      - go
+      - test
+      - ./...
+
